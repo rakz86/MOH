@@ -1,5 +1,23 @@
 # Server — Cloudflare Worker + D1
 
+> ## OUT OF DATE — do not follow these steps yet
+>
+> This Worker was written before the service had **centres** and **requests**.
+> Its schema has tables for codes, standards and the ledger only. The app now
+> keys everything by centre and routes every movement through a request that
+> an admin confirms.
+>
+> Following the setup below will deploy an API the site cannot talk to.
+> `backend: 'cloudflare'` in `website/config.js` will fail until this folder is
+> rewritten to match `website/store.js`.
+>
+> What needs doing: a `requests` table with per-line accepted quantities, a
+> `centreId` column on `ledger`, an `allocations` table, and endpoints for
+> `loadAll` / `submitRequest` / `decideRequest` / `saveCodes` / `setAllocation`.
+>
+> Everything below is kept because the deployment mechanics, the free-tier
+> figures and the data-residency note are all still correct.
+
 The database lives in Cloudflare from the start, so there is nothing to
 migrate later. The **website stays on your machine**; only the data is remote.
 

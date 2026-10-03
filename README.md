@@ -58,9 +58,11 @@ both implementations behind one interface; `website/ledger.js` derives held
 counts and deficits from whatever the store hands back. Nothing else touches
 storage.
 
-Setting up the Cloudflare side is `server/README.md` — about five commands.
-**Read the data-residency note at the top of it before real clinic data goes
-in.**
+**The Cloudflare side is currently out of date.** `server/` was written
+before the service had centres and requests, so its schema no longer matches
+`website/store.js` and `backend: 'cloudflare'` will not work until it is
+rewritten. `server/README.md` says so at the top and lists what is missing.
+The deployment mechanics and the data-residency note in it are still correct.
 
 ## Change something
 
