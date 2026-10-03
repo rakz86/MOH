@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>REQ-2026-004871 — Medical Requisitions, Ministry of Health Kuwait</title>
-<meta name="description" content="Review a medical requisition request and record a decision.">
+<title>Inventory — Medical Requisitions, Ministry of Health Kuwait</title>
+<meta name="description" content="What each dental centre holds, against the allocation it should hold.">
 <link rel="icon" href="/design-system/assets/favicon/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/design-system/assets/favicon/icon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/design-system/assets/favicon/icon-16.png">
@@ -19,7 +19,8 @@
 <script src="config.js" defer></script>
 <script src="ledger.js" defer></script>
 <script src="store.js" defer></script>
-<script src="request-detail.js" defer></script>
+<script src="glyphs.js" defer></script>
+<script src="inventory.js" defer></script>
 </head>
 <body>
 
@@ -53,7 +54,7 @@
     </a>
     <nav class="main-nav" aria-label="Main">
       <a href="instruments.html" data-ar="طلب جديد">New request</a>
-      <a href="inventory.html" data-ar="المخزون">Inventory</a>
+      <a href="inventory.html" aria-current="page" data-ar="المخزون">Inventory</a>
       <a href="requests.html" data-ar="الطلبات">Requests</a>
       <a href="item-log.html" data-ar="السجل">Item log</a>
       <a href="catalogue.html" data-ar="الكتالوج">Catalogue</a>
@@ -69,7 +70,7 @@
   <div class="nav-panel" id="navPanel" data-nav-panel hidden>
     <ul class="nav-panel__list">
       <li><a href="instruments.html" data-ar="طلب جديد">New request</a></li>
-      <li><a href="inventory.html" data-ar="المخزون">Inventory</a></li>
+      <li><a href="inventory.html" aria-current="page" data-ar="المخزون">Inventory</a></li>
       <li><a href="requests.html" data-ar="الطلبات">Requests</a></li>
       <li><a href="item-log.html" data-ar="السجل">Item log</a></li>
       <li><a href="catalogue.html" data-ar="الكتالوج">Catalogue</a></li>
@@ -85,16 +86,89 @@
 
 <div class="container" style="padding-block:var(--space-4);border-block-end:1px solid var(--color-border)">
   <ol class="breadcrumb">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="requests.html">Requests</a></li>
-    <li aria-current="page" class="mono" id="crumbRef">--</li>
+    <li><a href="index.html" data-ar="الرئيسية">Home</a></li>
+    <li aria-current="page" data-ar="المخزون">Inventory</li>
   </ol>
 </div>
 
 <main id="main" class="container" style="padding-block:var(--space-9)">
-  <div id="detail">
-    <p class="body-sm text-secondary">Loading&hellip;</p>
+
+  <div class="sec-head" style="max-inline-size:var(--measure-prose)">
+    <h1 class="sec-head__title" data-ar="المخزون">Inventory</h1>
+    <p class="sec-head__desc" data-ar="ما يملكه كل مركز فعلياً مقابل ما ينبغي أن يملكه. الفرق بين العمودين هو ما يحتاج إلى طلب.">What a centre actually holds, against the allocation it should hold. The gap between the two columns is what needs requesting.</p>
   </div>
+
+  <section class="reg-stats no-print" aria-label="Summary">
+    <div>
+      <div class="reg-stat__value" id="s-items">--</div>
+      <div class="reg-stat__label">Line items</div>
+    </div>
+    <div>
+      <div class="reg-stat__value" id="s-required">--</div>
+      <div class="reg-stat__label">Units required</div>
+    </div>
+    <div>
+      <div class="reg-stat__value" id="s-held">--</div>
+      <div class="reg-stat__label">Units held</div>
+      <div class="reg-bar"><span id="s-fill-bar"></span></div>
+    </div>
+    <div id="s-short-card">
+      <div class="reg-stat__value" id="s-short">--</div>
+      <div class="reg-stat__label">Lines short</div>
+    </div>
+    <div>
+      <div class="reg-stat__value" id="s-complete">--</div>
+      <div class="reg-stat__label">Lines at full strength</div>
+    </div>
+  </section>
+
+  <div class="log-filters" style="margin-block-start:var(--space-7)">
+    <div class="field" style="max-inline-size:230px">
+      <label class="field__label" for="f-centre">Dental centre</label>
+      <select class="select" id="f-centre">
+        <option value="">Choose a centre…</option>
+      </select>
+    </div>
+    <div class="field" style="max-inline-size:250px">
+      <label class="field__label" for="q">Search</label>
+      <input class="input" id="q" type="search" placeholder="Item or code" autocomplete="off">
+    </div>
+    <div class="field" style="max-inline-size:220px">
+      <label class="field__label" for="f-set">Set</label>
+      <select class="select" id="f-set"><option value="">All sets</option></select>
+    </div>
+    <label class="choice" style="min-inline-size:190px">
+      <input type="checkbox" id="f-short">
+      <span><span class="choice__label">Shortfalls only</span></span>
+    </label>
+    <button class="btn btn--ghost btn--sm" id="btn-reset" type="button">Clear</button>
+
+    <span style="margin-inline-start:auto"></span>
+
+    <div class="view-switch" role="group" aria-label="View">
+      <button type="button" data-view="table" aria-pressed="true">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 6h13M6 6v7.5" stroke="currentColor" stroke-width="1.5"/></svg>
+        Table
+      </button>
+      <button type="button" data-view="grid" aria-pressed="false">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="1.5" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="9" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="5.5" height="5.5" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+        Grid
+      </button>
+    </div>
+    <button class="btn btn--secondary btn--sm" id="btn-csv" type="button">Export CSV</button>
+  </div>
+
+  <div class="cluster" style="margin-block-end:var(--space-5)">
+    <span class="caption" id="resultCount">--</span>
+    <span class="caption">Record in <span class="badge badge--draft" id="backendLabel">--</span></span>
+  </div>
+
+  <div id="inv"></div>
+
+  <p class="caption" style="margin-block-start:var(--space-8);max-width:var(--measure-prose)">
+    Images are schematic placeholders, one per instrument type &mdash; not photographs of the actual instruments. Real product photography should come from the supplier catalogue, where the picture is guaranteed to match what ships.
+  </p>
+
 </main>
 
 <footer class="site-footer" style="margin-block-start:var(--section-gap)">
@@ -106,7 +180,7 @@
   </div>
 </footer>
 
-<div class="dev-bar" role="group" aria-label="Preview controls">
+<div class="dev-bar no-print" role="group" aria-label="Preview controls">
   <button data-dev="theme" data-val="light" aria-pressed="true">Light</button>
   <button data-dev="theme" data-val="dark" aria-pressed="false">Dark</button>
   <button data-dev="dir" data-val="ltr" aria-pressed="true">LTR</button>

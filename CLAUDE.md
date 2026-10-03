@@ -88,6 +88,8 @@ would know which was right.
 | `website/store.js` | Where the record lives. Two adapters behind one interface. |
 | `website/config.js` | **The switch**: `backend: 'local'` or `'cloudflare'`. |
 | `website/data/*.json` | Instrument sets (78 items, 5 sets) and the 9 centres. |
+| `website/inventory.js` | Read-only stock position per centre. Table and grid views. |
+| `website/glyphs.js` | Line-art placeholders, one per instrument type. Not photographs. |
 | `website/data/bundle.js` | Generated from the JSON so pages need no `fetch()`. |
 
 Read once, derive in memory, write through. Only load and commit await;
@@ -123,6 +125,30 @@ Fuller guidance: `design-system/guidelines/` — accessibility, bilingual/RTL,
 page patterns, contributing.
 
 ---
+
+## Item codes
+
+Every item carries a canonical `code` in `periodontic-sets.json`: a two-letter
+set prefix plus its number on the printed form.
+
+    DG  diagnostic      NS  non-surgical    SG  surgical
+    EX  extraction      MS  microsurgery    OI  other items    KT  kits
+
+So `EX11` is extraction item 11. Codes are unique across all 78 items,
+version-controlled here rather than typed per centre, and a centre cannot
+change them. A `tools` check is worth adding if the list ever grows.
+
+## Images
+
+`glyphs.js` draws one schematic line-art glyph per instrument type, chosen by
+the `kind` field on each item. **These are placeholders, not photographs.**
+
+Real product photography should come from the supplier catalogue, where the
+picture is guaranteed to match what ships. Add an `image` field to an item and
+the grid prefers it over the glyph. Do not substitute stock photos found on
+the web: a wrong-instrument picture on a procurement screen is worse than no
+picture, it would break the offline guarantee, and the licensing is not ours
+to grant.
 
 ## Known gaps
 
