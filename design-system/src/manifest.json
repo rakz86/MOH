@@ -1,0 +1,58 @@
+[
+  {
+    "file": "brand.html",
+    "group": "Brand",
+    "name": "Brand foundation",
+    "subtitle": "Principles, lockup, emblem rules, heritage gold",
+    "width": 1200
+  },
+  {
+    "file": "color.html",
+    "group": "Foundations",
+    "name": "Colour",
+    "subtitle": "Ramps, semantic roles, lifecycle colour, verified contrast",
+    "width": 1200
+  },
+  {
+    "file": "typography.html",
+    "group": "Foundations",
+    "name": "Typography",
+    "subtitle": "IBM Plex Sans + Plex Sans Arabic, scale, bilingual rules",
+    "width": 1200
+  },
+  {
+    "file": "spacing.html",
+    "group": "Foundations",
+    "name": "Space & surface",
+    "subtitle": "4px grid, two densities, radius, elevation, motion",
+    "width": 1200
+  },
+  {
+    "file": "buttons.html",
+    "group": "Components",
+    "name": "Buttons",
+    "subtitle": "Four intents, three sizes, every state, RTL mirroring",
+    "width": 1200
+  },
+  {
+    "file": "forms.html",
+    "group": "Components",
+    "name": "Form controls",
+    "subtitle": "Inputs, choices, uploads, errors, validation copy",
+    "width": 1200
+  },
+  {
+    "file": "status.html",
+    "group": "Components",
+    "name": "Status & feedback",
+    "subtitle": "Lifecycle badges, alerts, dialogs, toasts",
+    "width": 1200
+  },
+  {
+    "file": "navigation.html",
+    "group": "Components",
+    "name": "Navigation",
+    "subtitle": "Government bar, header, breadcrumb, mobile nav, footer",
+    "width": 1200
+  }
+]

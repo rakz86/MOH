@@ -1,0 +1,23 @@
+# Cloudflare Worker + D1 for the instrument register.
+# Deploy from inside server/:  npx wrangler deploy
+
+name = "moh-instruments"
+main = "src/worker.js"
+compatibility_date = "2026-01-01"
+
+# Created by:  npx wrangler d1 create moh-instruments
+# That command prints a database_id — paste it below.
+[[d1_databases]]
+binding = "DB"
+database_name = "moh-instruments"
+database_id = "PASTE_DATABASE_ID_HERE"
+
+[vars]
+# Which origins may call this API. The local dev server is the only one for
+# now. Leaving this as "*" would let any website in the world call the API
+# with a token stolen from a shared screen — keep it to what you actually use.
+ALLOWED_ORIGINS = "http://localhost:4173"
+
+# API_TOKEN is NOT set here. It is a secret, and wrangler.toml is a file you
+# will end up committing or sharing. Set it with:
+#   npx wrangler secret put API_TOKEN

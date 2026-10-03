@@ -1,0 +1,12 @@
+# Normalise line endings so the repo does not appear wholly modified when
+# cloned onto a different operating system.
+* text=auto eol=lf
+
+# Windows needs CRLF or the launcher will not run.
+*.bat text eol=crlf
+
+# Binaries git must not touch.
+*.woff2 binary
+*.png   binary
+*.ico   binary
+*.zip   binary

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instrument sets — Periodontic, Ministry of Health Kuwait</title>
+<meta name="description" content="Standard periodontic instrument sets per clinic, with codes, damage returns and new issues.">
+<link rel="icon" href="/design-system/assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/design-system/assets/favicon/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/design-system/assets/favicon/icon-16.png">
+<link rel="apple-touch-icon" href="/design-system/assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="../design-system/foundations/fonts.css">
+<link rel="stylesheet" href="../design-system/foundations/tokens.css">
+<link rel="stylesheet" href="../design-system/foundations/base.css">
+<link rel="stylesheet" href="../design-system/foundations/components.css">
+<link rel="stylesheet" href="site.css">
+<script src="../design-system/foundations/behaviours.js" defer></script>
+<script src="data/bundle.js" defer></script>
+<script src="config.js" defer></script>
+<script src="ledger.js" defer></script>
+<script src="store.js" defer></script>
+<script src="instruments.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-ar="تخطَّ إلى المحتوى">Skip to content</a>
+
+<div class="gov-bar">
+  <div class="container" style="display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap">
+    <span data-ar="خدمة رسمية من دولة الكويت">An official service of the State of Kuwait</span>
+    <span style="margin-inline-start:auto;display:flex;gap:var(--space-5)">
+      <a href="#" data-lang-toggle>عربي</a>
+      <a href="#" data-ar="إمكانية الوصول">Accessibility</a>
+      <a href="#" data-ar="تسجيل الدخول">Sign in</a>
+    </span>
+  </div>
+</div>
+
+<header class="site-header site-header--official" data-nav>
+  <div class="container site-header__inner">
+    <a class="brand-lockup" href="index.html">
+      <span class="emblem" aria-hidden="true">
+        <img src="/design-system/assets/emblem-colour-112.png"
+             srcset="/design-system/assets/emblem-colour-112.png 1x, /design-system/assets/emblem-colour-224.png 2x"
+             alt="" width="50" height="56" onerror="this.remove()">
+        <span class="emblem__todo">emblem</span>
+      </span>
+      <span class="brand-lockup__rule" aria-hidden="true"></span>
+      <span>
+        <span class="brand-lockup__name" data-ar="طلبات الأجهزة الطبية">Medical Requisitions</span>
+        <span class="brand-lockup__sub" data-ar="وزارة الصحة · دولة الكويت">Ministry of Health · State of Kuwait</span>
+      </span>
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="instruments.html" data-ar="طلب جديد">New request</a>
+      <a href="requests.html" data-ar="طلباتي">My requests</a>
+      <a href="instruments.html" aria-current="page" data-ar="أطقم الأدوات">Instrument sets</a>
+      <a href="catalogue.html" data-ar="الكتالوج">Catalogue</a>
+      <a href="#" data-ar="الدعم">Support</a>
+    </nav>
+    <button class="btn btn--secondary btn--sm nav-toggle" type="button"
+            data-nav-toggle aria-expanded="false" aria-controls="navPanel">
+      <svg class="nav-toggle__open" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="nav-toggle__close" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span data-ar="القائمة">Menu</span>
+    </button>
+  </div>
+
+  <div class="nav-panel" id="navPanel" data-nav-panel hidden>
+    <ul class="nav-panel__list">
+      <li><a href="instruments.html" data-ar="طلب جديد">New request</a></li>
+      <li><a href="requests.html" data-ar="طلباتي">My requests</a></li>
+      <li><a href="instruments.html" aria-current="page" data-ar="أطقم الأدوات">Instrument sets</a></li>
+      <li><a href="catalogue.html" data-ar="الكتالوج">Catalogue</a></li>
+      <li><a href="#" data-ar="الدعم">Support</a></li>
+    </ul>
+    <div class="nav-panel__sep"></div>
+    <ul class="nav-panel__list nav-panel__utility">
+      <li><a href="#" data-lang-toggle>عربي</a></li>
+      <li><a href="#" data-ar="إمكانية الوصول">Accessibility</a></li>
+      <li><a href="#" data-ar="تسجيل الدخول">Sign in</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="container" style="padding-block:var(--space-4);border-block-end:1px solid var(--color-border)">
+  <ol class="breadcrumb">
+    <li><a href="index.html" data-ar="الرئيسية">Home</a></li>
+    <li aria-current="page" data-ar="أطقم الأدوات">Instrument sets</li>
+  </ol>
+</div>
+
+<main id="main" class="container" style="padding-block:var(--space-9)">
+
+  <div class="sec-head" style="max-inline-size:var(--measure-prose)">
+    <p class="eyebrow">Ministry of Health &middot; Dental Administration &middot; Kuwait &middot; Form <span id="f-version" class="mono">&mdash;</span></p>
+    <h1 class="sec-head__title" style="margin-block-start:var(--space-3)">Periodontic &mdash; Oral Medicine</h1>
+  </div>
+
+  <div class="alert alert--info no-print" id="submittedBanner" hidden style="margin-block-end:var(--space-6);max-width:var(--measure-prose)">
+    <svg class="alert__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 10.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div>
+      <div class="alert__title">Request <span data-ref class="mono">&mdash;</span> submitted</div>
+      <div class="alert__body">Allocation and Held will not change until an instrument admin confirms that the returns were accepted and the new items delivered. Track it under <a href="requests.html">Requests</a>.</div>
+    </div>
+  </div>
+
+  <section class="reg-meta" aria-label="Centre details">
+    <div class="field">
+      <label class="field__label" for="f-centre">Centre</label>
+      <select class="select" id="f-centre">
+        <option value="">Choose a centre&hellip;</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="field__label" for="f-specialty">Specialty</label>
+      <select class="select" id="f-specialty">
+        <option>Periodontic &mdash; Oral Medicine</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="field__label" for="f-by">Raised by</label>
+      <input class="input" id="f-by" placeholder="Your name" autocomplete="off">
+    </div>
+    <div class="field">
+      <label class="field__label" for="f-date">Date</label>
+      <input class="input" id="f-date" type="date">
+    </div>
+  </section>
+
+  <section class="reg-stats no-print" style="margin-block-start:var(--space-5)" aria-label="Summary">
+    <div>
+      <div class="reg-stat__value" id="s-items">--</div>
+      <div class="reg-stat__label">Instruments</div>
+    </div>
+    <div>
+      <div class="reg-stat__value" id="s-alloc">--</div>
+      <div class="reg-stat__label">Allocated units</div>
+    </div>
+    <div>
+      <div class="reg-stat__value" id="s-held">--</div>
+      <div class="reg-stat__label">Held now</div>
+    </div>
+    <div id="s-deficit-card">
+      <div class="reg-stat__value" id="s-deficit">--</div>
+      <div class="reg-stat__label">Units in deficit</div>
+    </div>
+    <div>
+      <div class="reg-stat__value" id="s-pending">--</div>
+      <div class="reg-stat__label">Lines awaiting confirmation</div>
+    </div>
+  </section>
+
+  <div class="cluster no-print" style="margin-block-start:var(--space-6)">
+    <span class="caption">Record in <span class="badge badge--draft" id="backendLabel">--</span></span>
+    <span style="margin-inline-start:auto"></span>
+    <button class="btn btn--secondary btn--sm" id="btn-csv" type="button">Export CSV</button>
+    <a class="btn btn--secondary btn--sm" href="requests.html">Requests</a>
+    <a class="btn btn--secondary btn--sm" href="item-log.html">Full item log</a>
+    <button class="btn btn--secondary btn--sm" id="btn-print" type="button">Print</button>
+  </div>
+
+  <p class="caption no-print" style="margin-block-start:var(--space-4);max-width:var(--measure-prose)">
+    Use <b>&minus;</b> to return a damaged instrument and <b>+</b> to ask for a new one, then submit. <b>Nothing moves stock.</b> Allocation and Held change only when an instrument admin confirms the returns were accepted and the replacements delivered.
+  </p>
+
+  <div id="sets" style="margin-block-start:var(--space-7)">
+    <p class="body-sm text-secondary">Loading&hellip;</p>
+  </div>
+
+  <div class="action-bar no-print" id="commitBar">
+    <span class="caption" id="draftCount">Nothing requested yet</span>
+    <span class="caption" id="saveState" role="status" aria-live="polite"></span>
+    <span class="spacer"></span>
+    <button class="btn btn--ghost btn--sm" id="btn-discard" type="button" disabled>Clear</button>
+    <button class="btn btn--primary" id="btn-submit" type="button" disabled>Submit request</button>
+  </div>
+
+</main>
+
+<footer class="site-footer" style="margin-block-start:var(--section-gap)">
+  <div class="container">
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-5);font-size:var(--text-xs);opacity:.75">
+      <span data-ar="© 2026 وزارة الصحة، دولة الكويت">© 2026 Ministry of Health, State of Kuwait</span>
+      <span style="margin-inline-start:auto"><a href="#" data-ar="بيان إمكانية الوصول">Accessibility statement</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="dev-bar no-print" role="group" aria-label="Preview controls">
+  <button data-dev="theme" data-val="light" aria-pressed="true">Light</button>
+  <button data-dev="theme" data-val="dark" aria-pressed="false">Dark</button>
+  <button data-dev="dir" data-val="ltr" aria-pressed="true">LTR</button>
+  <button data-dev="dir" data-val="rtl" aria-pressed="false">RTL</button>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function setLang(lang) {
+    document.querySelectorAll('[data-ar]').forEach(function (el) {
+      if (!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = el.getAttribute(lang === 'ar' ? 'data-ar' : 'data-en');
+    });
+    root.setAttribute('lang', lang);
+    root.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    document.querySelectorAll('[data-lang-toggle]').forEach(function (t) {
+      t.textContent = lang === 'ar' ? 'English' : 'عربي';
+    });
+  }
+  window.__setLang = setLang;
+  document.querySelectorAll('[data-lang-toggle]').forEach(function (t) {
+    t.addEventListener('click', function (e) { e.preventDefault(); setLang(root.getAttribute('lang') === 'ar' ? 'en' : 'ar'); });
+  });
+  document.querySelectorAll('.dev-bar button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var kind = b.dataset.dev, val = b.dataset.val;
+      document.querySelectorAll('.dev-bar button[data-dev="' + kind + '"]').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      b.setAttribute('aria-pressed', 'true');
+      if (kind === 'theme') root.setAttribute('data-theme', val);
+      if (kind === 'dir') setLang(val === 'rtl' ? 'ar' : 'en');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

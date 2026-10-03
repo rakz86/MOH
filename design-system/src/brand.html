@@ -1,0 +1,173 @@
+<div class="pv-group">
+  <h2>What we are fixing</h2>
+  <p class="note">Both source sites are SharePoint-era builds: navigation organised around the ministry org chart rather than the citizen task, decorative hero carousels above the fold, three separate icon fonts loaded at once, and text set in greys that sit near the contrast floor. Nothing below is styling for its own sake — each decision answers a specific failure.</p>
+
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr><th>Legacy behaviour</th><th>What this system does instead</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Hero carousel of ministerial photography above the fold</td>
+          <td>The task the user came for is the first thing on the page</td>
+          <td>Carousels are near-universally ignored, and the first screen is the most expensive space on the site</td>
+        </tr>
+        <tr>
+          <td>Navigation mirrors the org chart — Departments, Sectors, Right to Access</td>
+          <td>Navigation mirrors intent — Request, Track, Catalogue, Support</td>
+          <td>People arrive with a task, not a knowledge of ministry structure</td>
+        </tr>
+        <tr>
+          <td>Body copy at <span class="mono">#565656</span> and <span class="mono">#494848</span>, 13px</td>
+          <td>16px minimum, <span class="mono">#161C23</span>, verified at every pairing</td>
+          <td>Legacy greys sit near the 4.5:1 floor; the new ramp is machine-tested, not assumed</td>
+        </tr>
+        <tr>
+          <td>Open Sans for Latin, Cairo bolted on for Arabic</td>
+          <td>IBM Plex Sans + IBM Plex Sans Arabic, drawn by one team</td>
+          <td>Arabic stops being an afterthought with a different texture and rhythm</td>
+        </tr>
+        <tr>
+          <td>icomoon + FontAwesome + Glyphicons all loaded together</td>
+          <td>One inline SVG set</td>
+          <td>Three icon fonts means three render-blocking downloads and three visual styles</td>
+        </tr>
+        <tr>
+          <td>Status conveyed by colour alone</td>
+          <td>Every status carries a shape and a word as well as a colour</td>
+          <td>A colour-blind user must be able to read a rejection</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>Principles</h2>
+  <p class="note">Five rules. When a design decision is contested, these settle it — in order.</p>
+
+  <div class="grid grid--2">
+    <div class="card">
+      <div class="eyebrow">01</div>
+      <h3 class="heading-5" style="margin-block:var(--space-3)">Say the thing plainly</h3>
+      <p class="body-sm text-secondary">A requester needs to know what to do, what it costs, and what happens next. Decoration that delays that answer is a defect. No stock photography of handshakes, no carousels, no animated counters.</p>
+    </div>
+    <div class="card">
+      <div class="eyebrow">02</div>
+      <h3 class="heading-5" style="margin-block:var(--space-3)">One task per screen</h3>
+      <p class="body-sm text-secondary">A requisition is long. Break it into steps a person can finish in one sitting, save the draft between them, and never ask twice for something the ministry already holds on record.</p>
+    </div>
+    <div class="card">
+      <div class="eyebrow">03</div>
+      <h3 class="heading-5" style="margin-block:var(--space-3)">Bilingual by construction</h3>
+      <p class="body-sm text-secondary">Arabic is not a translation layer applied at the end. Every component uses logical properties, so <span class="mono">dir=rtl</span> mirrors the whole interface with no per-component overrides — and the Arabic face is optically sized to match Latin.</p>
+    </div>
+    <div class="card">
+      <div class="eyebrow">04</div>
+      <h3 class="heading-5" style="margin-block:var(--space-3)">Accessibility is the floor</h3>
+      <p class="body-sm text-secondary">WCAG 2.1 AA is the minimum a public service may ship, not an enhancement. Contrast is machine-verified in CI. Every control is operable by keyboard. Status never depends on colour alone.</p>
+    </div>
+    <div class="card">
+      <div class="eyebrow">05</div>
+      <h3 class="heading-5" style="margin-block:var(--space-3)">Everything is traceable</h3>
+      <p class="body-sm text-secondary">Every request carries a reference number, a current state, a named owner, and a visible history. A requester should never have to telephone someone to find out where a submission sits.</p>
+    </div>
+    <div class="card" style="background:var(--color-primary-wash);border-color:var(--color-primary-border)">
+      <div class="eyebrow" style="color:var(--color-info-text)">In tension?</div>
+      <h3 class="heading-5" style="margin-block:var(--space-3)">Lower number wins</h3>
+      <p class="body-sm text-secondary">If clarity and beauty disagree, clarity wins. If accessibility and brand expression disagree, accessibility wins. This ordering is the point of having principles rather than preferences.</p>
+    </div>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>Lockup</h2>
+  <p class="note">The official emblem of the State of Kuwait. It gets no container, no recolouring and no cropping — width follows from height via <span class="mono">--emblem-ratio</span> (774 / 875), and a hairline rule separates it from the wordmark in the standard government arrangement.</p>
+
+  <div class="pv-demo">
+    <div>
+      <div class="pv-label">Primary lockup · 56px</div>
+      <a class="brand-lockup" href="#">
+        <span class="emblem" aria-hidden="true">
+          <img src="__EMBLEM__" alt="" onerror="this.remove()">
+          <span class="emblem__todo">emblem</span>
+        </span>
+        <span class="brand-lockup__rule" aria-hidden="true"></span>
+        <span>
+          <span class="brand-lockup__name">Medical Requisitions</span>
+          <span class="brand-lockup__sub">Ministry of Health &middot; State of Kuwait</span>
+        </span>
+      </a>
+    </div>
+    <div>
+      <div class="pv-label">Arabic lockup</div>
+      <a class="brand-lockup" href="#" dir="rtl" lang="ar">
+        <span class="emblem" aria-hidden="true">
+          <img src="__EMBLEM__" alt="" onerror="this.remove()">
+          <span class="emblem__todo">emblem</span>
+        </span>
+        <span class="brand-lockup__rule" aria-hidden="true"></span>
+        <span>
+          <span class="brand-lockup__name">&#1591;&#1604;&#1576;&#1575;&#1578; &#1575;&#1604;&#1571;&#1580;&#1607;&#1586;&#1577; &#1575;&#1604;&#1591;&#1576;&#1610;&#1577;</span>
+          <span class="brand-lockup__sub">&#1608;&#1586;&#1575;&#1585;&#1577; &#1575;&#1604;&#1589;&#1581;&#1577; &middot; &#1583;&#1608;&#1604;&#1577; &#1575;&#1604;&#1603;&#1608;&#1610;&#1578;</span>
+        </span>
+      </a>
+    </div>
+    <div style="flex:1;min-width:280px">
+      <div class="pv-label">Small · 36px</div>
+      <a class="brand-lockup" href="#">
+        <span class="emblem emblem--sm" aria-hidden="true">
+          <img src="__EMBLEM__" alt="" onerror="this.remove()">
+          <span class="emblem__todo">emblem</span>
+        </span>
+        <span class="brand-lockup__rule" aria-hidden="true" style="block-size:var(--emblem-sm)"></span>
+        <span><span class="brand-lockup__name" style="font-size:var(--text-base)">Medical Requisitions</span></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="pv-demo" style="margin-block-start:var(--space-5);background:var(--color-surface-inverse)">
+    <div>
+      <div class="pv-label" style="color:var(--color-text-on-inverse);opacity:.7">On deep surface</div>
+      <a class="brand-lockup" href="#" style="color:var(--color-text-on-inverse)">
+        <span class="emblem" aria-hidden="true">
+          <img src="__EMBLEM__" alt="" onerror="this.remove()">
+          <span class="emblem__todo">emblem</span>
+        </span>
+        <span class="brand-lockup__rule" aria-hidden="true"></span>
+        <span>
+          <span class="brand-lockup__name">Medical Requisitions</span>
+          <span class="brand-lockup__sub" style="color:var(--color-text-on-inverse);opacity:.75">Ministry of Health &middot; State of Kuwait</span>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <p class="pv-rule"><b>One emblem, every surface.</b> There is no reversed, mono or otherwise recoloured variant, and none should be made — the official mark is the official mark, and it sits on the deep navy exactly as it sits on white.</p>
+
+  <p class="pv-rule"><b>Clear space</b> of at least 25% of the emblem height on all four sides. <b>Minimum size</b> 32px tall &mdash; below that the dhow rigging is illegible, so use the wordmark alone. <b>Never</b> recolour, stretch, crop, rotate or add effects; and never place the emblem on a busy photograph. It is an official state symbol representing the State of Kuwait: it may carry the identity of an official government service &mdash; the header lockup and this service&rsquo;s browser icon both qualify &mdash; but it may never be used decoratively, as a spinner, watermark or ornament, or on anything that is not an official government service.</p>
+</div>
+
+<div class="pv-group">
+  <h2>Heritage gold</h2>
+  <p class="note">The emblem brings gold into the brand world, so it is tokenised rather than left for someone to eyedrop inconsistently. It is <b>ceremonial only</b>: mastheads, seals, certificates, print furniture. At 3.2:1 on white it fails AA for body text, and it carries no state meaning &mdash; it is never a button, never a status, never small text on a light surface.</p>
+  <div class="pv-demo">
+    <div style="text-align:center">
+      <div style="width:120px;height:64px;border-radius:var(--radius-md);background:var(--color-heritage)"></div>
+      <div class="mono caption" style="margin-block-start:var(--space-3)">heritage &middot; #C9922B</div>
+    </div>
+    <div style="text-align:center">
+      <div style="width:120px;height:64px;border-radius:var(--radius-md);background:var(--moh-gold-300)"></div>
+      <div class="mono caption" style="margin-block-start:var(--space-3)">gold-300 &middot; #E3BC6B</div>
+    </div>
+    <div style="text-align:center">
+      <div style="width:120px;height:64px;border-radius:var(--radius-md);background:var(--color-heritage-text)"></div>
+      <div class="mono caption" style="margin-block-start:var(--space-3)">heritage-text &middot; #8A6317</div>
+    </div>
+    <div style="flex:1;min-width:260px">
+      <div class="pv-label">Permitted use</div>
+      <p class="body-sm text-secondary">A hairline rule under an official masthead. A seal on a printed approval. An accent on a certificate of accreditation. That is the whole list.</p>
+    </div>
+  </div>
+</div>

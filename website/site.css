@@ -1,0 +1,674 @@
+/* ==========================================================================
+   website/site.css — composition layer for the public website.
+
+   This is NOT part of the design system. It is page-level layout built ON
+   the system, and it is the proof that the system extends without anyone
+   reaching for a literal: there is not one raw hex, px gap or duration in
+   this file. Everything resolves through a token.
+
+   Anything here that turns out to be reusable belongs in
+   design-system/foundations/components.css instead — that is how chips and
+   pagination were promoted.
+   ========================================================================== */
+
+/* -- HERO -----------------------------------------------------------------
+   No carousel. The task the user came for is the first thing on the page. */
+
+.hero {
+  background: color-mix(in srgb, var(--color-primary) 5%, var(--color-canvas));
+  border-block-end: var(--border-width) solid var(--color-border);
+  padding-block: var(--space-12);
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: var(--space-11);
+  align-items: start;
+}
+.hero__title {
+  font-size: var(--text-5xl);
+  line-height: var(--leading-tight);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  max-inline-size: 18ch;
+}
+.hero__lede {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+  max-inline-size: 52ch;
+  margin-block-start: var(--space-5);
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-block-start: var(--space-8);
+}
+
+/* Reference lookup, inline. Tracking is the second most common reason to
+   arrive here, so it is one field on the homepage, not a page behind a menu. */
+.track {
+  margin-block-start: var(--space-9);
+  padding-block-start: var(--space-7);
+  border-block-start: var(--border-width) solid var(--color-border);
+  max-inline-size: var(--measure-form);
+}
+.track__row { display: flex; gap: var(--space-3); align-items: flex-end; }
+.track__row .field { flex: 1; margin-block-start: 0; }
+
+/* -- SERVICE STATUS -------------------------------------------------------
+   Published performance, on the homepage. A public service that asks people
+   to wait should say how long the wait currently is. */
+
+.status-card {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  padding: var(--card-padding);
+}
+.status-card__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  border-block-end: var(--border-width) solid var(--color-border);
+}
+.status-card__row:last-of-type { border-block-end: 0; }
+.status-card__figure {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: var(--numeric-tabular);
+  line-height: 1;
+}
+.status-card__label { font-size: var(--text-xs); color: var(--color-text-secondary); }
+
+/* -- TASK CARDS -----------------------------------------------------------
+   Routing by intent, not by ministry structure. */
+
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-5);
+}
+.task-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--card-padding);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--duration-normal) var(--ease-standard),
+              box-shadow var(--duration-normal) var(--ease-standard),
+              transform var(--duration-normal) var(--ease-standard);
+}
+.task-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(calc(var(--space-1) * -1));
+}
+.task-card:focus-visible { outline: var(--focus-ring-width) solid var(--color-focus); outline-offset: var(--focus-ring-offset); }
+@media (prefers-reduced-motion: reduce) { .task-card:hover { transform: none; } }
+
+.task-card__icon {
+  display: grid;
+  place-items: center;
+  inline-size: var(--space-10);
+  block-size: var(--space-10);
+  border-radius: var(--radius-lg);
+  background: var(--color-primary-wash);
+  color: var(--color-primary);
+  flex: none;
+}
+.task-card__title { font-size: var(--text-lg); font-weight: var(--weight-semibold); }
+.task-card__desc  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-normal); }
+.task-card__go {
+  margin-block-start: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary);
+}
+
+/* -- HOW IT WORKS --------------------------------------------------------- */
+
+.flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--space-7);
+  counter-reset: flow;
+}
+.flow__item { position: relative; padding-block-start: var(--space-8); }
+.flow__item::before {
+  counter-increment: flow;
+  content: counter(flow);
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  display: grid;
+  place-items: center;
+  inline-size: var(--space-7);
+  block-size: var(--space-7);
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: var(--color-text-on-solid);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: var(--numeric-tabular);
+}
+.flow__title { font-size: var(--text-base); font-weight: var(--weight-semibold); margin-block-end: var(--space-2); }
+.flow__desc  { font-size: var(--text-sm); color: var(--color-text-secondary); }
+.flow__meta  { font-size: var(--text-xs); color: var(--color-text-muted); margin-block-start: var(--space-3); }
+
+/* -- CATEGORY TILES ------------------------------------------------------- */
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+.cat-tile {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  min-block-size: var(--target-min);
+  transition: background-color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard);
+}
+.cat-tile:hover { background: var(--color-primary-wash); border-color: var(--color-primary); }
+.cat-tile__name  { font-size: var(--text-sm); font-weight: var(--weight-medium); }
+.cat-tile__count {
+  margin-inline-start: auto;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-variant-numeric: var(--numeric-tabular);
+}
+
+/* -- SUPPORT BAND --------------------------------------------------------- */
+
+.support {
+  background: var(--color-surface-inverse);
+  color: var(--color-text-on-inverse);
+  border-radius: var(--radius-xl);
+  padding: var(--space-11);
+}
+.support__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-9);
+}
+.support__title { font-size: var(--text-2xl); font-weight: var(--weight-semibold); }
+/* Links inside an inverse band must not inherit the light-surface link blue —
+   #0B5FA5 on #062E4D is roughly 1.4:1 and effectively invisible. */
+.support a { color: var(--color-text-on-inverse); text-decoration: underline; text-underline-offset: 0.18em; }
+.support a:hover { color: var(--color-text-on-inverse); opacity: 0.8; }
+.support dt { font-size: var(--text-2xs); letter-spacing: var(--tracking-caps); text-transform: uppercase; opacity: 0.6; margin-block-end: var(--space-2); }
+.support dd { font-size: var(--text-sm); margin-block-end: var(--space-5); }
+[lang="ar"] .support dt { text-transform: none; letter-spacing: 0; }
+
+/* -- OFFICIAL MASTHEAD ----------------------------------------------------
+   A heritage-gold hairline under the masthead. This is one of the few
+   sanctioned uses of the gold: it is decorative furniture carrying no state
+   meaning, and it sits against the header border rather than replacing it. */
+
+.site-header--official { border-block-end: 2px solid var(--color-heritage); }
+
+/* -- SECTION HEADS -------------------------------------------------------- */
+
+.sec-head { margin-block-end: var(--space-8); max-inline-size: var(--measure-prose); }
+.sec-head__title { font-size: var(--text-3xl); font-weight: var(--weight-semibold); line-height: var(--leading-tight); }
+.sec-head__desc  { font-size: var(--text-base); color: var(--color-text-secondary); margin-block-start: var(--space-3); }
+
+/* -- DEV TOOLBAR (not shipped) -------------------------------------------- */
+
+.dev-bar {
+  position: fixed;
+  inset-block-end: var(--space-5);
+  inset-inline-end: var(--space-5);
+  z-index: var(--z-toast);
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border-control);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+}
+.dev-bar button {
+  padding: var(--space-2) var(--space-4);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+}
+.dev-bar button[aria-pressed="true"] { background: var(--color-primary); color: var(--color-text-on-solid); }
+
+/* -- RESPONSIVE -----------------------------------------------------------
+   Breakpoints restate the literals documented in tokens.css section 8,
+   because custom properties cannot be used inside a media query. */
+
+@media (max-width: 1080px) {
+  .hero__grid { grid-template-columns: 1fr; gap: var(--space-9); }
+  .hero__title { font-size: var(--text-4xl); }
+}
+@media (max-width: 840px) {
+  .hero { padding-block: var(--space-10); }
+  .hero__title { font-size: var(--text-3xl); }
+  .hero__lede { font-size: var(--text-base); }
+  .support { padding: var(--space-8); border-radius: var(--radius-lg); }
+  .track__row { flex-direction: column; align-items: stretch; }
+}
+
+
+/* -- CATALOGUE ------------------------------------------------------------
+   Filter rail beside results. Instruments are not shopped visually, so
+   results are dense rows carrying specification and price rather than a
+   photo grid — the requester is matching a catalogue reference, not
+   browsing for something that looks nice. */
+
+.cat-layout {
+  display: grid;
+  grid-template-columns: 264px minmax(0, 1fr);
+  gap: var(--space-9);
+  align-items: start;
+}
+
+.filters > summary {
+  display: none;
+  list-style: none;
+  cursor: pointer;
+}
+.filters > summary::-webkit-details-marker { display: none; }
+
+.filter-rail { display: grid; gap: var(--space-7); }
+.filter-group__title {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-block-end: var(--space-3);
+}
+[lang="ar"] .filter-group__title { text-transform: none; letter-spacing: 0; }
+.filter-group__list { display: grid; gap: var(--space-1); }
+.filter-check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-block-size: var(--target-min);
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.filter-check:hover { background: var(--color-primary-wash); }
+.filter-check input { inline-size: 18px; block-size: 18px; accent-color: var(--color-primary); flex: none; }
+.filter-check__count {
+  margin-inline-start: auto;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-variant-numeric: var(--numeric-tabular);
+}
+
+.cat-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding-block-end: var(--space-5);
+  border-block-end: var(--border-width) solid var(--color-border);
+  margin-block-end: var(--space-5);
+}
+
+.result-list { display: grid; gap: var(--space-4); }
+.result {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-6);
+  align-items: center;
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-xl);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+.result:hover { border-color: var(--color-primary-border); }
+.result__name { font-size: var(--text-base); font-weight: var(--weight-semibold); }
+.result__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin-block-start: var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+.result__side { text-align: end; }
+.result__price {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: var(--numeric-tabular);
+  white-space: nowrap;
+}
+.result__unit { font-size: var(--text-2xs); color: var(--color-text-muted); }
+.result__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-block-start: var(--space-4);
+}
+.result__qty { inline-size: 72px; text-align: center; }
+
+@media (max-width: 1080px) {
+  .cat-layout { grid-template-columns: 1fr; gap: var(--space-6); }
+  .filters > summary { display: flex; }
+  .filters[open] > summary { margin-block-end: var(--space-5); }
+}
+@media (max-width: 640px) {
+  .result { grid-template-columns: 1fr; gap: var(--space-4); }
+  .result__side { text-align: start; }
+  .result__actions { justify-content: flex-start; }
+}
+
+/* -- INSTRUMENT REGISTER --------------------------------------------------
+   The periodontic instrument sets, laid out to match the printed ministry
+   form column for column, so a clinic can check one against the other
+   without re-learning the layout. */
+
+.reg-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--space-5);
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-xl);
+}
+.reg-meta .field { max-inline-size: none; }
+
+.reg-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-5);
+  padding: var(--space-6);
+  background: var(--color-surface-sunken);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-xl);
+}
+.reg-stat__value {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: var(--numeric-tabular);
+  line-height: 1.1;
+}
+.reg-stat__label { font-size: var(--text-xs); color: var(--color-text-secondary); margin-block-start: var(--space-2); }
+.reg-bar { block-size: 6px; border-radius: var(--radius-full); background: var(--color-border); margin-block-start: var(--space-3); overflow: hidden; }
+.reg-bar > span { display: block; block-size: 100%; inline-size: 0; background: var(--color-primary); }
+
+.set { margin-block-start: var(--space-9); }
+.set__head { display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; margin-block-end: var(--space-4); }
+.set__name { font-size: var(--text-xl); font-weight: var(--weight-semibold); }
+.set__ar { font-family: var(--font-arabic); font-size: var(--text-sm); color: var(--color-text-secondary); }
+.set__count { margin-inline-start: auto; }
+
+/* Column widths. The description column takes whatever is left.
+   The register carries eight columns of mostly-short values, so it uses
+   tighter horizontal padding than a reading table would. */
+.register th,
+.register td           { padding-inline: var(--space-3); }
+.register .col-no      { inline-size: 44px; text-align: end; color: var(--color-text-muted); }
+.register .col-code    { inline-size: 168px; }
+.register .col-qty     { inline-size: 92px; }
+.register .col-comment { inline-size: 220px; }
+.register .std         { color: var(--color-text-secondary); }
+.register .th-sub      { display: block; font-weight: var(--weight-regular); text-transform: none; letter-spacing: 0; opacity: 0.75; }
+.register td           { vertical-align: middle; }
+
+/* Inputs sit inside cells without turning the table into a wall of boxes:
+   quiet until hovered or focused, at which point they read as editable. */
+.cell-input {
+  inline-size: 100%;
+  min-block-size: var(--control-height-sm);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  font-size: var(--text-sm);
+  background: transparent;
+  border-color: transparent;
+  border-radius: var(--radius-sm);
+}
+.cell-input:hover { border-color: var(--color-border-control); background: var(--color-surface); }
+.cell-input:focus-visible { background: var(--color-surface); }
+.cell-input.numeric { text-align: end; font-variant-numeric: var(--numeric-tabular); }
+.cell-input--code { text-transform: uppercase; font-size: var(--text-xs); letter-spacing: 0.01em; padding-inline: var(--space-2); }
+
+/* Variance from the standard, flagged with a word as well as a colour. */
+.flag {
+  display: inline-block;
+  margin-inline-start: var(--space-2);
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-3xs);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+}
+.flag--short { background: var(--color-danger-wash); color: var(--color-danger-text); }
+.flag--over  { background: var(--color-warning-wash); color: var(--color-warning-text); }
+.register tr.is-short .col-total { color: var(--color-danger-text); font-weight: var(--weight-semibold); }
+.register tr.is-over  .col-total { color: var(--color-warning-text); font-weight: var(--weight-semibold); }
+
+@media (max-width: 1080px) {
+  .register .col-comment { inline-size: 160px; }
+  .register .col-code { inline-size: 140px; }
+}
+
+/* -- PRINT ----------------------------------------------------------------
+   The register is a form, and forms get printed and signed. Drop the site
+   chrome, put real borders back on every cell, and let inputs read as the
+   boxes they are on paper.
+
+   This is the one place literal black and white are correct rather than a
+   token leak. Paper has no theme: if a clerk prints while the interface is
+   in dark mode, var(--color-text) resolves to a pale grey that is invisible
+   on a white page. Print is always ink on paper, so it says so. */
+
+@media print {
+  .gov-bar, .site-header, .site-footer, .dev-bar, .breadcrumb,
+  .reg-stats, .no-print { display: none !important; }
+
+  body { background: #fff; font-size: 10pt; }
+  .container { max-inline-size: none; padding-inline: 0; }
+
+  .set { margin-block-start: 14pt; break-inside: avoid; }
+  .set__name { font-size: 12pt; }
+
+  .table-wrap { border: 0; border-radius: 0; overflow: visible; }
+  .register { font-size: 9pt; }
+  .register th, .register td { border: 0.5pt solid #000 !important; padding: 3pt 4pt; }
+  .register thead th { background: #eee !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .register tr { break-inside: avoid; }
+
+  .cell-input { border: 0 !important; background: transparent !important; padding: 0; min-block-size: 0; }
+  .flag { border: 0.5pt solid #000; }
+}
+
+/* -- REGISTER: LEDGER COLUMNS --------------------------------------------
+   Held and After are derived. They are never typed into, so they carry no
+   input chrome — the visual difference between a figure you can change and
+   one the record computes for you is doing real work in a dense table. */
+
+.register .col-qty     { inline-size: 78px; }
+.register .col-log     { inline-size: 58px; text-align: center; }
+.register .col-comment { inline-size: 158px; }
+.register .col-held,
+.register .col-after   { font-weight: var(--weight-semibold); }
+.register .col-held    { background: var(--color-surface-sunken); }
+
+.row-movement {
+  font-size: var(--text-3xs);
+  color: var(--color-text-muted);
+  margin-block-start: var(--space-1);
+  font-variant-numeric: var(--numeric-tabular);
+}
+
+/* A pending row is visibly uncommitted: the edge marks it, and each changed
+   input carries its own mark, so it is obvious what is about to be written. */
+.register tr.is-pending > td:first-child {
+  box-shadow: inset 3px 0 0 var(--color-primary);
+}
+[dir="rtl"] .register tr.is-pending > td:first-child {
+  box-shadow: inset -3px 0 0 var(--color-primary);
+}
+.register tr.is-pending { background: var(--color-primary-wash); }
+.cell-input.is-dirty {
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+  font-weight: var(--weight-semibold);
+}
+.cell-input--std { text-align: end; }
+
+.log-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-block-size: var(--control-height-sm);
+  min-inline-size: var(--control-height-sm);
+  padding-inline: var(--space-2);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-primary);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: var(--numeric-tabular);
+  cursor: pointer;
+}
+.log-btn:hover { background: var(--color-primary-wash); border-color: var(--color-primary-border); }
+.log-btn.is-empty { color: var(--color-text-muted); }
+
+#s-deficit-card.is-alert .reg-stat__value { color: var(--color-danger-text); }
+#s-deficit-card.is-alert .reg-stat__label { color: var(--color-danger-text); }
+
+/* -- ITEM LOG ------------------------------------------------------------- */
+
+.log-dialog { max-inline-size: 560px; }
+.log-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); max-block-size: 50vh; overflow-y: auto; }
+.log-entry {
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-inline-start-width: 3px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.log-entry--return   { border-inline-start-color: var(--color-danger); }
+.log-entry--issue    { border-inline-start-color: var(--color-success); }
+.log-entry--standard { border-inline-start-color: var(--color-review); }
+.log-entry__head { display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; }
+.log-entry__what { font-size: var(--text-sm); font-weight: var(--weight-medium); }
+.log-entry__when { margin-inline-start: auto; white-space: nowrap; }
+.log-entry__note {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  margin-block-start: var(--space-2);
+  padding-block-start: var(--space-2);
+  border-block-start: var(--border-width) solid var(--color-border);
+}
+
+.log-filters { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: flex-end; margin-block-end: var(--space-6); }
+.log-empty { padding: var(--space-11); text-align: center; color: var(--color-text-secondary); }
+
+/* -- REQUEST STEPPERS -----------------------------------------------------
+   Minus / value / plus. A stepper rather than a text field: the quantities
+   are small, the figure is always visible, and it cannot be left holding a
+   half-typed number. A control reading zero is visually quiet, so a row
+   carrying an actual request stands out down the column. */
+
+.register .col-step  { inline-size: 104px; }
+.register .col-alloc { color: var(--color-text-secondary); }
+.register .col-pending { inline-size: 84px; text-align: end; }
+
+.stepper-ctl {
+  display: inline-flex;
+  align-items: center;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+.stepper-ctl__btn {
+  inline-size: 28px;
+  min-block-size: var(--control-height-sm);
+  border: 0;
+  background: transparent;
+  color: var(--color-primary);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  cursor: pointer;
+}
+.stepper-ctl__btn:hover:not(:disabled) { background: var(--color-primary-wash); }
+.stepper-ctl__btn:disabled { color: var(--color-text-muted); cursor: not-allowed; }
+.stepper-ctl__btn:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: -2px;
+}
+.stepper-ctl__value {
+  min-inline-size: 28px;
+  text-align: center;
+  font-size: var(--text-sm);
+  font-variant-numeric: var(--numeric-tabular);
+  color: var(--color-text-muted);
+}
+.stepper-ctl.is-set { border-color: var(--color-primary); background: var(--color-primary-wash); }
+.stepper-ctl.is-set .stepper-ctl__value { color: var(--color-text); font-weight: var(--weight-semibold); }
+.stepper-ctl--return.is-set { border-color: var(--color-danger); background: var(--color-danger-wash); }
+.stepper-ctl--return.is-set .stepper-ctl__btn { color: var(--color-danger-text); }
+
+/* Already asked for, not yet confirmed. Deliberately not folded into Held. */
+.pending-chip {
+  display: inline-block;
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--color-review-wash);
+  color: var(--color-review-text);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: var(--numeric-tabular);
+  white-space: nowrap;
+}
+
+/* -- REQUEST REVIEW ------------------------------------------------------- */
+
+.req-line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: var(--space-5);
+  align-items: center;
+  padding: var(--space-4) var(--space-5);
+  border-block-end: var(--border-width) solid var(--color-border);
+}
+.req-line:last-child { border-block-end: 0; }
+.req-line__name { font-size: var(--text-sm); font-weight: var(--weight-medium); }
+.req-line__meta { font-size: var(--text-xs); color: var(--color-text-secondary); margin-block-start: var(--space-1); }
+.req-line__asked { font-size: var(--text-xs); color: var(--color-text-secondary); white-space: nowrap; }
+.req-line__accept { display: flex; gap: var(--space-3); align-items: center; }
+.req-line__accept label { font-size: var(--text-2xs); color: var(--color-text-muted); }
+
+@media (max-width: 720px) {
+  .req-line { grid-template-columns: 1fr; gap: var(--space-3); }
+}

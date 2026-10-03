@@ -1,0 +1,150 @@
+# MOH Kuwait — Medical Requisitions
+
+A prototype service for the Kuwait Ministry of Health, Dental Administration:
+periodontic clinics across nine dental centres request replacement instruments,
+and an instrument admin confirms what actually moved.
+
+Built to replace the visual and structural language of
+[moh.gov.kw](https://www.moh.gov.kw) and [e.gov.kw](https://e.gov.kw), both
+SharePoint-era.
+
+**Status: working local prototype.** Data lives in browser storage, not a
+database. It is not yet a system of record.
+
+---
+
+## Layout
+
+| | What it is |
+|---|---|
+| `design-system/` | Source of truth. Tokens, components, guidelines, 8 browsable preview cards. |
+| `website/` | The service itself — the pages people use. |
+| `server/` | A Cloudflare Worker + D1 API. **Stale** — see Known gaps. |
+| `tools/` | `devserver.py` (dev server), `bundle-data.py` (data → script). |
+
+**The dependency runs one way.** The website imports from the design system;
+the design system knows nothing about the website. Anything in
+`website/site.css` that turns out to be reusable gets promoted into
+`design-system/foundations/components.css` — that is how chips, pagination and
+the dialog got there.
+
+## Run it
+
+```bash
+python tools/devserver.py 4173 .
+```
+
+Then <http://localhost:4173/> — a local index linking every page.
+On Windows, `START-DEMO.bat` does the same with a double-click.
+
+The bundled server exists because `python -m http.server` caches (an edited
+`tokens.css` looks like a CSS bug), is single-threaded (one held connection
+blocks the browser), and binds IPv4 only (Windows resolves `localhost` to
+`::1` first, so Chrome gets connection-refused).
+
+## Change the design system
+
+Everything below runs from inside `design-system/`:
+
+```bash
+node tools/gen-color.js   # regenerate the colour page from tokens
+node tools/build.js       # rebuild the 8 preview cards
+node tools/validate.js    # structure, token resolution, colour leaks, theme
+node tools/contrast.js    # WCAG 2.1 across every shipped pair
+```
+
+**Both audits must pass before any change is accepted.** `previews/` is
+generated — edit `src/` and rebuild.
+
+---
+
+## The domain model
+
+This is the part worth understanding before changing anything.
+
+```
+allocation   what a centre is entitled to hold. Per centre, falls back to
+             the standard on the instrument set.
+held         allocation − confirmed returns + confirmed issues.
+             DERIVED, never stored.
+deficit      allocation − held, when positive.
+pending      quantities in a submitted request nobody has confirmed.
+             Shown, deliberately NOT counted into held.
+```
+
+**A request is not a movement.** A clinic pressing `+` or `−` creates a
+request. Stock moves only when an instrument admin confirms it on
+`request-detail.html` — that is the only place the ledger is written.
+
+Held is derived rather than stored on purpose: if it were a stored number, one
+missed write would silently desync the count from its own history and nobody
+would know which was right.
+
+### Files
+
+| File | Role |
+|---|---|
+| `website/ledger.js` | Pure derivation. No storage, no network, no DOM. |
+| `website/store.js` | Where the record lives. Two adapters behind one interface. |
+| `website/config.js` | **The switch**: `backend: 'local'` or `'cloudflare'`. |
+| `website/data/*.json` | Instrument sets (78 items, 5 sets) and the 9 centres. |
+| `website/data/bundle.js` | Generated from the JSON so pages need no `fetch()`. |
+
+Read once, derive in memory, write through. Only load and commit await;
+all derivation is synchronous against a snapshot.
+
+---
+
+## Hard rules
+
+These are enforced by the audits or by the model. Breaking one is a bug.
+
+1. **No raw colour literals** outside `foundations/tokens.css` section 1.
+   No hex, no `rgb()`, no `hsl()` in components or base. `validate.js` fails
+   the build. The one sanctioned exception is the `@media print` block in
+   `website/site.css`, because paper has no theme.
+2. **Logical properties only** — `margin-inline-start`, never `margin-left`.
+   `dir="rtl"` must mirror the whole interface with no component overrides.
+3. **Light is the default, unconditionally.** The service does not follow
+   `prefers-color-scheme`; reintroducing that media query fails the build.
+   Dark exists as an explicit `data-theme="dark"` opt-in.
+4. **The ledger is append-only.** No UPDATE, no DELETE. A correction is a new
+   entry.
+5. **Nothing commits until confirmed.** Typing changes nothing; the Update /
+   Submit button is the only thing that writes.
+6. **Status never depends on colour alone** — every state carries a shape and
+   a word. Print any page in greyscale and it must still be readable.
+7. **Compact density is desktop-only.** It drops below the 44px target floor.
+8. **The emblem** is the official State of Kuwait emblem. One version, every
+   surface. No recolouring, no decorative use. See
+   `design-system/assets/README.md`.
+
+Fuller guidance: `design-system/guidelines/` — accessibility, bilingual/RTL,
+page patterns, contributing.
+
+---
+
+## Known gaps
+
+- **Allocations are empty.** Every centre falls back to the standard set (191
+  units). The structure is in `website/data/centres.json`; the real per-centre
+  figures have not been supplied yet.
+- **`server/` is stale.** It speaks the old per-clinic shape from before
+  centres and requests existed. `backend: 'cloudflare'` will not work until it
+  is rewritten to this model. Flagged in `store.js` rather than quietly broken.
+- **Browser storage, not a database.** No sharing between machines, no backup.
+- **Arabic copy is illustrative** and has not been reviewed by a
+  native-speaking content designer. Centre names are standard transliterations
+  and should be confirmed against the ministry's own spelling.
+- **Data residency is unresolved.** Cloudflare has no Kuwait region. Use test
+  data until someone confirms MOH data may sit outside Kuwait.
+- Charts, data visualisation and email templates are not covered.
+
+## Demonstrating it
+
+`DEMO.md`. In short: `START-DEMO.bat`, then seed from
+`website/demo-setup.html` before presenting. Fonts are self-hosted, so it
+works with no internet.
+
+`website/demo-setup.js` is presenter-only and deliberately isolated — no app
+code knows it exists.

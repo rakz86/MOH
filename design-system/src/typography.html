@@ -1,0 +1,88 @@
+<div class="pv-group">
+  <h2>The pairing</h2>
+  <p class="note">IBM Plex Sans and IBM Plex Sans Arabic were drawn by one team on shared proportions, so an English page and an Arabic page hold the same rhythm and the same colour on the page. That is the whole reason for the change: the legacy pairing of Open Sans with Cairo gives two different textures depending on which language a citizen reads. IBM Plex Mono carries reference numbers and quantities. All three are SIL Open Font License — free to embed, self-host and redistribute, with no per-seat licensing to negotiate.</p>
+
+  <div class="grid grid--2">
+    <div class="card">
+      <div class="pv-label">Latin — IBM Plex Sans</div>
+      <div style="font-size:var(--text-4xl);line-height:var(--leading-tight);font-weight:600;letter-spacing:var(--tracking-tight)">Request medical instruments</div>
+      <div class="body text-secondary" style="margin-block-start:var(--space-4)">Submit a requisition for instruments, consumables and materials on behalf of a hospital department or accredited supplier.</div>
+      <div class="mono" style="margin-block-start:var(--space-4);font-size:var(--text-sm)">REQ-2026-004871 · 1,240.500 KWD</div>
+    </div>
+    <div class="card" dir="rtl" lang="ar">
+      <div class="pv-label">Arabic — IBM Plex Sans Arabic</div>
+      <div style="font-size:var(--text-4xl);line-height:var(--leading-tight);font-weight:600">طلب الأجهزة الطبية</div>
+      <div class="body text-secondary" style="margin-block-start:var(--space-4)">قدّم طلباً للأجهزة والمستلزمات والمواد الطبية نيابةً عن قسم في المستشفى أو مورّد معتمد.</div>
+      <div class="mono" style="margin-block-start:var(--space-4);font-size:var(--text-sm)" dir="ltr">REQ-2026-004871 · 1,240.500 KWD</div>
+    </div>
+  </div>
+
+  <p class="pv-rule"><b>Arabic runs 8% larger with 12% more leading.</b> Arabic is optically smaller than Latin at the same point size and its ascenders and descenders need more room. The system corrects for this once, globally, with <span class="mono">--font-scale-ar</span> and <span class="mono">--line-height-scale-ar</span> — never by hand-tuning individual components.</p>
+</div>
+
+<div class="pv-group">
+  <h2>Scale</h2>
+  <p class="note">A 1.200 minor third, rounded to whole pixels so text renders crisply at every step. Body is 16px and never smaller for public-facing prose — 13px body copy is the single most common accessibility failure on both legacy sites.</p>
+
+  <div class="pv-demo pv-demo--col">
+    <div style="display:flex;align-items:baseline;gap:var(--space-6);flex-wrap:wrap"><span class="mono caption" style="min-width:110px">display-1 56</span><span class="display-1">Kuwait</span></div>
+    <div style="display:flex;align-items:baseline;gap:var(--space-6);flex-wrap:wrap"><span class="mono caption" style="min-width:110px">display-2 44</span><span class="display-2">Kuwait</span></div>
+    <div style="display:flex;align-items:baseline;gap:var(--space-6);flex-wrap:wrap"><span class="mono caption" style="min-width:110px">heading-1 36</span><span class="heading-1">Request instruments</span></div>
+    <div style="display:flex;align-items:baseline;gap:var(--space-6);flex-wrap:wrap"><span class="mono caption" style="min-width:110px">heading-2 30</span><span class="heading-2">Request instruments</span></div>
+    <div style="display:flex;align-items:baseline;gap:var(--space-6);flex-wrap:wrap"><span class="mono caption" style="min-width:110px">heading-3 24</span><span class="heading-3">Request instruments</span></div>
+    <div style="display:flex;align-items:baseline;gap:var(--space-6);flex-wrap:wrap"><span class="mono caption" style="min-width:110px">heading-4 20</span><span class="heading-4">Request instruments</span></div>
+    <div style="display:flex;align-items:baseline;gap:var(--space-6);flex-wrap:wrap"><span class="mono caption" style="min-width:110px">heading-5 18</span><span class="heading-5">Request instruments</span></div>
+    <div style="display:flex;align-items:baseline;gap:var(--space-6);flex-wrap:wrap"><span class="mono caption" style="min-width:110px">body 16</span><span class="body">The requesting department must hold budget authority for the current fiscal year.</span></div>
+    <div style="display:flex;align-items:baseline;gap:var(--space-6);flex-wrap:wrap"><span class="mono caption" style="min-width:110px">body-sm 14</span><span class="body-sm">The requesting department must hold budget authority for the current fiscal year.</span></div>
+    <div style="display:flex;align-items:baseline;gap:var(--space-6);flex-wrap:wrap"><span class="mono caption" style="min-width:110px">caption 13</span><span class="caption">Last updated 20 September 2026 at 10:41</span></div>
+    <div style="display:flex;align-items:baseline;gap:var(--space-6);flex-wrap:wrap"><span class="mono caption" style="min-width:110px">eyebrow 12</span><span class="eyebrow">Procurement</span></div>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>Numerals</h2>
+  <p class="note">Quantities, reference numbers and currency must not shift width as digits change — a column of figures that jitters is a column nobody can scan. Every numeric cell in the system opts into tabular lining figures.</p>
+  <div class="pv-demo">
+    <div>
+      <div class="pv-label">Proportional — wrong for data</div>
+      <div style="font-variant-numeric:proportional-nums;font-size:var(--text-lg);line-height:1.8">
+        1,240.500<br>987.000<br>11,113.750
+      </div>
+    </div>
+    <div>
+      <div class="pv-label">Tabular — the system default</div>
+      <div class="numeric" style="font-size:var(--text-lg);line-height:1.8">
+        1,240.500<br>987.000<br>11,113.750
+      </div>
+    </div>
+    <div style="flex:1;min-width:280px">
+      <div class="pv-label">Rules</div>
+      <p class="body-sm text-secondary">Kuwait uses Western digits in both languages, so Arabic pages keep the same numerals — do not switch to Arabic-Indic forms. Currency is <b>KWD</b> to three decimal places, the fils. Reference numbers set in Plex Mono and always rendered <span class="mono">dir=ltr</span> even inside Arabic text, so the sequence is not reordered by the bidirectional algorithm.</p>
+    </div>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>Bilingual rules</h2>
+  <div class="pv-do-dont">
+    <div class="pv-do">
+      <div class="pv-label">Do</div>
+      <ul class="body-sm" style="padding-inline-start:var(--space-5);display:grid;gap:var(--space-3)">
+        <li>Set line length with <span class="mono">ch</span> units so both scripts get a comfortable measure.</li>
+        <li>Isolate reference numbers and Latin product names inside Arabic with <span class="mono">dir=ltr</span>.</li>
+        <li>Mirror arrows, chevrons and steppers. Mark them <span class="mono">.icon--directional</span>.</li>
+        <li>Translate before layout. Arabic copy commonly runs 20–25% longer.</li>
+      </ul>
+    </div>
+    <div class="pv-dont">
+      <div class="pv-label">Do not</div>
+      <ul class="body-sm" style="padding-inline-start:var(--space-5);display:grid;gap:var(--space-3)">
+        <li>Letter-space Arabic. It breaks the joins between letters and renders the word unreadable.</li>
+        <li>Apply <span class="mono">text-transform: uppercase</span>. Arabic has no case; the rule silently does nothing or mangles mixed strings.</li>
+        <li>Fake bold with synthetic weights — load the real 600.</li>
+        <li>Mirror clocks, logos, checkmarks or media playback controls.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="pv-rule">Switch this page to <b>RTL — عربي</b> in the toolbar above. Every component mirrors from one attribute on the root element, because all spacing is written in logical properties. No component carries an RTL override.</p>
+</div>

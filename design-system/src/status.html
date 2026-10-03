@@ -1,0 +1,84 @@
+<div class="pv-group">
+  <h2>Request lifecycle</h2>
+  <p class="note">Seven states. Every request is in exactly one of them at any moment, and the same badge renders identically wherever it appears — queue row, detail header, email, printed summary.</p>
+
+  <div class="table-wrap">
+    <table class="table">
+      <thead><tr><th>State</th><th>Shape</th><th>Meaning</th><th>Who acts next</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge badge--draft">Draft</span></td><td>Square</td><td>Started, not submitted. Visible only to the requester.</td><td>Requester</td></tr>
+        <tr><td><span class="badge badge--submitted">Submitted</span></td><td>Circle</td><td>Received and queued. Reference number issued.</td><td>Procurement</td></tr>
+        <tr><td><span class="badge badge--review">In review</span></td><td>Diamond</td><td>A named officer is assessing it.</td><td>Procurement</td></tr>
+        <tr><td><span class="badge badge--action">Action required</span></td><td>Triangle</td><td>Returned with questions. The clock is paused.</td><td>Requester</td></tr>
+        <tr><td><span class="badge badge--approved">Approved</span></td><td>Circle</td><td>Authorised. Proceeding to purchase order.</td><td>Procurement</td></tr>
+        <tr><td><span class="badge badge--rejected">Rejected</span></td><td>Bar</td><td>Declined with a stated reason. Appealable within 14 days.</td><td>Requester</td></tr>
+        <tr><td><span class="badge badge--fulfilled">Fulfilled</span></td><td>Circle, solid</td><td>Delivered and receipted by the department.</td><td>Nobody — closed</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="pv-rule"><b>The greyscale test.</b> Print this page in black and white. Every state must still be distinguishable. That is why each badge carries a shape and a word, not only a hue — and why a new state needs a new shape before it needs a new colour.</p>
+</div>
+
+<div class="pv-group">
+  <h2>Alerts</h2>
+  <p class="note">Page-level messages announcing something the user did not ask for. Inline field errors belong with their field, never up here — an alert that duplicates a field error just makes the user hunt twice.</p>
+  <div class="pv-demo pv-demo--col" style="max-width:var(--measure-prose)">
+    <div class="alert alert--info">
+      <svg class="alert__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5M10 6.5v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <div><div class="alert__title">Requests close for the fiscal year on 30 November</div><div class="alert__body">Submissions after that date will be assessed against the 2027 budget.</div></div>
+    </div>
+    <div class="alert alert--success">
+      <svg class="alert__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 10.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><div class="alert__title">Request REQ-2026-004871 submitted</div><div class="alert__body">You will receive a decision within 14 working days. Keep the reference number for any enquiry.</div></div>
+    </div>
+    <div class="alert alert--warning">
+      <svg class="alert__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.5l8 14.5H2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8v3.5M10 14v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <div><div class="alert__title">This request needs more information</div><div class="alert__body">The procurement officer has asked two questions. The 14-day clock is paused until you reply.</div></div>
+    </div>
+    <div class="alert alert--danger">
+      <svg class="alert__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="M7.5 7.5l5 5M12.5 7.5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <div><div class="alert__title">Request rejected — budget exhausted for this category</div><div class="alert__body">The theatre equipment allocation for 2026 is fully committed. You may appeal within 14 days or resubmit against the 2027 budget.</div></div>
+    </div>
+  </div>
+  <p class="pv-rule"><b>Every alert states the consequence.</b> Not just what happened, but what it means for this person and what they can do about it. A rejection without a reason and a route to appeal is not an acceptable public-service message.</p>
+</div>
+
+<div class="pv-group">
+  <h2>Dialogs</h2>
+  <p class="note">Reserved for decisions that cannot be undone. If the page could show the information inline, it should — a dialog interrupts, and interruption is a cost.</p>
+  <div class="pv-demo" style="background:var(--color-surface-sunken)">
+    <div class="dialog" style="animation:none;max-width:460px;box-shadow:var(--shadow-lg)">
+      <div class="dialog__title">Reject this request?</div>
+      <div class="dialog__body">
+        <p>REQ-2026-004871 will be returned to Al-Amiri Hospital — Theatres with the reason you have written. The department may appeal within 14 days.</p>
+        <div class="field" style="margin-block-start:var(--space-5)">
+          <label class="field__label" for="rr">Reason for rejection</label>
+          <p class="field__hint">This is sent to the requester and recorded in the audit trail.</p>
+          <textarea class="textarea" id="rr" style="min-block-size:80px">Theatre equipment allocation for 2026 is fully committed.</textarea>
+        </div>
+      </div>
+      <div class="dialog__footer">
+        <button class="btn btn--ghost">Cancel</button>
+        <button class="btn btn--danger">Reject request</button>
+      </div>
+    </div>
+  </div>
+  <p class="pv-rule"><b>The confirming button restates the action.</b> Never <span class="mono">Yes</span> or <span class="mono">OK</span> — a user who has stopped reading should still be able to tell the buttons apart. Focus moves into the dialog on open, is trapped inside it, and returns to the triggering control on close.</p>
+</div>
+
+<div class="pv-group">
+  <h2>Toasts</h2>
+  <p class="note">Confirm that something completed. A toast must never carry the only copy of important information — the reference number below also appears on the page and in an email, because a toast disappears and cannot be recovered.</p>
+  <div class="pv-demo">
+    <div class="toast">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="color:var(--color-success)"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 10.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>Draft saved <span class="text-muted">· 10:42</span></div>
+    </div>
+    <div class="toast" style="border-inline-start-color:var(--color-info)">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="color:var(--color-info)"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5M10 6.5v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <div>3 items added to the request</div>
+    </div>
+  </div>
+  <p class="pv-rule">Toasts live in an <span class="mono">aria-live="polite"</span> region so screen readers announce them without interrupting. They persist for at least 5 seconds, longer if the message is longer, and never auto-dismiss if they contain an action.</p>
+</div>

@@ -1,0 +1,124 @@
+<div class="pv-group">
+  <h2>The five rules</h2>
+  <p class="note">The requisition form is the product. These rules are not stylistic preferences — each one prevents a specific, measurable failure in government service forms.</p>
+  <div class="grid grid--2">
+    <div class="card"><div class="eyebrow">01</div><p class="body-sm" style="margin-block-start:var(--space-3)"><b>One column.</b> Multi-column forms cause skipped fields, because the eye does not reliably find the second column.</p></div>
+    <div class="card"><div class="eyebrow">02</div><p class="body-sm" style="margin-block-start:var(--space-3)"><b>Visible, persistent labels.</b> A placeholder is not a label — it vanishes exactly when the user needs to check what they are answering.</p></div>
+    <div class="card"><div class="eyebrow">03</div><p class="body-sm" style="margin-block-start:var(--space-3)"><b>Hints above the input.</b> Guidance read before answering prevents an error; guidance below is discovered after failing.</p></div>
+    <div class="card"><div class="eyebrow">04</div><p class="body-sm" style="margin-block-start:var(--space-3)"><b>Errors name the fix.</b> Say what to do, not that something is wrong.</p></div>
+    <div class="card"><div class="eyebrow">05</div><p class="body-sm" style="margin-block-start:var(--space-3)"><b>Mark optional, not required.</b> Where most fields are mandatory, flagging the exceptions is quieter and clearer.</p></div>
+    <div class="card" style="background:var(--color-primary-wash);border-color:var(--color-primary-border)"><div class="eyebrow" style="color:var(--color-info-text)">And</div><p class="body-sm" style="margin-block-start:var(--space-3)"><b>Never ask twice.</b> If the ministry already holds a value — department, budget code, supplier licence — prefill it and let the user correct it.</p></div>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>Text inputs</h2>
+  <div class="pv-demo">
+    <div style="flex:1;min-width:300px">
+      <div class="field">
+        <label class="field__label" for="f1">Item description</label>
+        <p class="field__hint">Use the manufacturer name as printed on the packaging.</p>
+        <input class="input" id="f1" placeholder="e.g. Surgical retractor, self-retaining">
+      </div>
+      <div class="field">
+        <label class="field__label" for="f2">Catalogue reference <span class="field__optional">optional</span></label>
+        <input class="input" id="f2" placeholder="e.g. 51-2207">
+      </div>
+      <div class="field">
+        <label class="field__label" for="f3">Clinical justification</label>
+        <p class="field__hint">Explain why an existing approved item cannot meet this need.</p>
+        <textarea class="textarea" id="f3" placeholder="Describe the clinical requirement"></textarea>
+      </div>
+    </div>
+    <div style="flex:1;min-width:300px">
+      <div class="field">
+        <label class="field__label" for="f4">Quantity</label>
+        <div class="input-group">
+          <input class="input numeric" id="f4" value="24" inputmode="numeric">
+          <span class="input-group__addon">units</span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field__label" for="f5">Requesting department</label>
+        <select class="select" id="f5">
+          <option>Al-Amiri Hospital — Theatres</option>
+          <option>Al-Sabah Hospital — Radiology</option>
+          <option>Farwaniya Hospital — Intensive Care</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="field__label" for="f6">Estimated unit value</label>
+        <div class="input-group">
+          <input class="input numeric" id="f6" value="1240.500" aria-invalid="true" aria-describedby="f6err">
+          <span class="input-group__addon">KWD</span>
+        </div>
+        <p class="field__error" id="f6err">Enter a value of 1,000.000 KWD or less, or attach a tender waiver in step 4.</p>
+      </div>
+      <div class="field">
+        <label class="field__label" for="f7">Budget code</label>
+        <input class="input" id="f7" value="MOH-2026-TH-0041" disabled>
+        <p class="field__hint">Set from your department record and cannot be edited here.</p>
+      </div>
+    </div>
+  </div>
+  <p class="pv-rule"><b>Error copy, compared.</b> <span style="color:var(--color-danger-text)">Invalid input</span> tells the user only that they failed. <span style="color:var(--color-success-text)">Enter a value of 1,000.000 KWD or less, or attach a tender waiver in step 4</span> tells them the rule, the limit, and the way forward. Always write the second kind.</p>
+</div>
+
+<div class="pv-group">
+  <h2>Choices</h2>
+  <p class="note">The whole card is the target, not just the control. Options carry a description where the difference between them has consequences — here, the procurement route determines how long the request takes.</p>
+  <div class="pv-demo">
+    <div style="flex:1;min-width:320px;display:grid;gap:var(--space-3)">
+      <div class="pv-label">Single choice</div>
+      <label class="choice"><input type="radio" name="route" checked><span><span class="choice__label">Standard procurement</span><span class="choice__desc">Framework suppliers. Typically 14 working days.</span></span></label>
+      <label class="choice"><input type="radio" name="route"><span><span class="choice__label">Urgent clinical need</span><span class="choice__desc">Requires a consultant signature. 3 working days.</span></span></label>
+      <label class="choice"><input type="radio" name="route"><span><span class="choice__label">New supplier</span><span class="choice__desc">Triggers vendor accreditation. 30 working days or more.</span></span></label>
+    </div>
+    <div style="flex:1;min-width:320px;display:grid;gap:var(--space-3)">
+      <div class="pv-label">Multiple choice</div>
+      <label class="choice"><input type="checkbox" checked><span><span class="choice__label">Requires cold-chain storage</span></span></label>
+      <label class="choice"><input type="checkbox"><span><span class="choice__label">Contains controlled substances</span></span></label>
+      <label class="choice"><input type="checkbox"><span><span class="choice__label">Requires installation and staff training</span><span class="choice__desc">Adds a facilities review to the workflow.</span></span></label>
+    </div>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>Attachments</h2>
+  <p class="note">Specification sheets, tender waivers, CE and FDA certificates. State the accepted formats and the size limit before the user tries — not in an error afterwards.</p>
+  <div class="pv-demo pv-demo--col" style="max-width:560px">
+    <div class="upload">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5l5 5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="var(--color-text-muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><button class="btn btn--secondary btn--sm">Choose files</button></div>
+      <p class="upload__hint">PDF, JPG or PNG · up to 10 MB each · maximum 5 files</p>
+    </div>
+    <div class="upload-item">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="var(--color-text-secondary)" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="var(--color-text-secondary)" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span>retractor-specification.pdf</span>
+      <span class="upload-item__size">2.4 MB</span>
+      <button class="btn btn--ghost btn--sm">Remove</button>
+    </div>
+    <div class="upload-item">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="var(--color-text-secondary)" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="var(--color-text-secondary)" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span>ce-certificate-2026.pdf</span>
+      <span class="upload-item__size">0.8 MB</span>
+      <button class="btn btn--ghost btn--sm">Remove</button>
+    </div>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>Validation</h2>
+  <p class="note">Validate on blur, never on every keystroke — telling someone their email is invalid while they are still typing it is hostile. On submit, show a summary at the top of the form that links to each failing field, and move focus to it.</p>
+  <div class="alert alert--danger" style="max-width:var(--measure-prose)">
+    <svg class="alert__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v5M10 13.5v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    <div>
+      <div class="alert__title">There are 2 problems with this request</div>
+      <ul class="alert__body" style="padding-inline-start:var(--space-5);margin-block-start:var(--space-2);display:grid;gap:var(--space-2)">
+        <li><a href="#f6" style="color:inherit">Estimated unit value</a> — enter 1,000.000 KWD or less, or attach a tender waiver.</li>
+        <li><a href="#f3" style="color:inherit">Clinical justification</a> — explain why an approved item cannot meet this need.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="pv-rule">Each field also carries <span class="mono">aria-invalid</span> and an <span class="mono">aria-describedby</span> pointing at its error, so a screen reader announces the problem when focus lands — the summary alone is not enough.</p>
+</div>

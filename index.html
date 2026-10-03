@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOH Kuwait — local index</title>
+<meta name="description" content="Development index. Links to every page of the website and every reference in the design system.">
+<link rel="icon" href="/design-system/assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/design-system/assets/favicon/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/design-system/assets/favicon/icon-16.png">
+<link rel="apple-touch-icon" href="/design-system/assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="design-system/foundations/fonts.css">
+<link rel="stylesheet" href="design-system/foundations/tokens.css">
+<link rel="stylesheet" href="design-system/foundations/base.css">
+<link rel="stylesheet" href="design-system/foundations/components.css">
+<style>
+  .idx { max-inline-size: var(--container-lg); margin-inline: auto; padding: var(--space-11) var(--gutter) var(--space-13); }
+  .idx__head { display: flex; align-items: center; gap: var(--space-5); margin-block-end: var(--space-4); }
+  .idx__mark { block-size: 56px; inline-size: auto; }
+  .idx__group { margin-block-start: var(--space-11); }
+  .idx__title { display: flex; align-items: baseline; gap: var(--space-4); margin-block-end: var(--space-2); }
+  .idx__count { font-size: var(--text-xs); color: var(--color-text-muted); font-variant-numeric: var(--numeric-tabular); }
+  .idx__note { font-size: var(--text-sm); color: var(--color-text-secondary); max-inline-size: var(--measure-prose); margin-block-end: var(--space-6); }
+  .idx__list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-3); }
+  .idx__item {
+    display: flex; align-items: center; gap: var(--space-4);
+    min-block-size: var(--target-min);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-surface);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-lg);
+    text-decoration: none; color: inherit;
+    transition: border-color var(--duration-fast) var(--ease-standard),
+                background-color var(--duration-fast) var(--ease-standard);
+  }
+  .idx__item:hover { border-color: var(--color-primary); background: var(--color-primary-wash); }
+  .idx__name { font-size: var(--text-sm); font-weight: var(--weight-semibold); }
+  .idx__path { font-family: var(--font-mono); font-size: var(--text-3xs); color: var(--color-text-muted); display: block; margin-block-start: 2px; }
+  .idx__arrow { margin-inline-start: auto; color: var(--color-primary); flex: none; }
+</style>
+</head>
+<body>
+
+<div class="gov-bar">
+  <div class="container">
+    <span>Local development index &middot; not part of the published service</span>
+  </div>
+</div>
+
+<main class="idx">
+
+  <div class="idx__head">
+    <img class="idx__mark" src="design-system/assets/emblem-colour-112.png" alt="" onerror="this.remove()">
+    <div>
+      <h1 class="heading-2">Medical Requisitions</h1>
+      <p class="body-sm text-secondary">Ministry of Health &middot; State of Kuwait</p>
+    </div>
+  </div>
+  <p class="idx__note">Two things live here. <b>The website</b> is the service itself — the pages people use. <b>The design system</b> is what those pages are made of. The dependency runs one way: the website imports from the system, never the reverse.</p>
+
+  <section class="idx__group">
+    <div class="idx__title">
+      <h2 class="heading-3">Website</h2>
+      <span class="idx__count">6 pages</span>
+    </div>
+    <p class="idx__note">The real service. These are pages, not specimens.</p>
+    <div class="idx__list">
+      <a class="idx__item" href="website/index.html">
+        <span><span class="idx__name">Homepage</span><span class="idx__path">website/index.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="idx__item" href="website/instruments.html">
+        <span><span class="idx__name">Instrument sets — periodontic</span><span class="idx__path">website/instruments.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="idx__item" href="website/item-log.html">
+        <span><span class="idx__name">Item log</span><span class="idx__path">website/item-log.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="idx__item" href="website/catalogue.html">
+        <span><span class="idx__name">Instrument catalogue</span><span class="idx__path">website/catalogue.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="idx__item" href="website/requests.html">
+        <span><span class="idx__name">Requests (admin)</span><span class="idx__path">website/requests.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="idx__item" href="website/request-detail.html">
+        <span><span class="idx__name">Request detail (admin)</span><span class="idx__path">website/request-detail.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="idx__item" href="website/demo-setup.html">
+        <span><span class="idx__name">Demo setup (presenter)</span><span class="idx__path">website/demo-setup.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <section class="idx__group">
+    <div class="idx__title">
+      <h2 class="heading-3">Design system</h2>
+      <span class="idx__count">8 references</span>
+    </div>
+    <p class="idx__note">Branding decisions. Each one has Light/Dark, Comfortable/Compact and LTR/RTL toggles in its toolbar.</p>
+    <div class="idx__list">
+      <a class="idx__item" href="design-system/previews/brand.html">
+        <span><span class="idx__name">Brand foundation</span><span class="idx__path">previews/brand.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="idx__item" href="design-system/previews/color.html">
+        <span><span class="idx__name">Colour</span><span class="idx__path">previews/color.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="idx__item" href="design-system/previews/typography.html">
+        <span><span class="idx__name">Typography</span><span class="idx__path">previews/typography.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="idx__item" href="design-system/previews/spacing.html">
+        <span><span class="idx__name">Space &amp; surface</span><span class="idx__path">previews/spacing.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="idx__item" href="design-system/previews/buttons.html">
+        <span><span class="idx__name">Buttons</span><span class="idx__path">previews/buttons.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="idx__item" href="design-system/previews/forms.html">
+        <span><span class="idx__name">Form controls</span><span class="idx__path">previews/forms.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="idx__item" href="design-system/previews/status.html">
+        <span><span class="idx__name">Status &amp; feedback</span><span class="idx__path">previews/status.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="idx__item" href="design-system/previews/navigation.html">
+        <span><span class="idx__name">Navigation</span><span class="idx__path">previews/navigation.html</span></span>
+        <svg class="idx__arrow icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <section class="idx__group">
+    <div class="idx__title">
+      <h2 class="heading-3">Written guidance</h2>
+      <span class="idx__count">6 documents</span>
+    </div>
+    <div class="idx__list">
+      <a class="idx__item" href="README.md"><span><span class="idx__name">Repository overview</span><span class="idx__path">README.md</span></span></a>
+      <a class="idx__item" href="design-system/README.md"><span><span class="idx__name">Design system</span><span class="idx__path">design-system/README.md</span></span></a>
+      <a class="idx__item" href="design-system/guidelines/accessibility.md"><span><span class="idx__name">Accessibility</span><span class="idx__path">guidelines/accessibility.md</span></span></a>
+      <a class="idx__item" href="design-system/guidelines/bilingual-rtl.md"><span><span class="idx__name">Bilingual &amp; RTL</span><span class="idx__path">guidelines/bilingual-rtl.md</span></span></a>
+      <a class="idx__item" href="design-system/guidelines/patterns.md"><span><span class="idx__name">Page patterns</span><span class="idx__path">guidelines/patterns.md</span></span></a>
+      <a class="idx__item" href="design-system/guidelines/contributing.md"><span><span class="idx__name">Contributing</span><span class="idx__path">guidelines/contributing.md</span></span></a>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>

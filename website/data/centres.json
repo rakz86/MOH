@@ -1,0 +1,14 @@
+{
+  "note": "Dental centres in the periodontic programme. Arabic names are standard transliterations of well-known Kuwaiti place names and should still be confirmed against the ministry's own spelling before launch. `allocation` is left empty on purpose: until the real per-centre figures arrive, every centre falls back to the standard quantity on the instrument set.",
+  "centres": [
+    { "id": "amiri",      "name": "Amiri",          "nameAr": "الأميري",      "allocation": {} },
+    { "id": "jaber",      "name": "Jaber",          "nameAr": "جابر",         "allocation": {} },
+    { "id": "jahra",      "name": "Jahra",          "nameAr": "الجهراء",      "allocation": {} },
+    { "id": "farwaniya",  "name": "Farwaniya",      "nameAr": "الفروانية",    "allocation": {} },
+    { "id": "adan",       "name": "Adan",           "nameAr": "العدان",       "allocation": {} },
+    { "id": "sager",      "name": "Hamad Al Sager", "nameAr": "حمد الصقر",    "allocation": {} },
+    { "id": "bneid",      "name": "Bneid Al Gar",   "nameAr": "بنيد القار",   "allocation": {} },
+    { "id": "sulaibikhat","name": "Sulaibikhat",    "nameAr": "الصليبيخات",   "allocation": {} },
+    { "id": "taima",      "name": "Taima",          "nameAr": "تيماء",        "allocation": {} }
+  ]
+}

@@ -1,0 +1,77 @@
+<div class="pv-group">
+  <h2>The 4px grid</h2>
+  <p class="note">One scale, used for every gap, pad and inset in the system. Values are named by step, not by pixel, so a density change or a future rescale never requires a find-and-replace across components.</p>
+  <div class="pv-demo pv-demo--col">
+    <div style="display:flex;align-items:center;gap:var(--space-5)"><span class="mono caption" style="min-width:90px">space-2 · 4</span><div style="height:16px;width:4px;background:var(--color-primary);border-radius:2px"></div></div>
+    <div style="display:flex;align-items:center;gap:var(--space-5)"><span class="mono caption" style="min-width:90px">space-3 · 8</span><div style="height:16px;width:8px;background:var(--color-primary);border-radius:2px"></div></div>
+    <div style="display:flex;align-items:center;gap:var(--space-5)"><span class="mono caption" style="min-width:90px">space-4 · 12</span><div style="height:16px;width:12px;background:var(--color-primary);border-radius:2px"></div></div>
+    <div style="display:flex;align-items:center;gap:var(--space-5)"><span class="mono caption" style="min-width:90px">space-5 · 16</span><div style="height:16px;width:16px;background:var(--color-primary);border-radius:2px"></div></div>
+    <div style="display:flex;align-items:center;gap:var(--space-5)"><span class="mono caption" style="min-width:90px">space-7 · 24</span><div style="height:16px;width:24px;background:var(--color-primary);border-radius:2px"></div></div>
+    <div style="display:flex;align-items:center;gap:var(--space-5)"><span class="mono caption" style="min-width:90px">space-8 · 32</span><div style="height:16px;width:32px;background:var(--color-primary);border-radius:2px"></div></div>
+    <div style="display:flex;align-items:center;gap:var(--space-5)"><span class="mono caption" style="min-width:90px">space-9 · 40</span><div style="height:16px;width:40px;background:var(--color-primary);border-radius:2px"></div></div>
+    <div style="display:flex;align-items:center;gap:var(--space-5)"><span class="mono caption" style="min-width:90px">space-10 · 48</span><div style="height:16px;width:48px;background:var(--color-primary);border-radius:2px"></div></div>
+    <div style="display:flex;align-items:center;gap:var(--space-5)"><span class="mono caption" style="min-width:90px">space-11 · 64</span><div style="height:16px;width:64px;background:var(--color-primary);border-radius:2px"></div></div>
+    <div style="display:flex;align-items:center;gap:var(--space-5)"><span class="mono caption" style="min-width:90px">space-12 · 80</span><div style="height:16px;width:80px;background:var(--color-primary);border-radius:2px"></div></div>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>Two densities, one system</h2>
+  <p class="note">The scale never changes. What changes is control height and table rhythm — so the public request form and the internal review queue stay visibly part of the same family while serving very different jobs. Toggle <b>Comfortable / Compact</b> in the toolbar to see both; the panels below are pinned so you can compare.</p>
+
+  <div class="grid grid--2">
+    <div class="card" data-density="comfortable">
+      <div class="pv-label">Comfortable — public, default</div>
+      <p class="caption" style="margin-block-end:var(--space-5)">Requesters and suppliers. 48px controls, 56px rows, 44px minimum tap target. Touch and low-confidence users.</p>
+      <div class="field">
+        <label class="field__label" for="d1">Department</label>
+        <input class="input" id="d1" value="Al-Amiri Hospital — Theatres">
+      </div>
+      <div class="cluster" style="margin-block-start:var(--space-5)">
+        <button class="btn btn--primary">Continue</button>
+        <button class="btn btn--secondary">Save draft</button>
+      </div>
+    </div>
+    <div class="card" data-density="compact">
+      <div class="pv-label">Compact — internal workbench</div>
+      <p class="caption" style="margin-block-end:var(--space-5)">Procurement officers triaging a queue. 40px controls, 40px rows. Desktop and pointer only — never serve this to the public.</p>
+      <div class="field">
+        <label class="field__label" for="d2">Department</label>
+        <input class="input" id="d2" value="Al-Amiri Hospital — Theatres">
+      </div>
+      <div class="cluster" style="margin-block-start:var(--space-5)">
+        <button class="btn btn--primary">Approve</button>
+        <button class="btn btn--secondary">Request info</button>
+      </div>
+    </div>
+  </div>
+  <p class="pv-rule"><b>Compact is desktop-only.</b> It drops below the 44px target floor, so it may never be used on a touch device or on any screen a member of the public reaches. The density attribute lives on a layout wrapper, never on an individual component.</p>
+</div>
+
+<div class="pv-group">
+  <h2>Radius &amp; elevation</h2>
+  <p class="note">Deliberately restrained. A ministry service should read as considered rather than playful — nothing is rounder than 12px except pills. Shadows are tinted with the brand blue rather than pure black, so raised surfaces stay in the same colour world as everything else.</p>
+  <div class="pv-demo">
+    <div style="text-align:center"><div style="width:96px;height:64px;background:var(--color-surface);border:1px solid var(--color-border-control);border-radius:var(--radius-sm)"></div><div class="mono caption" style="margin-block-start:var(--space-3)">sm · 4</div></div>
+    <div style="text-align:center"><div style="width:96px;height:64px;background:var(--color-surface);border:1px solid var(--color-border-control);border-radius:var(--radius-md)"></div><div class="mono caption" style="margin-block-start:var(--space-3)">md · 6 · default</div></div>
+    <div style="text-align:center"><div style="width:96px;height:64px;background:var(--color-surface);border:1px solid var(--color-border-control);border-radius:var(--radius-lg)"></div><div class="mono caption" style="margin-block-start:var(--space-3)">lg · 8</div></div>
+    <div style="text-align:center"><div style="width:96px;height:64px;background:var(--color-surface);border:1px solid var(--color-border-control);border-radius:var(--radius-xl)"></div><div class="mono caption" style="margin-block-start:var(--space-3)">xl · 12 · cards</div></div>
+    <div style="text-align:center"><div style="width:96px;height:64px;background:var(--color-surface);border:1px solid var(--color-border-control);border-radius:var(--radius-full)"></div><div class="mono caption" style="margin-block-start:var(--space-3)">full · pills</div></div>
+  </div>
+  <div class="pv-demo" style="margin-block-start:var(--space-5)">
+    <div style="text-align:center"><div style="width:140px;height:72px;background:var(--color-surface);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm)"></div><div class="mono caption" style="margin-block-start:var(--space-3)">sm · resting cards</div></div>
+    <div style="text-align:center"><div style="width:140px;height:72px;background:var(--color-surface);border-radius:var(--radius-xl);box-shadow:var(--shadow-md)"></div><div class="mono caption" style="margin-block-start:var(--space-3)">md · hover, dropdowns</div></div>
+    <div style="text-align:center"><div style="width:140px;height:72px;background:var(--color-surface);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg)"></div><div class="mono caption" style="margin-block-start:var(--space-3)">lg · dialogs, toasts</div></div>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>Motion</h2>
+  <p class="note">Short and functional. Motion confirms that a state changed; it never decorates and it never delays. Anything over 240ms is making the user wait to watch an animation finish.</p>
+  <div class="pv-demo">
+    <div class="def-row" style="flex:1;min-width:260px"><div class="def-row__key mono">fast · 120ms</div><div class="def-row__val">Hover, focus, colour shifts</div></div>
+    <div class="def-row" style="flex:1;min-width:260px"><div class="def-row__key mono">normal · 180ms</div><div class="def-row__val">Expanding panels, tab changes</div></div>
+    <div class="def-row" style="flex:1;min-width:260px"><div class="def-row__key mono">slow · 240ms</div><div class="def-row__val">Dialogs and drawers entering</div></div>
+  </div>
+  <p class="pv-rule"><b>Reduced motion is honoured at the token layer.</b> Under <span class="mono">prefers-reduced-motion: reduce</span> every duration collapses to 1ms, so no component needs its own media query and none can forget to include one.</p>
+</div>

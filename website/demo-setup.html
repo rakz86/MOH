@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo setup — Medical Requisitions</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/design-system/assets/favicon/favicon.ico" sizes="any">
+<link rel="stylesheet" href="../design-system/foundations/fonts.css">
+<link rel="stylesheet" href="../design-system/foundations/tokens.css">
+<link rel="stylesheet" href="../design-system/foundations/base.css">
+<link rel="stylesheet" href="../design-system/foundations/components.css">
+<link rel="stylesheet" href="site.css">
+<script src="data/bundle.js" defer></script>
+<script src="config.js" defer></script>
+<script src="ledger.js" defer></script>
+<script src="store.js" defer></script>
+<script src="demo-setup.js" defer></script>
+</head>
+<body>
+
+<div class="gov-bar">
+  <div class="container">
+    <span>Presenter tools &middot; not part of the service</span>
+  </div>
+</div>
+
+<main class="container" style="padding-block:var(--space-11);max-inline-size:var(--container-md)">
+
+  <h1 class="heading-2">Demo setup</h1>
+  <p class="body text-secondary" style="margin-block:var(--space-4) var(--space-8);max-inline-size:var(--measure-prose)">
+    Loads a believable state so a demonstration opens on a service in use rather than on 78 rows of zeroes. Everything lives in this browser only &mdash; nothing here touches the real code.
+  </p>
+
+  <div class="reg-stats" style="margin-block-end:var(--space-7)">
+    <div>
+      <div class="reg-stat__value" id="c-requests">0</div>
+      <div class="reg-stat__label">Requests</div>
+    </div>
+    <div>
+      <div class="reg-stat__value" id="c-waiting">0</div>
+      <div class="reg-stat__label">Awaiting confirmation</div>
+    </div>
+    <div>
+      <div class="reg-stat__value" id="c-ledger">0</div>
+      <div class="reg-stat__label">Confirmed movements</div>
+    </div>
+    <div>
+      <div class="reg-stat__value" id="c-codes">0</div>
+      <div class="reg-stat__label">Codes</div>
+    </div>
+    <div>
+      <div class="reg-stat__value" id="c-alloc">0</div>
+      <div class="reg-stat__label">Custom allocations</div>
+    </div>
+  </div>
+
+  <div class="cluster" style="margin-block-end:var(--space-5)">
+    <button class="btn btn--primary" id="btn-seed" type="button">Load demo data</button>
+    <button class="btn btn--secondary" id="btn-wipe" type="button">Clear everything</button>
+    <span class="caption" id="status" role="status" aria-live="polite"></span>
+  </div>
+
+  <div class="card">
+    <h2 class="heading-5" style="margin-block-end:var(--space-4)">What the demo data sets up</h2>
+    <div class="def-row"><div class="def-row__key">Amiri</div><div class="def-row__val">Healthy. Two confirmed requests &mdash; returns came back, replacements went out.</div></div>
+    <div class="def-row"><div class="def-row__key">Jahra</div><div class="def-row__val">In deficit. Returns accepted, replacements not yet issued &mdash; shows the shortfall flags.</div></div>
+    <div class="def-row"><div class="def-row__key">Farwaniya</div><div class="def-row__val">One request sitting in the queue, waiting on an admin. This is the one to confirm live.</div></div>
+    <div class="def-row"><div class="def-row__key">Adan</div><div class="def-row__val">A straightforward issue, already confirmed.</div></div>
+    <div class="def-row"><div class="def-row__key">Taima</div><div class="def-row__val">A smaller centre on a reduced allocation, so Allocation is not identical everywhere.</div></div>
+  </div>
+
+  <div class="card" style="margin-block-start:var(--space-5);background:var(--color-surface-sunken)">
+    <h2 class="heading-5" style="margin-block-end:var(--space-4)">A route through it</h2>
+    <ol class="prose body-sm" style="padding-inline-start:var(--space-6);display:grid;gap:var(--space-3)">
+      <li><a href="instruments.html">Instrument sets</a> &rarr; choose <b>Jahra</b>. Point at the deficit flags and the derived Held column.</li>
+      <li>Switch to <b>Farwaniya</b>. The Pending chips show what is already asked for and not yet confirmed.</li>
+      <li>Use <b>&minus;</b> and <b>+</b> on any row, then submit. Note that Held does not move.</li>
+      <li><a href="requests.html">Requests</a> &rarr; open the Farwaniya request and confirm part of it.</li>
+      <li>Back to the instrument set &mdash; Held has changed. Then <a href="item-log.html">Item log</a> for the audit trail.</li>
+    </ol>
+  </div>
+
+  <p class="caption" style="margin-block-start:var(--space-7)">
+    <a href="../index.html">Back to the index</a>
+  </p>
+
+</main>
+
+</body>
+</html>

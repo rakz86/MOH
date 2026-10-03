@@ -1,0 +1,450 @@
+/* ==========================================================================
+   MOH Kuwait — Medical Requisition Design System
+   foundations/tokens.css — the single source of truth.
+
+   Every colour, size, and duration in the system resolves from this file.
+   Components must never hard-code a hex value or a pixel gap.
+
+   Contents
+     1. Primitive colour ramps      5. Spacing + density
+     2. Semantic colour (light)     6. Radius, border, elevation
+     3. Semantic colour (dark)      7. Motion
+     4. Typography (Latin + Arabic) 8. Layout + z-index
+   ========================================================================== */
+
+/* -- 1. PRIMITIVE RAMPS ---------------------------------------------------
+   Primitives are raw values. Never reference these directly in a component;
+   always go through a semantic token in section 2/3 so themes can swap. */
+
+:root {
+  /* Primary — deepened from the legacy MOH #0071BB into an accessible ramp. */
+  --moh-blue-50:  #EFF6FC;
+  --moh-blue-100: #D8EAF8;
+  --moh-blue-200: #B0D4F0;
+  --moh-blue-300: #7FB8E4;
+  --moh-blue-400: #4A97D4;
+  --moh-blue-500: #1F79BE;
+  --moh-blue-600: #0B5FA5;  /* brand primary — 6.57:1 on white */
+  --moh-blue-700: #094B84;
+  --moh-blue-800: #073A66;
+  --moh-blue-900: #062E4D;  /* brand deep */
+  --moh-blue-950: #041E33;
+
+  /* Neutral — blue-tinted slate so greys sit with the primary, never muddy. */
+  --moh-slate-0:   #FFFFFF;
+  --moh-slate-50:  #F7F9FB;
+  --moh-slate-100: #EDF1F5;
+  --moh-slate-200: #DDE3EA;
+  --moh-slate-300: #C4CDD7;
+  --moh-slate-400: #98A4B2;
+  --moh-slate-450: #7C8A99;  /* 3.34:1 on canvas — control boundaries */
+  --moh-slate-500: #6B7887;
+  --moh-slate-600: #4E5A68;
+  --moh-slate-700: #3A4451;
+  --moh-slate-800: #262E38;
+  --moh-slate-900: #161C23;
+  --moh-slate-950: #0C1116;
+
+  /* Semantic hues. Each carries a 50 (wash), 600 (solid), 700 (hover/text). */
+  --moh-green-50:  #E8F5EF;
+  --moh-green-600: #0F7B54;
+  --moh-green-700: #0B6042;
+
+  --moh-amber-50:  #FDF3E3;
+  --moh-amber-600: #B26A00;
+  --moh-amber-700: #8A5200;
+
+  --moh-red-50:    #FCEEED;
+  --moh-red-600:   #B3261E;
+  --moh-red-700:   #8C1D17;
+
+  --moh-violet-50:  #F1EEFA;
+  --moh-violet-600: #5B4BB5;
+  --moh-violet-700: #473A92;
+
+  /* Heritage gold, sampled from the falcon in the State of Kuwait emblem.
+     Ceremonial only. It is NOT a UI colour and carries no state meaning. */
+  --moh-gold-300: #E3BC6B;
+  --moh-gold-500: #C9922B;
+  --moh-gold-700: #8A6317;
+
+  /* Accent. Sits at ~450 on the blue ramp: too light for body text on
+     white (3.10:1) but correct on dark surfaces and for large display
+     text and graphics. The semantic layer enforces where it may be used. */
+  --moh-blue-450: #2E9BD6;
+
+  /* Dark-theme primitives. A dark UI needs its own ramp — inverting the
+     light one yields muddy surfaces and over-saturated status colours. */
+  --moh-dark-sunken:        #0A0F14;
+  --moh-dark-border:        #2A333E;
+  --moh-dark-border-strong: #3C4652;
+  --moh-dark-border-control: #7E8B99;
+  --moh-dark-blue-border:   #1B4A73;
+  --moh-dark-blue-accent:   #4FB4E8;
+  --moh-dark-green:         #32A97A;
+  --moh-dark-green-text:    #5FC79B;
+  --moh-dark-amber:         #D9922B;
+  --moh-dark-amber-text:    #E8B05C;
+  --moh-dark-red:           #E05A50;
+  --moh-dark-red-text:      #F08B83;
+  --moh-dark-violet:        #8878D8;
+  --moh-dark-violet-text:   #A79AE6;
+}
+
+/* -- 2. SEMANTIC COLOUR — LIGHT (default) --------------------------------- */
+
+:root {
+  /* Surfaces, back to front */
+  --color-canvas:          var(--moh-slate-50);
+  --color-surface:         var(--moh-slate-0);
+  --color-surface-sunken:  var(--moh-slate-100);
+  --color-surface-raised:  var(--moh-slate-0);
+  /* The inverse band (government bar, footer, support). Surface and text are
+     a PAIR and must be redefined together in every theme — flipping one
+     without the other is how a footer ends up white-on-white. */
+  --color-surface-inverse: var(--moh-blue-900);
+  --color-text-on-inverse: var(--moh-slate-0);
+
+  /* Text */
+  --color-text:            var(--moh-slate-900);
+  --color-text-secondary:  var(--moh-slate-600);
+  --color-text-muted:      var(--moh-slate-500);
+  --color-text-on-solid:   var(--moh-slate-0);
+  --color-text-link:       var(--moh-blue-600);
+  --color-text-link-hover: var(--moh-blue-700);
+
+  /* Borders */
+  /* Three border roles, and the difference matters for accessibility:
+       border         decorative dividers and card edges. No contrast floor.
+       border-strong  emphasis dividers. Still decorative.
+       border-control THE BOUNDARY OF AN INTERACTIVE CONTROL. WCAG 1.4.11
+                      requires 3:1 against the adjacent surface. Inputs,
+                      selects, textareas, secondary buttons, choice cards
+                      and upload zones must use this and nothing lighter. */
+  --color-border:          var(--moh-slate-200);
+  --color-border-strong:   var(--moh-slate-300);
+  --color-border-control:  var(--moh-slate-450);
+  --color-border-inverse:  var(--moh-blue-700);
+
+  /* Brand / actions */
+  --color-primary:         var(--moh-blue-600);
+  --color-primary-hover:   var(--moh-blue-700);
+  --color-primary-active:  var(--moh-blue-800);
+  --color-primary-wash:    var(--moh-blue-50);
+  --color-primary-border:  var(--moh-blue-200);
+
+  /* Accent var(--moh-blue-450) is 3.10:1 on white — DECORATIVE AND LARGE TEXT ONLY.
+     Never use it for body copy or small labels on a light surface. */
+  --color-accent:          var(--moh-blue-450);
+
+  /* RESTRICTED. Official mastheads, seals, certificates and print furniture.
+     Never a button, never a status, never body text on a light surface. */
+  --color-heritage:        var(--moh-gold-500);
+  --color-heritage-text:   var(--moh-gold-700);
+
+  /* Status — request lifecycle and system feedback */
+  --color-success:         var(--moh-green-600);
+  --color-success-wash:    var(--moh-green-50);
+  --color-success-text:    var(--moh-green-700);
+
+  --color-warning:         var(--moh-amber-600);
+  --color-warning-wash:    var(--moh-amber-50);
+  --color-warning-text:    var(--moh-amber-700);
+
+  --color-danger:          var(--moh-red-600);
+  --color-danger-wash:     var(--moh-red-50);
+  --color-danger-text:     var(--moh-red-700);
+
+  --color-info:            var(--moh-blue-600);
+  --color-info-wash:       var(--moh-blue-50);
+  --color-info-text:       var(--moh-blue-700);
+
+  --color-review:          var(--moh-violet-600);
+  --color-review-wash:     var(--moh-violet-50);
+  --color-review-text:     var(--moh-violet-700);
+
+  /* Focus — one ring for the whole system, never removed, never restyled. */
+  /* Scrim behind dialogs and the mobile nav. Tokenised so it is not an rgba
+     literal buried in a component, and so dark can deepen it. */
+  --color-scrim:           color-mix(in srgb, var(--moh-blue-900) 55%, transparent);
+
+  --color-focus:           var(--moh-blue-600);
+  --color-focus-contrast:  var(--moh-slate-0);
+}
+
+/* -- 3. SEMANTIC COLOUR — DARK -------------------------------------------- */
+
+/* Light is the default, unconditionally.
+
+   This service does NOT follow prefers-color-scheme. A public counter should
+   look the same to every citizen who opens it, whatever their device happens
+   to be set to, and a ministry page that arrives dark because of an OS
+   setting the user forgot about reads as broken rather than considerate.
+
+   Dark is still fully built and contrast-tested below; it applies only when
+   something explicitly asks for it with data-theme="dark". To go back to
+   following the OS, wrap the block below in a prefers-color-scheme media
+   query as well — every value is already verified in both directions. */
+
+:root[data-theme="dark"] {
+    --color-canvas:          var(--moh-slate-950);
+    --color-surface:         var(--moh-slate-900);
+    --color-surface-sunken:  var(--moh-dark-sunken);
+    --color-surface-raised:  var(--moh-slate-800);
+    --color-surface-inverse: var(--moh-slate-800);
+    --color-text-on-inverse: var(--moh-slate-100);
+
+    --color-text:            var(--moh-slate-100);
+    --color-text-secondary:  var(--moh-slate-300);
+    --color-text-muted:      var(--moh-slate-400);
+    --color-text-on-solid:   var(--moh-slate-0);
+    --color-text-link:       var(--moh-blue-300);
+    --color-text-link-hover: var(--moh-blue-200);
+
+    --color-border:          var(--moh-dark-border);
+    --color-border-strong:   var(--moh-dark-border-strong);
+    --color-border-control:  var(--moh-dark-border-control);
+    --color-border-inverse:  var(--moh-slate-300);
+
+    --color-primary:         var(--moh-blue-500);
+    --color-primary-hover:   var(--moh-blue-400);
+    --color-primary-active:  var(--moh-blue-300);
+    --color-primary-wash:    rgba(31, 121, 190, 0.16);
+    --color-primary-border:  var(--moh-dark-blue-border);
+
+    --color-accent:          var(--moh-dark-blue-accent);
+    --color-heritage:        var(--moh-gold-500);
+    --color-heritage-text:   var(--moh-gold-300);
+
+    --color-success:         var(--moh-dark-green);
+    --color-success-wash:    rgba(15, 123, 84, 0.20);
+    --color-success-text:    var(--moh-dark-green-text);
+
+    --color-warning:         var(--moh-dark-amber);
+    --color-warning-wash:    rgba(178, 106, 0, 0.20);
+    --color-warning-text:    var(--moh-dark-amber-text);
+
+    --color-danger:          var(--moh-dark-red);
+    --color-danger-wash:     rgba(179, 38, 30, 0.20);
+    --color-danger-text:     var(--moh-dark-red-text);
+
+    --color-info:            var(--moh-blue-400);
+    --color-info-wash:       rgba(31, 121, 190, 0.18);
+    --color-info-text:       var(--moh-blue-300);
+
+    --color-review:          var(--moh-dark-violet);
+    --color-review-wash:     rgba(91, 75, 181, 0.22);
+    --color-review-text:     var(--moh-dark-violet-text);
+
+    --color-scrim:           color-mix(in srgb, var(--moh-slate-950) 72%, transparent);
+
+    --color-focus:           var(--moh-blue-300);
+    --color-focus-contrast:  var(--moh-slate-950);
+  }
+
+
+/* -- 4. TYPOGRAPHY --------------------------------------------------------
+   IBM Plex Sans + IBM Plex Sans Arabic are drawn by the same team on shared
+   proportions, so an EN page and an AR page hold the same rhythm — which is
+   exactly what the legacy Open Sans + Cairo pairing never did.
+
+   Arabic is optically smaller than Latin at the same point size and needs
+   more leading for its ascenders/descenders. We correct for that globally
+   with --font-scale-ar rather than hand-tuning every component. */
+
+:root {
+  --font-sans:   "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system,
+                 "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-arabic: "IBM Plex Sans Arabic", "Noto Sans Arabic", "Cairo",
+                 "Segoe UI", Tahoma, sans-serif;
+  --font-mono:   "IBM Plex Mono", ui-monospace, "SF Mono", "Cascadia Mono",
+                 Consolas, "Liberation Mono", monospace;
+
+  /* Arabic runs ~8% larger with ~12% more leading to match Latin's colour. */
+  --font-scale-ar:       1.08;
+  --line-height-scale-ar: 1.12;
+
+  /* Type scale — 1.200 minor third, rounded to whole px for crisp rendering */
+  --text-3xs:  11px;
+  --text-2xs:  12px;
+  --text-xs:   13px;
+  --text-sm:   14px;
+  --text-base: 16px;   /* body — never smaller for public-facing prose */
+  --text-lg:   18px;
+  --text-xl:   20px;
+  --text-2xl:  24px;
+  --text-3xl:  30px;
+  --text-4xl:  36px;
+  --text-5xl:  44px;
+  --text-6xl:  56px;
+
+  --leading-tight:   1.2;   /* display + headings */
+  --leading-snug:    1.35;  /* subheads, card titles */
+  --leading-normal:  1.55;  /* UI text */
+  --leading-relaxed: 1.7;   /* long-form prose, policy copy */
+
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  --tracking-tight:  -0.02em;  /* display sizes only */
+  --tracking-normal: 0;
+  --tracking-wide:   0.02em;
+  --tracking-caps:   0.06em;   /* uppercase eyebrows + table headers */
+
+  /* Reference numbers, quantities, and money must not shift width as they
+     tick. Every numeric cell in the system opts into tabular figures. */
+  --numeric-tabular: tabular-nums lining-nums;
+
+  --measure-prose: 68ch;   /* max line length for readable body copy */
+  --measure-form:  46ch;   /* max width of a single form column */
+}
+
+:root:lang(ar), [lang="ar"], [dir="rtl"] {
+  --font-sans: var(--font-arabic);
+  --tracking-tight: 0;   /* Arabic must never be letter-spaced */
+  --tracking-wide:  0;
+  --tracking-caps:  0;   /* Arabic has no uppercase — no caps treatment */
+}
+
+/* -- 5. SPACING + DENSITY -------------------------------------------------
+   One 4px grid. Density swaps control heights and table rhythm, not the
+   scale itself — so a compact internal screen and a comfortable public one
+   stay visibly part of the same family. */
+
+:root {
+  --space-0:  0;
+  --space-1:  2px;
+  --space-2:  4px;
+  --space-3:  8px;
+  --space-4:  12px;
+  --space-5:  16px;
+  --space-6:  20px;
+  --space-7:  24px;
+  --space-8:  32px;
+  --space-9:  40px;
+  --space-10: 48px;
+  --space-11: 64px;
+  --space-12: 80px;
+  --space-13: 96px;
+  --space-14: 128px;
+
+  /* Comfortable (default) — public requesters, suppliers, hospital staff */
+  --control-height:     48px;
+  --control-height-sm:  40px;
+  --control-padding-i:  var(--space-5);
+  --field-gap:          var(--space-5);
+  --section-gap:        var(--space-11);
+  --card-padding:       var(--space-7);
+  --table-row-height:   56px;
+  --table-cell-padding: var(--space-5);
+}
+
+[data-density="compact"] {
+  /* Internal procurement workbench — queues, triage, bulk review */
+  --control-height:     40px;
+  --control-height-sm:  32px;
+  --control-padding-i:  var(--space-4);
+  --field-gap:          var(--space-4);
+  --section-gap:        var(--space-8);
+  --card-padding:       var(--space-5);
+  --table-row-height:   40px;
+  --table-cell-padding: var(--space-3);
+}
+
+/* Minimum interactive target. 44px is the floor for anything a member of
+   the public taps; compact mode is desktop-and-pointer only. */
+:root {
+  --target-min: 44px;
+
+  /* The State of Kuwait emblem is 774x875, so width follows from height and
+     is never set independently. Below 32px the dhow rigging turns to mud —
+     at that size use the wordmark alone. */
+  --emblem-ratio: 774 / 875;
+  --emblem-lg: 56px;
+  --emblem-md: 48px;
+  --emblem-sm: 36px;
+}
+
+/* -- 6. RADIUS, BORDER, ELEVATION ----------------------------------------
+   Restrained by intent. A ministry service should read as considered, not
+   playful — nothing here is more rounded than 12px except pills. */
+
+:root {
+  --radius-xs:   3px;
+  --radius-sm:   4px;
+  --radius-md:   6px;   /* inputs, buttons — the system default */
+  --radius-lg:   8px;
+  --radius-xl:   12px;  /* cards, panels, modals */
+  --radius-full: 999px; /* badges, avatars only */
+
+  --border-width:        1px;
+  --border-width-strong: 2px;
+  --focus-ring-width:    3px;
+  --focus-ring-offset:   2px;
+
+  /* Shadows are tinted with the brand's blue rather than pure black, so
+     raised surfaces stay in the same colour world as everything else. */
+  --shadow-sm: 0 1px 2px rgba(6, 46, 77, 0.06),
+               0 1px 1px rgba(6, 46, 77, 0.04);
+  --shadow-md: 0 2px 4px rgba(6, 46, 77, 0.06),
+               0 4px 12px rgba(6, 46, 77, 0.08);
+  --shadow-lg: 0 8px 16px rgba(6, 46, 77, 0.08),
+               0 16px 40px rgba(6, 46, 77, 0.12);
+  /* Upward shadow, for a sticky bar pinned to the bottom of the viewport. */
+  --shadow-up: 0 -2px 12px rgba(6, 46, 77, 0.06);
+
+  --shadow-focus: 0 0 0 var(--focus-ring-offset) var(--color-focus-contrast),
+                  0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--color-focus);
+}
+
+/* -- 7. MOTION -----------------------------------------------------------
+   Short and functional. Motion confirms a state change; it never decorates. */
+
+:root {
+  --duration-instant: 80ms;
+  --duration-fast:    120ms;
+  --duration-normal:  180ms;
+  --duration-slow:    240ms;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter:    cubic-bezier(0, 0, 0, 1);
+  --ease-exit:     cubic-bezier(0.3, 0, 1, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 1ms;
+    --duration-fast:    1ms;
+    --duration-normal:  1ms;
+    --duration-slow:    1ms;
+  }
+}
+
+/* -- 8. LAYOUT + Z-INDEX -------------------------------------------------- */
+
+:root {
+  --container-sm:  640px;
+  --container-md:  840px;
+  --container-lg:  1080px;
+  --container-xl:  1280px;
+  --container-2xl: 1440px;
+
+  --gutter:      var(--space-5);
+  --gutter-lg:   var(--space-8);
+  --grid-columns: 12;
+
+  --z-base:     0;
+  --z-raised:   10;
+  --z-sticky:   100;
+  --z-header:   200;
+  --z-dropdown: 300;
+  --z-overlay:  400;
+  --z-modal:    500;
+  --z-toast:    600;
+}
+
+/* Breakpoints are documented here for reference; CSS custom properties
+   cannot be used in media queries, so components restate these literals.
+     sm  640px   md  840px   lg  1080px   xl  1280px */

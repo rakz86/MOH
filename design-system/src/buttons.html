@@ -1,0 +1,106 @@
+<div class="pv-group">
+  <h2>Intents</h2>
+  <p class="note">Four intents, and the choice is about hierarchy rather than taste. Exactly one primary per view — the single action that advances the task. Two competing primaries in a form footer is the most common way to make a user hesitate.</p>
+  <div class="pv-demo">
+    <div>
+      <div class="pv-label">Primary</div>
+      <button class="btn btn--primary">Submit requisition</button>
+      <p class="caption" style="margin-block-start:var(--space-3);max-width:24ch">The one action that moves the task forward.</p>
+    </div>
+    <div>
+      <div class="pv-label">Secondary</div>
+      <button class="btn btn--secondary">Save as draft</button>
+      <p class="caption" style="margin-block-start:var(--space-3);max-width:24ch">Real alternatives, equally valid.</p>
+    </div>
+    <div>
+      <div class="pv-label">Ghost</div>
+      <button class="btn btn--ghost">Cancel</button>
+      <p class="caption" style="margin-block-start:var(--space-3);max-width:24ch">Tertiary and inline actions, low emphasis.</p>
+    </div>
+    <div>
+      <div class="pv-label">Danger</div>
+      <button class="btn btn--danger">Reject request</button>
+      <p class="caption" style="margin-block-start:var(--space-3);max-width:24ch">Destructive or irreversible. Always confirmed by a dialog.</p>
+    </div>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>Sizes</h2>
+  <p class="note">Default is the density-aware 48px (40px compact). Large is reserved for a single standout action on a landing page; small for table rows and toolbars where a full-height control would crowd the row.</p>
+  <div class="pv-demo" style="align-items:center">
+    <button class="btn btn--primary btn--lg">Start a request</button>
+    <button class="btn btn--primary">Continue</button>
+    <button class="btn btn--primary btn--sm">Edit</button>
+    <button class="btn btn--secondary btn--sm">Duplicate</button>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>States</h2>
+  <p class="note">Every intent carries the same five states. Focus is a 3px ring with a 2px offset and a contrast halo, so it stays visible on both light and dark surfaces — tab through the row below to see it.</p>
+  <div class="pv-demo pv-demo--col">
+    <div class="cluster" style="--cluster-gap:var(--space-4)">
+      <span class="mono caption" style="min-width:90px">rest</span>
+      <button class="btn btn--primary">Submit</button>
+      <button class="btn btn--secondary">Save</button>
+      <button class="btn btn--ghost">Cancel</button>
+      <button class="btn btn--danger">Reject</button>
+    </div>
+    <div class="cluster" style="--cluster-gap:var(--space-4)">
+      <span class="mono caption" style="min-width:90px">disabled</span>
+      <button class="btn btn--primary" disabled>Submit</button>
+      <button class="btn btn--secondary" disabled>Save</button>
+      <button class="btn btn--ghost" disabled>Cancel</button>
+      <button class="btn btn--danger" disabled>Reject</button>
+    </div>
+    <div class="cluster" style="--cluster-gap:var(--space-4)">
+      <span class="mono caption" style="min-width:90px">with icon</span>
+      <button class="btn btn--primary">
+        Continue
+        <svg class="icon--directional" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="btn btn--secondary">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Add item
+      </button>
+      <button class="btn btn--ghost">
+        <svg class="icon--directional" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back
+      </button>
+    </div>
+  </div>
+  <p class="pv-rule"><b>Disabled buttons do not explain themselves.</b> Prefer an enabled button that, when pressed, says what is missing. If a control must be disabled, put the reason in text beside it — a greyed button with no explanation is a dead end for the user.</p>
+</div>
+
+<div class="pv-group">
+  <h2>Direction</h2>
+  <p class="note">Switch the toolbar to <b>RTL — عربي</b>. Chevrons and arrows carry <span class="mono">.icon--directional</span> and mirror; the plus sign does not, because a plus has no direction. Getting this wrong is the most visible sign that RTL was retrofitted.</p>
+  <div class="pv-demo">
+    <button class="btn btn--primary">
+      <span>Continue</span>
+      <svg class="icon--directional" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="btn btn--primary" dir="rtl" lang="ar">
+      <span>متابعة</span>
+      <svg class="icon--directional" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="btn btn--secondary" dir="rtl" lang="ar">حفظ كمسودة</button>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>Writing the label</h2>
+  <div class="pv-do-dont">
+    <div class="pv-do">
+      <div class="pv-label">Do</div>
+      <div class="cluster" style="margin-block-end:var(--space-4)"><button class="btn btn--primary btn--sm">Submit requisition</button><button class="btn btn--secondary btn--sm">Save as draft</button></div>
+      <p class="body-sm">Name the outcome. A user scanning only the buttons should be able to tell what each one does.</p>
+    </div>
+    <div class="pv-dont">
+      <div class="pv-label">Do not</div>
+      <div class="cluster" style="margin-block-end:var(--space-4)"><button class="btn btn--primary btn--sm">OK</button><button class="btn btn--secondary btn--sm">Click here</button></div>
+      <p class="body-sm">Generic labels force the user back into the surrounding copy to work out what will happen.</p>
+    </div>
+  </div>
+</div>

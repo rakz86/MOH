@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instrument catalogue — Medical Requisitions, Ministry of Health Kuwait</title>
+<meta name="description" content="Search 4,120 pre-approved medical instruments, consumables and materials. Requests made from the catalogue are assessed faster.">
+<link rel="icon" href="/design-system/assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/design-system/assets/favicon/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/design-system/assets/favicon/icon-16.png">
+<link rel="apple-touch-icon" href="/design-system/assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="../design-system/foundations/fonts.css">
+<link rel="stylesheet" href="../design-system/foundations/tokens.css">
+<link rel="stylesheet" href="../design-system/foundations/base.css">
+<link rel="stylesheet" href="../design-system/foundations/components.css">
+<link rel="stylesheet" href="site.css">
+<script src="../design-system/foundations/behaviours.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-ar="تخطَّ إلى المحتوى">Skip to content</a>
+
+<div class="gov-bar">
+  <div class="container" style="display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap">
+    <span data-ar="خدمة رسمية من دولة الكويت">An official service of the State of Kuwait</span>
+    <span style="margin-inline-start:auto;display:flex;gap:var(--space-5)">
+      <a href="#" data-lang-toggle>عربي</a>
+      <a href="#" data-ar="إمكانية الوصول">Accessibility</a>
+      <a href="#" data-ar="تسجيل الدخول">Sign in</a>
+    </span>
+  </div>
+</div>
+
+<header class="site-header site-header--official" data-nav>
+  <div class="container site-header__inner">
+    <a class="brand-lockup" href="index.html">
+      <span class="emblem" aria-hidden="true">
+        <img src="/design-system/assets/emblem-colour-112.png"
+             srcset="/design-system/assets/emblem-colour-112.png 1x, /design-system/assets/emblem-colour-224.png 2x"
+             alt="" width="50" height="56" onerror="this.remove()">
+        <span class="emblem__todo">emblem</span>
+      </span>
+      <span class="brand-lockup__rule" aria-hidden="true"></span>
+      <span>
+        <span class="brand-lockup__name" data-ar="طلبات الأجهزة الطبية">Medical Requisitions</span>
+        <span class="brand-lockup__sub" data-ar="وزارة الصحة · دولة الكويت">Ministry of Health · State of Kuwait</span>
+      </span>
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="instruments.html" data-ar="طلب جديد">New request</a>
+      <a href="requests.html" data-ar="طلباتي">My requests</a>
+      <a href="instruments.html" data-ar="أطقم الأدوات">Instrument sets</a>
+      <a href="catalogue.html" aria-current="page" data-ar="الكتالوج">Catalogue</a>
+      <a href="#" data-ar="الدعم">Support</a>
+    </nav>
+    <button class="btn btn--secondary btn--sm nav-toggle" type="button"
+            data-nav-toggle aria-expanded="false" aria-controls="navPanel">
+      <svg class="nav-toggle__open" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="nav-toggle__close" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span data-ar="القائمة">Menu</span>
+    </button>
+  </div>
+
+  <div class="nav-panel" id="navPanel" data-nav-panel hidden>
+    <ul class="nav-panel__list">
+      <li><a href="instruments.html" data-ar="طلب جديد">New request</a></li>
+      <li><a href="requests.html" data-ar="طلباتي">My requests</a></li>
+      <li><a href="instruments.html" data-ar="أطقم الأدوات">Instrument sets</a></li>
+      <li><a href="catalogue.html" aria-current="page" data-ar="الكتالوج">Catalogue</a></li>
+      <li><a href="#" data-ar="الدعم">Support</a></li>
+    </ul>
+    <div class="nav-panel__sep"></div>
+    <ul class="nav-panel__list nav-panel__utility">
+      <li><a href="#" data-lang-toggle>عربي</a></li>
+      <li><a href="#" data-ar="إمكانية الوصول">Accessibility</a></li>
+      <li><a href="#" data-ar="تسجيل الدخول">Sign in</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="container" style="padding-block:var(--space-4);border-block-end:1px solid var(--color-border)">
+  <ol class="breadcrumb">
+    <li><a href="index.html" data-ar="الرئيسية">Home</a></li>
+    <li aria-current="page" data-ar="الكتالوج">Catalogue</li>
+  </ol>
+</div>
+
+<main id="main" class="container" style="padding-block:var(--space-9)">
+
+  <div class="sec-head" style="max-inline-size:var(--measure-prose)">
+    <h1 class="sec-head__title" data-ar="كتالوج الأجهزة">Instrument catalogue</h1>
+    <p class="sec-head__desc" data-ar="4,120 صنفاً معتمداً مسبقاً عبر العقود الإطارية للوزارة. الطلبات من الكتالوج تُقيَّم بشكل أسرع ولا تحتاج إلى مبرر سريري.">4,120 pre-approved items across the ministry frameworks. Requests made from the catalogue are assessed faster and need no clinical justification.</p>
+  </div>
+
+  <form class="field" style="max-inline-size:var(--container-sm);margin-block-end:var(--space-9)" onsubmit="return false">
+    <label class="field__label" for="q" data-ar="ابحث في الكتالوج">Search the catalogue</label>
+    <p class="field__hint" data-ar="ابحث بالاسم أو الشركة المصنّعة أو الرقم المرجعي.">Search by name, manufacturer or catalogue reference.</p>
+    <div class="input-group">
+      <input class="input" id="q" type="search" value="retractor" autocomplete="off">
+      <span class="input-group__addon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
+    </div>
+  </form>
+
+  <div class="cat-layout">
+
+    <!-- ============================ FILTERS ============================= -->
+    <details class="filters" data-collapse-below="1080" open>
+      <summary class="btn btn--secondary" aria-label="Show filters">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span data-ar="عوامل التصفية">Filters</span>
+        <span class="badge badge--submitted" style="margin-inline-start:var(--space-2)">2</span>
+      </summary>
+
+      <div class="filter-rail">
+        <div class="filter-group">
+          <h2 class="filter-group__title" data-ar="الفئة">Category</h2>
+          <div class="filter-group__list">
+            <label class="filter-check"><input type="checkbox" checked><span data-ar="أدوات جراحية">Surgical instruments</span><span class="filter-check__count">812</span></label>
+            <label class="filter-check"><input type="checkbox"><span data-ar="أجهزة التشخيص">Diagnostic equipment</span><span class="filter-check__count">396</span></label>
+            <label class="filter-check"><input type="checkbox"><span data-ar="مستلزمات استهلاكية">Consumables</span><span class="filter-check__count">1,447</span></label>
+            <label class="filter-check"><input type="checkbox"><span data-ar="مستلزمات المختبر">Laboratory supplies</span><span class="filter-check__count">638</span></label>
+            <label class="filter-check"><input type="checkbox"><span data-ar="العناية المركزة">Critical care</span><span class="filter-check__count">274</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h2 class="filter-group__title" data-ar="حالة التعاقد">Procurement route</h2>
+          <div class="filter-group__list">
+            <label class="filter-check"><input type="checkbox" checked><span data-ar="ضمن العقد الإطاري">On framework</span><span class="filter-check__count">3,240</span></label>
+            <label class="filter-check"><input type="checkbox"><span data-ar="خارج العقد الإطاري">Off framework</span><span class="filter-check__count">880</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h2 class="filter-group__title" data-ar="مدة التوريد">Lead time</h2>
+          <div class="filter-group__list">
+            <label class="filter-check"><input type="checkbox"><span data-ar="خلال 7 أيام">Within 7 days</span><span class="filter-check__count">1,902</span></label>
+            <label class="filter-check"><input type="checkbox"><span data-ar="خلال 30 يوماً">Within 30 days</span><span class="filter-check__count">3,655</span></label>
+            <label class="filter-check"><input type="checkbox"><span data-ar="أكثر من 30 يوماً">More than 30 days</span><span class="filter-check__count">465</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h2 class="filter-group__title" data-ar="متطلبات خاصة">Handling</h2>
+          <div class="filter-group__list">
+            <label class="filter-check"><input type="checkbox"><span data-ar="سلسلة تبريد">Cold chain</span><span class="filter-check__count">218</span></label>
+            <label class="filter-check"><input type="checkbox"><span data-ar="مواد خاضعة للرقابة">Controlled substance</span><span class="filter-check__count">64</span></label>
+            <label class="filter-check"><input type="checkbox"><span data-ar="يتطلب تركيباً">Requires installation</span><span class="filter-check__count">131</span></label>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <!-- ============================ RESULTS ============================= -->
+    <section aria-label="Catalogue results">
+
+      <div class="cat-toolbar">
+        <p class="body-sm"><b class="numeric">18</b> <span data-ar="صنفاً مطابقاً">items match</span></p>
+        <span style="margin-inline-start:auto"></span>
+        <label class="body-sm text-secondary" for="sort" data-ar="ترتيب حسب">Sort by</label>
+        <select class="select" id="sort" style="max-inline-size:200px;min-block-size:var(--control-height-sm)">
+          <option data-ar="الأكثر صلة">Most relevant</option>
+          <option data-ar="السعر: من الأقل">Price: low to high</option>
+          <option data-ar="السعر: من الأعلى">Price: high to low</option>
+          <option data-ar="أقصر مدة توريد">Shortest lead time</option>
+        </select>
+      </div>
+
+      <div class="cluster" style="margin-block-end:var(--space-6)">
+        <span class="chip">
+          <span class="chip__key" data-ar="الفئة:">Category:</span>
+          <span data-ar="أدوات جراحية">Surgical instruments</span>
+          <button class="chip__remove" type="button" aria-label="Remove filter: Category, Surgical instruments">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+        </span>
+        <span class="chip">
+          <span class="chip__key" data-ar="التعاقد:">Route:</span>
+          <span data-ar="ضمن العقد الإطاري">On framework</span>
+          <button class="chip__remove" type="button" aria-label="Remove filter: Route, On framework">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+        </span>
+        <button class="btn btn--ghost btn--sm" type="button" data-ar="مسح الكل">Clear all</button>
+      </div>
+
+      <div class="result-list">
+
+        <article class="result">
+          <div>
+            <div class="cluster" style="--cluster-gap:var(--space-3)">
+              <h3 class="result__name" data-ar="مبعاد جراحي ذاتي التثبيت">Surgical retractor, self-retaining</h3>
+              <span class="badge badge--approved" data-ar="ضمن العقد">On framework</span>
+            </div>
+            <div class="result__meta">
+              <span class="ref mono">51-2207</span>
+              <span data-ar="أدوات جراحية">Surgical instruments</span>
+              <span data-ar="التوريد 7 أيام">Lead time 7 days</span>
+              <span data-ar="فولاذ مقاوم للصدأ، قابل للتعقيم">Stainless steel, autoclavable</span>
+            </div>
+          </div>
+          <div class="result__side">
+            <div class="result__price">142.000</div>
+            <div class="result__unit" data-ar="د.ك للوحدة">KWD per unit</div>
+            <div class="result__actions">
+              <label class="sr-only" for="qty1">Quantity</label>
+              <input class="input result__qty numeric" id="qty1" value="24" inputmode="numeric" style="min-block-size:var(--control-height-sm)">
+              <button class="btn btn--primary btn--sm" data-ar="أضف">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="result">
+          <div>
+            <div class="cluster" style="--cluster-gap:var(--space-3)">
+              <h3 class="result__name" data-ar="مبعاد بطني، قابل للتعديل">Abdominal retractor, adjustable</h3>
+              <span class="badge badge--approved" data-ar="ضمن العقد">On framework</span>
+            </div>
+            <div class="result__meta">
+              <span class="ref mono">51-2214</span>
+              <span data-ar="أدوات جراحية">Surgical instruments</span>
+              <span data-ar="التوريد 14 يوماً">Lead time 14 days</span>
+              <span data-ar="ثلاثة أنصال">Three-blade</span>
+            </div>
+          </div>
+          <div class="result__side">
+            <div class="result__price">268.500</div>
+            <div class="result__unit" data-ar="د.ك للوحدة">KWD per unit</div>
+            <div class="result__actions">
+              <label class="sr-only" for="qty2">Quantity</label>
+              <input class="input result__qty numeric" id="qty2" value="0" inputmode="numeric" style="min-block-size:var(--control-height-sm)">
+              <button class="btn btn--secondary btn--sm" data-ar="أضف">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="result">
+          <div>
+            <div class="cluster" style="--cluster-gap:var(--space-3)">
+              <h3 class="result__name" data-ar="مبعاد أعصاب، دقيق">Nerve retractor, micro</h3>
+              <span class="badge badge--approved" data-ar="ضمن العقد">On framework</span>
+              <span class="badge badge--action" data-ar="مخزون منخفض">Low stock</span>
+            </div>
+            <div class="result__meta">
+              <span class="ref mono">51-2290</span>
+              <span data-ar="أدوات جراحية">Surgical instruments</span>
+              <span data-ar="التوريد 21 يوماً">Lead time 21 days</span>
+              <span data-ar="4 متبقية لدى المورّد">4 remaining with supplier</span>
+            </div>
+          </div>
+          <div class="result__side">
+            <div class="result__price">96.000</div>
+            <div class="result__unit" data-ar="د.ك للوحدة">KWD per unit</div>
+            <div class="result__actions">
+              <label class="sr-only" for="qty3">Quantity</label>
+              <input class="input result__qty numeric" id="qty3" value="0" inputmode="numeric" style="min-block-size:var(--control-height-sm)">
+              <button class="btn btn--secondary btn--sm" data-ar="أضف">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="result">
+          <div>
+            <div class="cluster" style="--cluster-gap:var(--space-3)">
+              <h3 class="result__name" data-ar="مبعاد جلدي، خطافان">Skin retractor, double hook</h3>
+              <span class="badge badge--approved" data-ar="ضمن العقد">On framework</span>
+            </div>
+            <div class="result__meta">
+              <span class="ref mono">51-2231</span>
+              <span data-ar="أدوات جراحية">Surgical instruments</span>
+              <span data-ar="التوريد 7 أيام">Lead time 7 days</span>
+              <span data-ar="يُباع في عبوات من 5">Sold in packs of 5</span>
+            </div>
+          </div>
+          <div class="result__side">
+            <div class="result__price">38.750</div>
+            <div class="result__unit" data-ar="د.ك للعبوة">KWD per pack</div>
+            <div class="result__actions">
+              <label class="sr-only" for="qty4">Quantity</label>
+              <input class="input result__qty numeric" id="qty4" value="0" inputmode="numeric" style="min-block-size:var(--control-height-sm)">
+              <button class="btn btn--secondary btn--sm" data-ar="أضف">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="result">
+          <div>
+            <div class="cluster" style="--cluster-gap:var(--space-3)">
+              <h3 class="result__name" data-ar="نظام مباعد صدري">Rib spreader system</h3>
+              <span class="badge badge--draft" data-ar="خارج العقد">Off framework</span>
+            </div>
+            <div class="result__meta">
+              <span class="ref mono">51-2402</span>
+              <span data-ar="أدوات جراحية">Surgical instruments</span>
+              <span data-ar="التوريد 45 يوماً">Lead time 45 days</span>
+              <span data-ar="يتطلب إعفاءً من لجنة المناقصات">Requires a tender waiver</span>
+            </div>
+          </div>
+          <div class="result__side">
+            <div class="result__price">1,840.000</div>
+            <div class="result__unit" data-ar="د.ك للوحدة">KWD per unit</div>
+            <div class="result__actions">
+              <label class="sr-only" for="qty5">Quantity</label>
+              <input class="input result__qty numeric" id="qty5" value="0" inputmode="numeric" style="min-block-size:var(--control-height-sm)">
+              <button class="btn btn--secondary btn--sm" data-ar="أضف">Add</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="alert alert--info" style="margin-block-start:var(--space-7)">
+        <svg class="alert__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5M10 6.5v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div>
+          <div class="alert__title" data-ar="لم تجد ما تبحث عنه؟">Cannot find what you need?</div>
+          <div class="alert__body" data-ar="يمكنك طلب صنف خارج الكتالوج. سيحتاج إلى مبرر سريري، وقد يتطلب إعفاءً من لجنة المناقصات إذا تجاوزت قيمته 1,000.000 د.ك.">You can request an item that is not in the catalogue. It will need a clinical justification, and a tender waiver if it is above 1,000.000 KWD. <a href="instruments.html" data-ar="ابدأ طلباً خارج الكتالوج">Start an off-catalogue request</a>.</div>
+        </div>
+      </div>
+
+      <nav class="pagination" aria-label="Catalogue pages" style="margin-block-start:var(--space-8);justify-content:center">
+        <a class="btn btn--secondary btn--sm" href="#" aria-label="Previous page">
+          <svg class="icon--directional" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span data-ar="السابق">Previous</span>
+        </a>
+        <ul class="pagination__list">
+          <li><a class="pagination__link" href="#" aria-current="page">1</a></li>
+          <li><a class="pagination__link" href="#">2</a></li>
+          <li><a class="pagination__link" href="#">3</a></li>
+          <li><span class="pagination__ellipsis" aria-hidden="true">…</span></li>
+          <li><a class="pagination__link" href="#">9</a></li>
+        </ul>
+        <a class="btn btn--secondary btn--sm" href="#" aria-label="Next page">
+          <span data-ar="التالي">Next</span>
+          <svg class="icon--directional" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer" style="margin-block-start:var(--section-gap)">
+  <div class="container">
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-5);font-size:var(--text-xs);opacity:.75">
+      <span data-ar="© 2026 وزارة الصحة، دولة الكويت">© 2026 Ministry of Health, State of Kuwait</span>
+      <span style="margin-inline-start:auto"><a href="#" data-ar="بيان إمكانية الوصول">Accessibility statement</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="dev-bar" role="group" aria-label="Preview controls">
+  <button data-dev="theme" data-val="light" aria-pressed="true">Light</button>
+  <button data-dev="theme" data-val="dark" aria-pressed="false">Dark</button>
+  <button data-dev="dir" data-val="ltr" aria-pressed="true">LTR</button>
+  <button data-dev="dir" data-val="rtl" aria-pressed="false">RTL</button>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  function setLang(lang) {
+    document.querySelectorAll('[data-ar]').forEach(function (el) {
+      if (!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = el.getAttribute(lang === 'ar' ? 'data-ar' : 'data-en');
+    });
+    root.setAttribute('lang', lang);
+    root.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    document.querySelectorAll('[data-lang-toggle]').forEach(function (t) {
+      t.textContent = lang === 'ar' ? 'English' : 'عربي';
+    });
+  }
+
+  window.__setLang = setLang;
+
+  document.querySelectorAll('[data-lang-toggle]').forEach(function (t) {
+    t.addEventListener('click', function (e) { e.preventDefault(); setLang(root.getAttribute('lang') === 'ar' ? 'en' : 'ar'); });
+  });
+
+  document.querySelectorAll('.dev-bar button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var kind = b.dataset.dev, val = b.dataset.val;
+      document.querySelectorAll('.dev-bar button[data-dev="' + kind + '"]').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      b.setAttribute('aria-pressed', 'true');
+      if (kind === 'theme') root.setAttribute('data-theme', val);
+      if (kind === 'dir') setLang(val === 'rtl' ? 'ar' : 'en');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

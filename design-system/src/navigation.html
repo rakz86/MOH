@@ -1,0 +1,150 @@
+<div class="pv-group">
+  <h2>Header</h2>
+  <p class="note">The single biggest change from the legacy sites. Navigation is organised around what a person came to do — Request, Track, Catalogue, Support — not around the ministry org chart. A user should never need to know which department owns a service in order to find it.</p>
+
+  <div style="border:1px solid var(--color-border);border-radius:var(--radius-xl);overflow:hidden">
+    <div class="gov-bar">
+      <div class="container" style="display:flex;align-items:center;gap:var(--space-5)">
+        <span>An official service of the State of Kuwait</span>
+        <span style="margin-inline-start:auto;display:flex;gap:var(--space-5)">
+          <a href="#">عربي</a>
+          <a href="#">Accessibility</a>
+          <a href="#">Sign in</a>
+        </span>
+      </div>
+    </div>
+    <div class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand-lockup" href="#">
+          <span class="emblem" aria-hidden="true">
+            <img src="__EMBLEM__" alt="" onerror="this.remove()">
+            <span class="emblem__todo">emblem</span>
+          </span>
+          <span class="brand-lockup__rule" aria-hidden="true"></span>
+          <span>
+            <span class="brand-lockup__name">Medical Requisitions</span>
+            <span class="brand-lockup__sub">Ministry of Health · State of Kuwait</span>
+          </span>
+        </a>
+        <nav class="main-nav" aria-label="Main">
+          <a href="#" aria-current="page">New request</a>
+          <a href="#">My requests</a>
+          <a href="#">Catalogue</a>
+          <a href="#">Suppliers</a>
+          <a href="#">Support</a>
+        </nav>
+      </div>
+    </div>
+    <div class="container" style="padding-block:var(--space-4);border-block-end:1px solid var(--color-border)">
+      <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">My requests</a></li>
+        <li aria-current="page">REQ-2026-004871</li>
+      </ol>
+    </div>
+  </div>
+
+  <p class="pv-rule"><b>The government bar is not decoration.</b> It states that this is an official service, offers the language switch, and carries the accessibility statement — all three are expected of a public-sector site and all three belong above the brand, not buried in the footer.</p>
+</div>
+
+<div class="pv-group">
+  <h2>Arabic header</h2>
+  <p class="note">The same markup with <span class="mono">dir=rtl</span> on the root. Nothing else changes — no mirrored stylesheet, no duplicated components.</p>
+  <div style="border:1px solid var(--color-border);border-radius:var(--radius-xl);overflow:hidden" dir="rtl" lang="ar">
+    <div class="gov-bar">
+      <div class="container" style="display:flex;align-items:center;gap:var(--space-5)">
+        <span>خدمة رسمية من دولة الكويت</span>
+        <span style="margin-inline-start:auto;display:flex;gap:var(--space-5)">
+          <a href="#">English</a>
+          <a href="#">إمكانية الوصول</a>
+          <a href="#">تسجيل الدخول</a>
+        </span>
+      </div>
+    </div>
+    <div class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand-lockup" href="#">
+          <span class="emblem" aria-hidden="true">
+            <img src="__EMBLEM__" alt="" onerror="this.remove()">
+            <span class="emblem__todo">emblem</span>
+          </span>
+          <span class="brand-lockup__rule" aria-hidden="true"></span>
+          <span>
+            <span class="brand-lockup__name">طلبات الأجهزة الطبية</span>
+            <span class="brand-lockup__sub">وزارة الصحة · دولة الكويت</span>
+          </span>
+        </a>
+        <nav class="main-nav" aria-label="القائمة الرئيسية">
+          <a href="#" aria-current="page">طلب جديد</a>
+          <a href="#">طلباتي</a>
+          <a href="#">الكتالوج</a>
+          <a href="#">المورّدون</a>
+          <a href="#">الدعم</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>Tabs</h2>
+  <p class="note">For switching between views of the same object — never as a substitute for navigation between pages. A tab change must not lose unsaved work.</p>
+  <div class="pv-demo pv-demo--col">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true">Details</button>
+      <button class="tab" role="tab" aria-selected="false">Items <span class="text-muted">(7)</span></button>
+      <button class="tab" role="tab" aria-selected="false">Attachments <span class="text-muted">(2)</span></button>
+      <button class="tab" role="tab" aria-selected="false">History</button>
+    </div>
+    <p class="body-sm text-secondary" style="padding-block-start:var(--space-4)">Counts sit in the tab where they exist. A tab with a zero count stays visible and disabled rather than disappearing — a menu that changes shape between visits is harder to learn.</p>
+  </div>
+</div>
+
+<div class="pv-group">
+  <h2>Footer</h2>
+  <div style="border-radius:var(--radius-xl);overflow:hidden">
+    <footer class="site-footer">
+      <div class="container">
+        <div class="grid grid--4" style="--grid-gap:var(--space-9)">
+          <div>
+            <div class="site-footer__title">Service</div>
+            <div style="display:grid;gap:var(--space-3)">
+              <a href="#">Start a request</a>
+              <a href="#">Track a request</a>
+              <a href="#">Instrument catalogue</a>
+              <a href="#">Supplier accreditation</a>
+            </div>
+          </div>
+          <div>
+            <div class="site-footer__title">Help</div>
+            <div style="display:grid;gap:var(--space-3)">
+              <a href="#">How requests are assessed</a>
+              <a href="#">Procurement timelines</a>
+              <a href="#">Appeal a decision</a>
+              <a href="#">Contact procurement</a>
+            </div>
+          </div>
+          <div>
+            <div class="site-footer__title">Legal</div>
+            <div style="display:grid;gap:var(--space-3)">
+              <a href="#">Accessibility statement</a>
+              <a href="#">Privacy notice</a>
+              <a href="#">Terms of use</a>
+              <a href="#">Right to access information</a>
+            </div>
+          </div>
+          <div>
+            <div class="site-footer__title">Ministry of Health</div>
+            <p class="body-sm" style="opacity:.8">Sulaibikhat, Kuwait City<br>State of Kuwait</p>
+            <p class="body-sm" style="opacity:.8;margin-block-start:var(--space-4)">Support 151<br>Sunday to Thursday, 07:30–14:30</p>
+          </div>
+        </div>
+        <div style="margin-block-start:var(--space-9);padding-block-start:var(--space-6);border-block-start:1px solid var(--color-border-inverse);display:flex;flex-wrap:wrap;gap:var(--space-5);font-size:var(--text-xs);opacity:.75">
+          <span>© 2026 Ministry of Health, State of Kuwait</span>
+          <span style="margin-inline-start:auto">Last updated 20 September 2026</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <p class="pv-rule"><b>The accessibility statement is a link, not a gesture.</b> It must name the standard the service is tested against, list known failures with dates for fixing them, and give a route to report a barrier. Both legacy sites offer a text-to-speech widget in place of this — a widget is not a substitute for a conformant page.</p>
+</div>

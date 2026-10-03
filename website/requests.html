@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Requests — Medical Requisitions, Ministry of Health Kuwait</title>
+<meta name="description" content="Track and triage medical requisition requests.">
+<link rel="icon" href="/design-system/assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/design-system/assets/favicon/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/design-system/assets/favicon/icon-16.png">
+<link rel="apple-touch-icon" href="/design-system/assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="../design-system/foundations/fonts.css">
+<link rel="stylesheet" href="../design-system/foundations/tokens.css">
+<link rel="stylesheet" href="../design-system/foundations/base.css">
+<link rel="stylesheet" href="../design-system/foundations/components.css">
+<link rel="stylesheet" href="site.css">
+<script src="../design-system/foundations/behaviours.js" defer></script>
+<script src="data/bundle.js" defer></script>
+<script src="config.js" defer></script>
+<script src="ledger.js" defer></script>
+<script src="store.js" defer></script>
+<script src="requests.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-ar="تخطَّ إلى المحتوى">Skip to content</a>
+
+<div class="gov-bar">
+  <div class="container" style="display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap">
+    <span data-ar="خدمة رسمية من دولة الكويت">An official service of the State of Kuwait</span>
+    <span style="margin-inline-start:auto;display:flex;gap:var(--space-5)">
+      <a href="#" data-lang-toggle>عربي</a>
+      <a href="#" data-ar="إمكانية الوصول">Accessibility</a>
+      <a href="#" data-ar="تسجيل الدخول">Sign in</a>
+    </span>
+  </div>
+</div>
+
+<header class="site-header site-header--official" data-nav>
+  <div class="container site-header__inner">
+    <a class="brand-lockup" href="index.html">
+      <span class="emblem" aria-hidden="true">
+        <img src="/design-system/assets/emblem-colour-112.png"
+             srcset="/design-system/assets/emblem-colour-112.png 1x, /design-system/assets/emblem-colour-224.png 2x"
+             alt="" width="50" height="56" onerror="this.remove()">
+        <span class="emblem__todo">emblem</span>
+      </span>
+      <span class="brand-lockup__rule" aria-hidden="true"></span>
+      <span>
+        <span class="brand-lockup__name" data-ar="طلبات الأجهزة الطبية">Medical Requisitions</span>
+        <span class="brand-lockup__sub" data-ar="وزارة الصحة · دولة الكويت">Ministry of Health · State of Kuwait</span>
+      </span>
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="instruments.html" data-ar="طلب جديد">New request</a>
+      <a href="requests.html" aria-current="page" data-ar="طلباتي">My requests</a>
+      <a href="instruments.html" data-ar="أطقم الأدوات">Instrument sets</a>
+      <a href="catalogue.html" data-ar="الكتالوج">Catalogue</a>
+      <a href="#" data-ar="الدعم">Support</a>
+    </nav>
+    <button class="btn btn--secondary btn--sm nav-toggle" type="button"
+            data-nav-toggle aria-expanded="false" aria-controls="navPanel">
+      <svg class="nav-toggle__open" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="nav-toggle__close" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span data-ar="القائمة">Menu</span>
+    </button>
+  </div>
+
+  <div class="nav-panel" id="navPanel" data-nav-panel hidden>
+    <ul class="nav-panel__list">
+      <li><a href="instruments.html" data-ar="طلب جديد">New request</a></li>
+      <li><a href="requests.html" aria-current="page" data-ar="طلباتي">My requests</a></li>
+      <li><a href="instruments.html" data-ar="أطقم الأدوات">Instrument sets</a></li>
+      <li><a href="catalogue.html" data-ar="الكتالوج">Catalogue</a></li>
+      <li><a href="#" data-ar="الدعم">Support</a></li>
+    </ul>
+    <div class="nav-panel__sep"></div>
+    <ul class="nav-panel__list nav-panel__utility">
+      <li><a href="#" data-lang-toggle>عربي</a></li>
+      <li><a href="#" data-ar="إمكانية الوصول">Accessibility</a></li>
+      <li><a href="#" data-ar="تسجيل الدخول">Sign in</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="container" style="padding-block:var(--space-4);border-block-end:1px solid var(--color-border)">
+  <ol class="breadcrumb">
+    <li><a href="index.html" data-ar="الرئيسية">Home</a></li>
+    <li aria-current="page" data-ar="الطلبات">Requests</li>
+  </ol>
+</div>
+
+<main id="main" class="container" style="padding-block:var(--space-9)">
+
+  <div class="sec-head" style="max-inline-size:var(--measure-prose)">
+    <h1 class="sec-head__title">Requests</h1>
+    <p class="sec-head__desc">Centres raise these from their instrument set. Nothing a centre asks for changes its holdings until it is confirmed here.</p>
+  </div>
+
+  <section class="reg-stats" aria-label="Summary">
+    <div id="s-waiting-card">
+      <div class="reg-stat__value" id="s-waiting">--</div>
+      <div class="reg-stat__label">Awaiting confirmation</div>
+    </div>
+    <div>
+      <div class="reg-stat__value" id="s-oldest">--</div>
+      <div class="reg-stat__label">Longest wait</div>
+    </div>
+    <div>
+      <div class="reg-stat__value" id="s-total">--</div>
+      <div class="reg-stat__label">Requests in total</div>
+    </div>
+    <div>
+      <div class="reg-stat__value" id="s-centres">--</div>
+      <div class="reg-stat__label">Centres raising</div>
+    </div>
+  </section>
+
+  <div class="log-filters" style="margin-block-start:var(--space-7)">
+    <div class="field" style="max-inline-size:280px">
+      <label class="field__label" for="q">Search</label>
+      <input class="input" id="q" type="search" placeholder="Reference, centre, item or person" autocomplete="off">
+    </div>
+    <div class="field" style="max-inline-size:200px">
+      <label class="field__label" for="f-centre">Centre</label>
+      <select class="select" id="f-centre"><option value="">All centres</option></select>
+    </div>
+    <div class="field" style="max-inline-size:200px">
+      <label class="field__label" for="f-status">Status</label>
+      <select class="select" id="f-status">
+        <option value="">All statuses</option>
+        <option value="submitted">Awaiting confirmation</option>
+        <option value="confirmed">Confirmed</option>
+        <option value="partial">Partly confirmed</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </div>
+    <button class="btn btn--ghost btn--sm" id="btn-reset" type="button">Clear</button>
+    <span class="caption">Record in <span class="badge badge--draft" id="backendLabel">--</span></span>
+  </div>
+
+  <div id="queue" style="margin-block-start:var(--space-5)"></div>
+
+</main>
+
+<footer class="site-footer" style="margin-block-start:var(--section-gap)">
+  <div class="container">
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-5);font-size:var(--text-xs);opacity:.75">
+      <span data-ar="© 2026 وزارة الصحة، دولة الكويت">© 2026 Ministry of Health, State of Kuwait</span>
+      <span style="margin-inline-start:auto"><a href="#" data-ar="بيان إمكانية الوصول">Accessibility statement</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="dev-bar" role="group" aria-label="Preview controls">
+  <button data-dev="theme" data-val="light" aria-pressed="true">Light</button>
+  <button data-dev="theme" data-val="dark" aria-pressed="false">Dark</button>
+  <button data-dev="dir" data-val="ltr" aria-pressed="true">LTR</button>
+  <button data-dev="dir" data-val="rtl" aria-pressed="false">RTL</button>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function setLang(lang) {
+    document.querySelectorAll('[data-ar]').forEach(function (el) {
+      if (!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = el.getAttribute(lang === 'ar' ? 'data-ar' : 'data-en');
+    });
+    root.setAttribute('lang', lang);
+    root.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    document.querySelectorAll('[data-lang-toggle]').forEach(function (t) {
+      t.textContent = lang === 'ar' ? 'English' : 'عربي';
+    });
+  }
+  window.__setLang = setLang;
+  document.querySelectorAll('[data-lang-toggle]').forEach(function (t) {
+    t.addEventListener('click', function (e) { e.preventDefault(); setLang(root.getAttribute('lang') === 'ar' ? 'en' : 'ar'); });
+  });
+  document.querySelectorAll('.dev-bar button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var kind = b.dataset.dev, val = b.dataset.val;
+      document.querySelectorAll('.dev-bar button[data-dev="' + kind + '"]').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      b.setAttribute('aria-pressed', 'true');
+      if (kind === 'theme') root.setAttribute('data-theme', val);
+      if (kind === 'dir') setLang(val === 'rtl' ? 'ar' : 'en');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medical Requisitions — Ministry of Health, State of Kuwait</title>
+<meta name="description" content="Request medical instruments and materials. For hospital departments and accredited suppliers of the Ministry of Health, State of Kuwait.">
+<link rel="icon" href="/design-system/assets/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/design-system/assets/favicon/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/design-system/assets/favicon/icon-16.png">
+<link rel="apple-touch-icon" href="/design-system/assets/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="../design-system/foundations/fonts.css">
+<link rel="stylesheet" href="../design-system/foundations/tokens.css">
+<link rel="stylesheet" href="../design-system/foundations/base.css">
+<link rel="stylesheet" href="../design-system/foundations/components.css">
+<link rel="stylesheet" href="site.css">
+<script src="../design-system/foundations/behaviours.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-ar="تخطَّ إلى المحتوى">Skip to content</a>
+
+<!-- ============================ GOVERNMENT BAR ============================ -->
+<div class="gov-bar">
+  <div class="container" style="display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap">
+    <span data-ar="خدمة رسمية من دولة الكويت">An official service of the State of Kuwait</span>
+    <span style="margin-inline-start:auto;display:flex;gap:var(--space-5)">
+      <a href="#" data-lang-toggle>عربي</a>
+      <a href="#" data-ar="إمكانية الوصول">Accessibility</a>
+      <a href="#" data-ar="تسجيل الدخول">Sign in</a>
+    </span>
+  </div>
+</div>
+
+<!-- ============================== HEADER ================================= -->
+<header class="site-header site-header--official" data-nav>
+  <div class="container site-header__inner">
+    <a class="brand-lockup" href="index.html">
+      <span class="emblem" aria-hidden="true">
+        <!-- Tries SVG, falls back to PNG, then reveals the dashed placeholder. -->
+        <img src="/design-system/assets/emblem-colour-112.png"
+             srcset="/design-system/assets/emblem-colour-112.png 1x, /design-system/assets/emblem-colour-224.png 2x"
+             alt="" width="50" height="56"
+             onerror="this.remove()">
+        <span class="emblem__todo">emblem</span>
+      </span>
+      <span class="brand-lockup__rule" aria-hidden="true"></span>
+      <span>
+        <span class="brand-lockup__name" data-ar="طلبات الأجهزة الطبية">Medical Requisitions</span>
+        <span class="brand-lockup__sub" data-ar="وزارة الصحة · دولة الكويت">Ministry of Health · State of Kuwait</span>
+      </span>
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="instruments.html" data-ar="طلب جديد">New request</a>
+      <a href="requests.html" data-ar="طلباتي">My requests</a>
+      <a href="instruments.html" data-ar="أطقم الأدوات">Instrument sets</a>
+      <a href="catalogue.html" data-ar="الكتالوج">Catalogue</a>
+      <a href="#" data-ar="الدعم">Support</a>
+    </nav>
+    <button class="btn btn--secondary btn--sm nav-toggle" type="button"
+            data-nav-toggle aria-expanded="false" aria-controls="navPanel">
+      <svg class="nav-toggle__open" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="nav-toggle__close" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span data-ar="القائمة">Menu</span>
+    </button>
+  </div>
+
+  <div class="nav-panel" id="navPanel" data-nav-panel hidden>
+    <ul class="nav-panel__list">
+      <li><a href="instruments.html" data-ar="طلب جديد">New request</a></li>
+      <li><a href="requests.html" data-ar="طلباتي">My requests</a></li>
+      <li><a href="instruments.html" data-ar="أطقم الأدوات">Instrument sets</a></li>
+      <li><a href="catalogue.html" data-ar="الكتالوج">Catalogue</a></li>
+      <li><a href="#" data-ar="الدعم">Support</a></li>
+    </ul>
+    <div class="nav-panel__sep"></div>
+    <ul class="nav-panel__list nav-panel__utility">
+      <li><a href="#" data-lang-toggle>عربي</a></li>
+      <li><a href="#" data-ar="إمكانية الوصول">Accessibility</a></li>
+      <li><a href="#" data-ar="تسجيل الدخول">Sign in</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- =============================== HERO ================================ -->
+  <section class="hero">
+    <div class="container hero__grid">
+      <div>
+        <h1 class="hero__title" data-ar="طلب الأجهزة والمستلزمات الطبية">Request medical instruments and materials</h1>
+        <p class="hero__lede" data-ar="لأقسام المستشفيات والمورّدين المعتمدين. تصدر معظم القرارات خلال 14 يوم عمل، ويمكنك تتبع طلبك في كل مرحلة.">For hospital departments and accredited suppliers. Most decisions are issued within 14 working days, and you can track your request at every stage.</p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg" href="instruments.html" data-ar="ابدأ طلباً">
+            <span data-ar="ابدأ طلباً">Start a request</span>
+            <svg class="icon--directional" width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn--secondary btn--lg" href="#" data-ar="كيف يعمل">How it works</a>
+        </div>
+
+        <div class="track">
+          <form class="track__row" onsubmit="return false">
+            <div class="field">
+              <label class="field__label" for="ref" data-ar="تتبع طلباً حالياً">Track an existing request</label>
+              <p class="field__hint" data-ar="أدخل الرقم المرجعي المكوّن من 14 خانة والمرسل إليك عند التقديم.">Enter the 14-character reference number sent to you when you submitted.</p>
+              <input class="input mono" id="ref" name="ref" placeholder="REQ-2026-000000" autocomplete="off" dir="ltr">
+            </div>
+            <button class="btn btn--secondary" type="submit" data-ar="تتبع">Track</button>
+          </form>
+        </div>
+      </div>
+
+      <aside class="status-card" aria-labelledby="svc">
+        <div class="eyebrow" id="svc" data-ar="حالة الخدمة">Service status</div>
+        <div class="status-card__row">
+          <div>
+            <div class="status-card__figure">11</div>
+            <div class="status-card__label" data-ar="متوسط أيام العمل حتى القرار">Average working days to a decision</div>
+          </div>
+          <span class="badge badge--approved" data-ar="ضمن المستهدف">On target</span>
+        </div>
+        <div class="status-card__row">
+          <div>
+            <div class="status-card__figure">1,284</div>
+            <div class="status-card__label" data-ar="طلبات تمت معالجتها هذا العام">Requests processed this year</div>
+          </div>
+        </div>
+        <div class="status-card__row">
+          <div>
+            <div class="status-card__figure">96%</div>
+            <div class="status-card__label" data-ar="تم البت فيها خلال المدة المعلنة">Decided within the published time</div>
+          </div>
+        </div>
+        <p class="caption" style="margin-block-start:var(--space-4)" data-ar="آخر تحديث 20 سبتمبر 2026">Updated 20 September 2026</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============================== NOTICE =============================== -->
+  <div class="container" style="margin-block-start:var(--space-9)">
+    <div class="alert alert--info">
+      <svg class="alert__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5M10 6.5v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <div>
+        <div class="alert__title" data-ar="يُغلق باب الطلبات للسنة المالية في 30 نوفمبر">Requests close for the fiscal year on 30 November</div>
+        <div class="alert__body" data-ar="ستُقيَّم الطلبات المقدَّمة بعد هذا التاريخ ضمن ميزانية 2027.">Submissions after that date will be assessed against the 2027 budget.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================ TASK ROUTING =========================== -->
+  <section class="container section">
+    <div class="sec-head">
+      <h2 class="sec-head__title" data-ar="ماذا تريد أن تفعل؟">What do you need to do?</h2>
+      <p class="sec-head__desc" data-ar="اختر المهمة التي جئت من أجلها. لا حاجة لمعرفة القسم المسؤول عن الخدمة.">Choose the task you came for. You do not need to know which department owns the service.</p>
+    </div>
+
+    <div class="task-grid">
+      <a class="task-card" href="instruments.html">
+        <span class="task-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        <span class="task-card__title" data-ar="تقديم طلب جديد">Start a requisition</span>
+        <span class="task-card__desc" data-ar="اطلب أجهزة أو مستلزمات أو مواد طبية نيابةً عن قسمك. يمكنك حفظ المسودة ومتابعتها لاحقاً.">Request instruments, consumables or materials on behalf of your department. Save a draft and finish it later.</span>
+        <span class="task-card__go">
+          <span data-ar="ابدأ">Start</span>
+          <svg class="icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a class="task-card" href="requests.html">
+        <span class="task-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        <span class="task-card__title" data-ar="تتبع أو تحديث طلب">Track or update a request</span>
+        <span class="task-card__desc" data-ar="اطّلع على المرحلة الحالية لطلبك، وردّ على استفسارات موظف المشتريات، وحمّل المستندات المطلوبة.">See the current stage of a request, answer a procurement officer's questions, or upload a document they have asked for.</span>
+        <span class="task-card__go">
+          <span data-ar="تتبع">Track</span>
+          <svg class="icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a class="task-card" href="catalogue.html">
+        <span class="task-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M4 9h16M9 9v11" stroke="currentColor" stroke-width="2"/></svg>
+        </span>
+        <span class="task-card__title" data-ar="تصفح الكتالوج">Browse the catalogue</span>
+        <span class="task-card__desc" data-ar="ابحث في الأصناف المعتمدة مسبقاً. الطلبات من الكتالوج تُقيَّم بشكل أسرع ولا تحتاج إلى مبررات إضافية.">Search pre-approved items. Requests made from the catalogue are assessed faster and need no additional justification.</span>
+        <span class="task-card__go">
+          <span data-ar="تصفح">Browse</span>
+          <svg class="icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <a class="task-card" href="#">
+        <span class="task-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 4v6c0 4-3 6.5-7 8-4-1.5-7-4-7-8V7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="task-card__title" data-ar="التسجيل كمورّد">Register as a supplier</span>
+        <span class="task-card__desc" data-ar="تقدَّم للاعتماد لدى الوزارة. تستغرق العملية 30 يوم عمل وتتطلب رخصة تجارية سارية.">Apply for accreditation with the ministry. Accreditation takes 30 working days and requires a current commercial licence.</span>
+        <span class="task-card__go">
+          <span data-ar="تقدَّم">Apply</span>
+          <svg class="icon--directional" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================ HOW IT WORKS =========================== -->
+  <section class="container section">
+    <div class="sec-head">
+      <h2 class="sec-head__title" data-ar="كيف يتم تقييم الطلب">How a request is assessed</h2>
+      <p class="sec-head__desc" data-ar="أربع مراحل. ستعرف في أي مرحلة يقع طلبك، ومن المسؤول عنه، وما هو الإجراء التالي.">Four stages. You will always know which one your request is in, who holds it, and what happens next.</p>
+    </div>
+
+    <div class="flow">
+      <div class="flow__item">
+        <h3 class="flow__title" data-ar="التقديم">Submit</h3>
+        <p class="flow__desc" data-ar="تضيف الأصناف والكميات والمبررات السريرية. يصدر رقم مرجعي فور التقديم.">You add items, quantities and clinical justification. A reference number is issued the moment you submit.</p>
+        <p class="flow__meta" data-ar="أنت · نفس اليوم">You · same day</p>
+      </div>
+      <div class="flow__item">
+        <h3 class="flow__title" data-ar="المراجعة">Review</h3>
+        <p class="flow__desc" data-ar="يتحقق موظف مشتريات مسمّى من الميزانية والاعتماد وتوافر الصنف في العقود الإطارية.">A named procurement officer checks budget authority, accreditation and whether the item sits on a framework.</p>
+        <p class="flow__meta" data-ar="المشتريات · 3–7 أيام عمل">Procurement · 3–7 working days</p>
+      </div>
+      <div class="flow__item">
+        <h3 class="flow__title" data-ar="القرار">Decision</h3>
+        <p class="flow__desc" data-ar="يُعتمد الطلب أو يُرفض بسبب مكتوب. لك حق التظلم خلال 14 يوماً.">Approved, or rejected with a written reason. You have 14 days to appeal any rejection.</p>
+        <p class="flow__meta" data-ar="المشتريات · خلال 14 يوم عمل">Procurement · within 14 working days</p>
+      </div>
+      <div class="flow__item">
+        <h3 class="flow__title" data-ar="التنفيذ">Fulfilment</h3>
+        <p class="flow__desc" data-ar="يصدر أمر الشراء ويتم التسليم. يؤكد قسمك الاستلام لإقفال الطلب.">A purchase order is raised and the items are delivered. Your department receipts them to close the request.</p>
+        <p class="flow__meta" data-ar="المورّد · حسب الصنف">Supplier · varies by item</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= CATEGORIES ============================ -->
+  <section class="container section">
+    <div class="sec-head">
+      <h2 class="sec-head__title" data-ar="تصفح حسب الفئة">Browse by category</h2>
+      <p class="sec-head__desc" data-ar="4,120 صنفاً معتمداً مسبقاً عبر العقود الإطارية.">4,120 pre-approved items across the ministry frameworks.</p>
+    </div>
+
+    <div class="cat-grid">
+      <a class="cat-tile" href="catalogue.html"><span class="cat-tile__name" data-ar="أدوات جراحية">Surgical instruments</span><span class="cat-tile__count">812</span></a>
+      <a class="cat-tile" href="catalogue.html"><span class="cat-tile__name" data-ar="أجهزة التشخيص">Diagnostic equipment</span><span class="cat-tile__count">396</span></a>
+      <a class="cat-tile" href="catalogue.html"><span class="cat-tile__name" data-ar="مستلزمات استهلاكية">Consumables</span><span class="cat-tile__count">1,447</span></a>
+      <a class="cat-tile" href="catalogue.html"><span class="cat-tile__name" data-ar="مستلزمات المختبر">Laboratory supplies</span><span class="cat-tile__count">638</span></a>
+      <a class="cat-tile" href="catalogue.html"><span class="cat-tile__name" data-ar="العناية المركزة والتنفس">Critical care & respiratory</span><span class="cat-tile__count">274</span></a>
+      <a class="cat-tile" href="catalogue.html"><span class="cat-tile__name" data-ar="أثاث ومرافق">Furniture & facilities</span><span class="cat-tile__count">553</span></a>
+    </div>
+  </section>
+
+  <!-- ============================== SUPPORT ============================== -->
+  <section class="container section">
+    <div class="support">
+      <div class="support__grid">
+        <div>
+          <h2 class="support__title" data-ar="تحتاج مساعدة؟">Need help?</h2>
+          <p style="opacity:.8;font-size:var(--text-sm);margin-block-start:var(--space-4);max-width:34ch" data-ar="إذا كان طلبك عاجلاً سريرياً، اتصل بالمشتريات مباشرة بدلاً من الانتظار عبر النموذج.">If a request is clinically urgent, telephone procurement directly rather than waiting through the form.</p>
+        </div>
+        <dl>
+          <dt data-ar="هاتف">Telephone</dt>
+          <dd><span dir="ltr">151</span> · <span data-ar="الأحد إلى الخميس، 07:30–14:30">Sunday to Thursday, 07:30–14:30</span></dd>
+          <dt data-ar="البريد الإلكتروني">Email</dt>
+          <dd><span dir="ltr">procurement@moh.gov.kw</span></dd>
+        </dl>
+        <dl>
+          <dt data-ar="روابط">Guides</dt>
+          <dd><a href="#" data-ar="كيف تُقيَّم الطلبات">How requests are assessed</a></dd>
+          <dd><a href="#" data-ar="التظلم من قرار">Appeal a decision</a></dd>
+          <dd><a href="#" data-ar="اعتماد المورّدين">Supplier accreditation</a></dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================== FOOTER ================================= -->
+<footer class="site-footer" style="margin-block-start:var(--section-gap)">
+  <div class="container">
+    <div class="grid grid--4" style="--grid-gap:var(--space-9)">
+      <div>
+        <div class="site-footer__title" data-ar="الخدمة">Service</div>
+        <div style="display:grid;gap:var(--space-3)">
+          <a href="instruments.html" data-ar="تقديم طلب">Start a request</a>
+          <a href="requests.html" data-ar="تتبع طلب">Track a request</a>
+          <a href="instruments.html" data-ar="أطقم الأدوات">Instrument sets</a>
+      <a href="catalogue.html" data-ar="كتالوج الأصناف">Instrument catalogue</a>
+          <a href="#" data-ar="اعتماد المورّدين">Supplier accreditation</a>
+        </div>
+      </div>
+      <div>
+        <div class="site-footer__title" data-ar="المساعدة">Help</div>
+        <div style="display:grid;gap:var(--space-3)">
+          <a href="#" data-ar="كيف تُقيَّم الطلبات">How requests are assessed</a>
+          <a href="#" data-ar="مدد المشتريات">Procurement timelines</a>
+          <a href="#" data-ar="التظلم من قرار">Appeal a decision</a>
+          <a href="#" data-ar="تواصل مع المشتريات">Contact procurement</a>
+        </div>
+      </div>
+      <div>
+        <div class="site-footer__title" data-ar="قانوني">Legal</div>
+        <div style="display:grid;gap:var(--space-3)">
+          <a href="#" data-ar="بيان إمكانية الوصول">Accessibility statement</a>
+          <a href="#" data-ar="إشعار الخصوصية">Privacy notice</a>
+          <a href="#" data-ar="شروط الاستخدام">Terms of use</a>
+          <a href="#" data-ar="حق الاطلاع على المعلومات">Right to access information</a>
+        </div>
+      </div>
+      <div>
+        <div class="site-footer__title" data-ar="وزارة الصحة">Ministry of Health</div>
+        <p style="font-size:var(--text-sm);opacity:.8" data-ar="الصليبيخات، مدينة الكويت<br>دولة الكويت">Sulaibikhat, Kuwait City<br>State of Kuwait</p>
+        <p style="font-size:var(--text-sm);opacity:.8;margin-block-start:var(--space-4)" data-ar="الدعم 151<br>الأحد إلى الخميس، 07:30–14:30">Support 151<br>Sunday to Thursday, 07:30–14:30</p>
+      </div>
+    </div>
+    <div style="margin-block-start:var(--space-9);padding-block-start:var(--space-6);border-block-start:1px solid var(--color-border-inverse);display:flex;flex-wrap:wrap;gap:var(--space-5);font-size:var(--text-xs);opacity:.75">
+      <span data-ar="© 2026 وزارة الصحة، دولة الكويت">© 2026 Ministry of Health, State of Kuwait</span>
+      <span style="margin-inline-start:auto" data-ar="آخر تحديث 20 سبتمبر 2026">Last updated 20 September 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Dev-only. Not part of the shipped page. -->
+<div class="dev-bar" role="group" aria-label="Preview controls">
+  <button data-dev="theme" data-val="light" aria-pressed="true">Light</button>
+  <button data-dev="theme" data-val="dark" aria-pressed="false">Dark</button>
+  <button data-dev="dir" data-val="ltr" aria-pressed="true">LTR</button>
+  <button data-dev="dir" data-val="rtl" aria-pressed="false">RTL</button>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  // Swap every element carrying a data-ar string. Stashes the English on
+  // first run so the toggle works in both directions.
+  function setLang(lang) {
+    document.querySelectorAll('[data-ar]').forEach(function (el) {
+      if (!el.hasAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
+      el.innerHTML = el.getAttribute(lang === 'ar' ? 'data-ar' : 'data-en');
+    });
+    root.setAttribute('lang', lang);
+    root.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    // The switcher always offers the OTHER language, so it is excluded from
+    // the data-ar swap above and relabelled here instead.
+    document.querySelectorAll('[data-lang-toggle]').forEach(function (t) {
+      t.textContent = lang === 'ar' ? 'English' : 'عربي';
+    });
+  }
+
+  window.__setLang = setLang;   // lets the design-system preview shell drive it
+
+  document.querySelectorAll('[data-lang-toggle]').forEach(function (t) {
+    t.addEventListener('click', function (e) {
+      e.preventDefault();
+      setLang(root.getAttribute('lang') === 'ar' ? 'en' : 'ar');
+    });
+  });
+
+  document.querySelectorAll('.dev-bar button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var kind = b.dataset.dev, val = b.dataset.val;
+      document.querySelectorAll('.dev-bar button[data-dev="' + kind + '"]')
+        .forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      b.setAttribute('aria-pressed', 'true');
+      if (kind === 'theme') root.setAttribute('data-theme', val);
+      if (kind === 'dir') setLang(val === 'rtl' ? 'ar' : 'en');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
