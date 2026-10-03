@@ -19,7 +19,7 @@ database. It is not yet a system of record.
 |---|---|
 | `design-system/` | Source of truth. Tokens, components, guidelines, 8 browsable preview cards. |
 | `website/` | The service itself — the pages people use. |
-| `server/` | A Cloudflare Worker + D1 API. **Stale** — see Known gaps. |
+| `server/` | A Cloudflare Worker + D1 API speaking the same model as `store.js`. |
 | `tools/` | `devserver.py` (dev server), `bundle-data.py` (data → script). |
 
 **The dependency runs one way.** The website imports from the design system;
@@ -129,9 +129,13 @@ page patterns, contributing.
 - **Allocations are empty.** Every centre falls back to the standard set (191
   units). The structure is in `website/data/centres.json`; the real per-centre
   figures have not been supplied yet.
-- **`server/` is stale.** It speaks the old per-clinic shape from before
-  centres and requests existed. `backend: 'cloudflare'` will not work until it
-  is rewritten to this model. Flagged in `store.js` rather than quietly broken.
+- **`server/` has not run on real Cloudflare yet.** It was tested against
+  SQLite standing in for D1, and end to end through the pages, but never
+  deployed. Demo data (`demo-setup.js`) seeds browser storage only, so a
+  Cloudflare-backed demo starts empty.
+- **The local adapter is looser than the server.** The server refuses to
+  accept more than a request asked for; `store.js`'s local adapter and
+  `request-detail.js` do not check this.
 - **Browser storage, not a database.** No sharing between machines, no backup.
 - **Arabic copy is illustrative** and has not been reviewed by a
   native-speaking content designer. Centre names are standard transliterations

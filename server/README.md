@@ -98,6 +98,10 @@ whether the token is the problem:
 ```
 
 - `"schema": "missing"` — step 2 did not run, or ran without `--remote`.
+- `"schema": "outdated"` — this database was created from the earlier
+  per-clinic schema. `CREATE TABLE IF NOT EXISTS` will not reshape it, and the
+  old ledger cannot be updated in place, so create a new database (step 1
+  with a new name) and point `wrangler.toml` at it.
 - `"tokenConfigured": false` — step 3 did not run. Every other endpoint will
   return 401 until it does.
 
@@ -134,15 +138,41 @@ very hard to leave it:
 
 ---
 
+## What the API does
+
+It speaks exactly the interface of `website/store.js` and returns the same
+shapes as the browser-storage adapter, so no page knows which one it is using.
+
+| Endpoint | `store.js` call | Writes |
+|---|---|---|
+| `GET /api/all` | `loadAll()` | nothing |
+| `POST /api/requests` | `submitRequest()` | the request and its lines — **no stock moves** |
+| `POST /api/requests/:id/decide` | `decideRequest()` | the decision, what was accepted, and one ledger row per accepted quantity, in one transaction |
+| `POST /api/codes` | `saveCodes()` | ministry codes |
+| `POST /api/allocation` | `setAllocation()` | the centre's allocation, plus a `standard` ledger row explaining it |
+
+The server checks what the page checks, because anything holding the token
+can call it directly. In particular it refuses to accept more than a request
+asked for, works out `confirmed` versus `partial` from the figures itself, and
+answers `409` if a request has already been decided — so two admins
+confirming at once produce one set of movements, not two.
+
+Centres are not stored here. They come from `website/data/centres.json`; the
+database only holds allocations that differ from the standard.
+
 ## The ledger is append-only
 
 There is no `UPDATE` and no `DELETE` on the `ledger` table anywhere in
 `src/worker.js`, and none should be added. This is a procurement record: a
 correction is a new row, not an edit to an old one.
 
-`codes` and `standards` do get updated in place, but both are mirrors — the
-ledger can rebuild either one. They exist so the register loads in one query
-instead of replaying every event.
+`schema.sql` also makes the database refuse it: triggers abort any `UPDATE`
+or `DELETE` on `ledger`, `requests`, `request_lines`, `decisions` and
+`decision_lines`. A request's status is not a column that gets overwritten —
+it is `submitted` until a row exists in `decisions`, and that row is final.
+
+`codes`, `standards` and `allocations` do get updated in place. They are
+current values; every allocation change is also logged to the ledger.
 
 ## Backups
 
