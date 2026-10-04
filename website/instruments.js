@@ -144,16 +144,22 @@
     ci.type = 'text';
     ci.placeholder = '—';
     ci.maxLength = 24;
-    ci.value = codes[k] || '';
+    // The canonical code ships in periodontic-sets.json. Browser storage only
+    // holds deliberate overrides, so an untouched item still shows its code
+    // rather than a dash.
+    ci.value = codes[k] || item.code || '';
     ci.setAttribute('aria-label', 'Code for ' + item.name);
     ci.addEventListener('input', function () { ci.value = ci.value.toUpperCase(); });
     ci.addEventListener('change', function () {
       var v = ci.value.trim();
+      // Reverting to the canonical value clears the override rather than
+      // storing a redundant copy of it.
       var changes = {};
-      changes[k] = v;
+      changes[k] = (v && v !== item.code) ? v : '';
       window.Store.saveCodes(changes).then(function () {
-        if (v) codes[k] = v; else delete codes[k];
-        flash('Code saved');
+        if (changes[k]) codes[k] = changes[k]; else delete codes[k];
+        ci.value = codes[k] || item.code || '';
+        flash(changes[k] ? 'Code override saved' : 'Reverted to the standard code');
       });
     });
     tdCode.appendChild(ci);
@@ -276,7 +282,8 @@
   function openLog(set, item, k, history) {
     var box = el('div', 'dialog log-dialog');
     box.tabIndex = -1;
-    var code = codes[k] ? '<span class="mono caption">' + escapeHtml(codes[k]) + '</span> · ' : '';
+    var shown = codes[k] || item.code;
+    var code = shown ? '<span class="mono caption">' + escapeHtml(shown) + '</span> · ' : '';
     var html =
       '<div class="dialog__title">' + escapeHtml(item.name) + '</div>' +
       '<p class="caption" style="margin-block-end:var(--space-5)">' + code +
@@ -420,7 +427,7 @@
       set.items.forEach(function (item) {
         var k = L.itemKey(set.id, item.no);
         var p = L.pendingFor(creq, k);
-        rows.push([set.name, item.no, codes[k] || '', item.name,
+        rows.push([set.name, item.no, codes[k] || item.code || '', item.name,
           L.allocationFor(c, standards, k, item.std),
           L.heldFor(c, standards, cl, k, item.std),
           L.deficitFor(c, standards, cl, k, item.std),

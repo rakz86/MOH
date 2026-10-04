@@ -26,17 +26,6 @@
     return d.toISOString();
   }
 
-  var CODES = {
-    'diagnostic:1': 'PER-DIA-001',
-    'diagnostic:2': 'PER-DIA-002',
-    'diagnostic:4': 'PER-DIA-004',
-    'non-surgical:5': 'PER-NSU-005',
-    'surgical:5': 'PER-SUR-005',
-    'surgical:20': 'PER-SUR-020',
-    'extraction:11': 'PER-EXT-011',
-    'extraction:24': 'PER-EXT-024',
-    'microsurgery:16': 'PER-MIC-016'
-  };
 
   // Taima is a smaller centre, so it holds fewer of the high-count items.
   var ALLOCATIONS = {
@@ -136,13 +125,15 @@
     document.getElementById('c-waiting').textContent =
       reqs.filter(function (r) { return r.status === 'submitted'; }).length;
     document.getElementById('c-ledger').textContent = led.length;
-    document.getElementById('c-codes').textContent = Object.keys(codes).length;
+    document.getElementById('c-codes').textContent = Object.keys(codes).length;  // overrides only
     document.getElementById('c-alloc').textContent = Object.keys(alloc).length;
   }
 
   function seed() {
-    var ok = put(K.codes, CODES) &&
-             put(K.allocations, ALLOCATIONS) &&
+    // Codes are canonical in periodontic-sets.json, so the seed does not
+    // write any. Seeding them here used a different format and overrode
+    // the real ones on nine items, which is what made the rest look blank.
+    var ok = put(K.allocations, ALLOCATIONS) &&
              put(K.ledger, LEDGER) &&
              put(K.requests, REQUESTS);
     try { localStorage.setItem('moh.v3.lastCentre', 'amiri'); } catch (e) {}
