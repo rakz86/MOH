@@ -138,8 +138,8 @@
 
     tr.appendChild(el('td', 'col-no numeric', String(item.no)));
 
-    // Code — the set's letter and the item number, fixed in the instrument
-    // set data so every centre and every printout uses the same one.
+    // Code — the set's two-letter prefix and the item number, fixed in the
+    // instrument set data so every centre and every printout uses the same one.
     tr.appendChild(el('td', 'col-code mono', item.code));
 
     var tdName = el('td', 'col-name', item.name);
