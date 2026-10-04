@@ -148,7 +148,6 @@ shapes as the browser-storage adapter, so no page knows which one it is using.
 | `GET /api/all` | `loadAll()` | nothing |
 | `POST /api/requests` | `submitRequest()` | the request and its lines — **no stock moves** |
 | `POST /api/requests/:id/decide` | `decideRequest()` | the decision, what was accepted, and one ledger row per accepted quantity, in one transaction |
-| `POST /api/codes` | `saveCodes()` | ministry codes |
 | `POST /api/allocation` | `setAllocation()` | the centre's allocation, plus a `standard` ledger row explaining it |
 
 The server checks what the page checks, because anything holding the token
@@ -171,7 +170,7 @@ or `DELETE` on `ledger`, `requests`, `request_lines`, `decisions` and
 `decision_lines`. A request's status is not a column that gets overwritten —
 it is `submitted` until a row exists in `decisions`, and that row is final.
 
-`codes`, `standards` and `allocations` do get updated in place. They are
+`standards` and `allocations` do get updated in place. They are
 current values; every allocation change is also logged to the ledger.
 
 ## Backups

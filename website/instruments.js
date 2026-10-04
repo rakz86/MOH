@@ -16,7 +16,7 @@
 
   var data = null;          // instrument sets
   var centres = [];
-  var codes = {}, standards = {}, allocations = {}, requests = [], ledger = [];
+  var standards = {}, allocations = {}, requests = [], ledger = [];
   var centreId = '';
 
   // Uncommitted request lines, in memory only. { "set:no": {ret, iss, note} }
@@ -138,26 +138,9 @@
 
     tr.appendChild(el('td', 'col-no numeric', String(item.no)));
 
-    // Code — catalogue metadata, shared by every centre.
-    var tdCode = el('td', 'col-code');
-    var ci = el('input', 'input cell-input cell-input--code mono');
-    ci.type = 'text';
-    ci.placeholder = '—';
-    ci.maxLength = 24;
-    ci.value = codes[k] || '';
-    ci.setAttribute('aria-label', 'Code for ' + item.name);
-    ci.addEventListener('input', function () { ci.value = ci.value.toUpperCase(); });
-    ci.addEventListener('change', function () {
-      var v = ci.value.trim();
-      var changes = {};
-      changes[k] = v;
-      window.Store.saveCodes(changes).then(function () {
-        if (v) codes[k] = v; else delete codes[k];
-        flash('Code saved');
-      });
-    });
-    tdCode.appendChild(ci);
-    tr.appendChild(tdCode);
+    // Code — the set's letter and the item number, fixed in the instrument
+    // set data so every centre and every printout uses the same one.
+    tr.appendChild(el('td', 'col-code mono', item.code));
 
     var tdName = el('td', 'col-name', item.name);
     tr.appendChild(tdName);
@@ -276,7 +259,7 @@
   function openLog(set, item, k, history) {
     var box = el('div', 'dialog log-dialog');
     box.tabIndex = -1;
-    var code = codes[k] ? '<span class="mono caption">' + escapeHtml(codes[k]) + '</span> · ' : '';
+    var code = '<span class="mono caption">' + escapeHtml(item.code) + '</span> · ';
     var html =
       '<div class="dialog__title">' + escapeHtml(item.name) + '</div>' +
       '<p class="caption" style="margin-block-end:var(--space-5)">' + code +
@@ -420,7 +403,7 @@
       set.items.forEach(function (item) {
         var k = L.itemKey(set.id, item.no);
         var p = L.pendingFor(creq, k);
-        rows.push([set.name, item.no, codes[k] || '', item.name,
+        rows.push([set.name, item.no, item.code, item.name,
           L.allocationFor(c, standards, k, item.std),
           L.heldFor(c, standards, cl, k, item.std),
           L.deficitFor(c, standards, cl, k, item.std),
@@ -461,7 +444,6 @@
 
   function reload() {
     return window.Store.loadAll().then(function (all) {
-      codes = all.codes || {};
       standards = all.standards || {};
       allocations = all.allocations || {};
       requests = all.requests || [];

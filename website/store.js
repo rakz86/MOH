@@ -5,11 +5,10 @@
    call and the pages derive from a snapshot in memory. Only load and write
    ever await; all the arithmetic in ledger.js stays synchronous.
 
-     loadAll()                    -> { codes, standards, allocations,
-                                       requests, ledger }
+     loadAll()                    -> { standards, allocations, requests,
+                                       ledger }
      submitRequest(request)       -> { ok }
      decideRequest(id, decision)  -> { ok }   writes the ledger on confirm
-     saveCodes(changes)           -> { ok }
      setAllocation(...)           -> { ok }   logged, like any other change
 
    Both adapters keep the same contract: loadAll rejects when the record
@@ -24,7 +23,6 @@
   var CFG = window.MOH_CONFIG || { backend: 'local' };
 
   var K = {
-    codes: 'moh.v3.codes',
     standards: 'moh.v3.standards',
     allocations: 'moh.v3.allocations',
     requests: 'moh.v3.requests',
@@ -49,7 +47,6 @@
 
     loadAll: function () {
       return Promise.resolve({
-        codes: read(K.codes, {}),
         standards: read(K.standards, {}),
         allocations: read(K.allocations, {}),
         requests: read(K.requests, []),
@@ -108,14 +105,6 @@
       return Promise.resolve(ok ? { ok: true } : { ok: false, error: 'Could not save' });
     },
 
-    saveCodes: function (changes) {
-      var codes = read(K.codes, {});
-      Object.keys(changes || {}).forEach(function (k) {
-        if (changes[k]) codes[k] = changes[k]; else delete codes[k];
-      });
-      return Promise.resolve(write(K.codes, codes) ? { ok: true } : { ok: false });
-    },
-
     // Changing what a centre is entitled to is itself a logged event.
     setAllocation: function (centreId, k, qty, from, by, note) {
       var allocations = read(K.allocations, {});
@@ -163,7 +152,6 @@
     decideRequest: function (id, d) {
       return post('/api/requests/' + encodeURIComponent(id) + '/decide', d);
     },
-    saveCodes: function (c) { return post('/api/codes', c); },
     setAllocation: function (centreId, k, qty, from, by, note) {
       return post('/api/allocation',
         { centreId: centreId, k: k, qty: qty, from: from, by: by, note: note });

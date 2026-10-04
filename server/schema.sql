@@ -21,7 +21,7 @@
 --   cannot be decided twice — two admins confirming at once get one success
 --   and one conflict, not two sets of stock movements.
 --
--- `codes`, `standards` and `allocations` are current values, not history.
+-- `standards` and `allocations` are current values, not history.
 -- Every allocation change is also written to the ledger as a 'standard' row,
 -- so the ledger can always explain how the current figure was reached.
 --
@@ -32,15 +32,13 @@
 -- CREATE TABLE IF NOT EXISTS will not reshape it. /api/health reports it.
 -- ===========================================================================
 
-CREATE TABLE IF NOT EXISTS codes (
-  item_key    TEXT PRIMARY KEY,          -- "surgical:11"
-  code        TEXT NOT NULL,
-  updated_at  TEXT NOT NULL
-);
+-- Item codes (D01, S20…) are not stored here: they are fixed in
+-- website/data/periodontic-sets.json, and item_key ("surgical:11") is what
+-- every table below refers to.
 
 -- The ministry standard for an item, overriding the printed instrument set.
 CREATE TABLE IF NOT EXISTS standards (
-  item_key    TEXT PRIMARY KEY,
+  item_key    TEXT PRIMARY KEY,          -- "surgical:11"
   qty         INTEGER NOT NULL CHECK (qty >= 0),
   updated_at  TEXT NOT NULL
 );

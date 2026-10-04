@@ -26,18 +26,6 @@
     return d.toISOString();
   }
 
-  var CODES = {
-    'diagnostic:1': 'PER-DIA-001',
-    'diagnostic:2': 'PER-DIA-002',
-    'diagnostic:4': 'PER-DIA-004',
-    'non-surgical:5': 'PER-NSU-005',
-    'surgical:5': 'PER-SUR-005',
-    'surgical:20': 'PER-SUR-020',
-    'extraction:11': 'PER-EXT-011',
-    'extraction:24': 'PER-EXT-024',
-    'microsurgery:16': 'PER-MIC-016'
-  };
-
   // Taima is a smaller centre, so it holds fewer of the high-count items.
   var ALLOCATIONS = {
     taima: {
@@ -130,19 +118,16 @@
     }
     var reqs = n(K.requests, '[]');
     var led = n(K.ledger, '[]');
-    var codes = n(K.codes, '{}');
     var alloc = n(K.allocations, '{}');
     document.getElementById('c-requests').textContent = reqs.length;
     document.getElementById('c-waiting').textContent =
       reqs.filter(function (r) { return r.status === 'submitted'; }).length;
     document.getElementById('c-ledger').textContent = led.length;
-    document.getElementById('c-codes').textContent = Object.keys(codes).length;
     document.getElementById('c-alloc').textContent = Object.keys(alloc).length;
   }
 
   function seed() {
-    var ok = put(K.codes, CODES) &&
-             put(K.allocations, ALLOCATIONS) &&
+    var ok = put(K.allocations, ALLOCATIONS) &&
              put(K.ledger, LEDGER) &&
              put(K.requests, REQUESTS);
     try { localStorage.setItem('moh.v3.lastCentre', 'amiri'); } catch (e) {}
@@ -152,7 +137,7 @@
   }
 
   function wipe() {
-    if (!confirm('Remove all requests, movements, codes and allocations from this browser?')) return;
+    if (!confirm('Remove all requests, movements and allocations from this browser?')) return;
     try {
       Object.keys(localStorage)
         .filter(function (k) { return k.indexOf('moh.') === 0; })

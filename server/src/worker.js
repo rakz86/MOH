@@ -10,11 +10,10 @@
 
    ENDPOINTS
      GET  /api/health                  is it alive, and is the schema current
-     GET  /api/all                     loadAll(): codes, standards,
-                                       allocations, requests, ledger
+     GET  /api/all                     loadAll(): standards, allocations,
+                                       requests, ledger
      POST /api/requests                submitRequest(request)
      POST /api/requests/:id/decide     decideRequest(id, decision)
-     POST /api/codes                   saveCodes(changes)
      POST /api/allocation              setAllocation(centreId, k, qty, ...)
 
    A REQUEST IS NOT A MOVEMENT. Submitting writes the request and nothing
@@ -107,9 +106,8 @@ function ledgerEntry(r) {
 }
 
 async function loadAll(env) {
-  const [codeRows, stdRows, allocRows, reqRows, lineRows, accRows, ledgerRows] =
+  const [stdRows, allocRows, reqRows, lineRows, accRows, ledgerRows] =
     (await env.DB.batch([
-      env.DB.prepare('SELECT item_key, code FROM codes'),
       env.DB.prepare('SELECT item_key, qty FROM standards'),
       env.DB.prepare('SELECT centre_id, item_key, qty FROM allocations'),
       env.DB.prepare(
@@ -120,9 +118,6 @@ async function loadAll(env) {
       env.DB.prepare('SELECT * FROM decision_lines'),
       env.DB.prepare('SELECT * FROM ledger ORDER BY id ASC')
     ])).map(r => r.results);
-
-  const codes = {};
-  for (const r of codeRows) codes[r.item_key] = r.code;
 
   const standards = {};
   for (const r of stdRows) standards[r.item_key] = r.qty;
@@ -162,7 +157,7 @@ async function loadAll(env) {
     if (req && req.accepted) req.accepted[a.item_key] = { ret: a.ret, iss: a.iss };
   }
 
-  return { codes, standards, allocations, requests, ledger: ledgerRows.map(ledgerEntry) };
+  return { standards, allocations, requests, ledger: ledgerRows.map(ledgerEntry) };
 }
 
 /* -- submit ----------------------------------------------------------------
@@ -295,30 +290,6 @@ async function decideRequest(id, request, env) {
   return { ok: true, status };
 }
 
-/* -- codes -----------------------------------------------------------------
-   A ministry code is a label on an item, not a movement, so it is a current
-   value: set, replace or clear. An empty value clears it. */
-
-async function saveCodes(request, env) {
-  const p = await body(request);
-  need(p && typeof p === 'object' && !Array.isArray(p), 'Expected { itemKey: code }');
-
-  const now = new Date().toISOString();
-  const statements = [];
-  for (const [k, raw] of Object.entries(p)) {
-    need(RE_ITEM.test(k), 'Unknown item key: ' + k);
-    const code = text(raw, 24);
-    statements.push(code
-      ? env.DB.prepare(
-          'INSERT INTO codes (item_key, code, updated_at) VALUES (?, ?, ?) ' +
-          'ON CONFLICT(item_key) DO UPDATE SET code = excluded.code, updated_at = excluded.updated_at'
-        ).bind(k, code, now)
-      : env.DB.prepare('DELETE FROM codes WHERE item_key = ?').bind(k));
-  }
-  if (statements.length) await env.DB.batch(statements);
-  return { ok: true };
-}
-
 /* -- allocation ------------------------------------------------------------
    Changing what a centre is entitled to is itself a logged event: the
    current figure and the ledger row that explains it go in one batch. */
@@ -399,7 +370,6 @@ export default {
       if (post && decide) {
         return json(await decideRequest(decodeURIComponent(decide[1]), request, env), null, headers);
       }
-      if (post && path === '/api/codes') return json(await saveCodes(request, env), null, headers);
       if (post && path === '/api/allocation') return json(await setAllocation(request, env), null, headers);
 
       return json({ ok: false, error: 'Not found: ' + request.method + ' ' + path },

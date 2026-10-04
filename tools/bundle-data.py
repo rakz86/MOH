@@ -22,12 +22,37 @@ SOURCES = {
     "centres": "centres.json",
 }
 
+def check_codes(sets):
+    """Every item code is its set's letter plus its two-digit item number,
+    and no two items share one. Codes are read out over the phone and typed
+    into requests, so a clash or a typo here would put a movement against
+    the wrong instrument. Refuse to bundle rather than ship that."""
+    problems, seen = [], {}
+    for s in sets["sets"]:
+        prefix = s.get("prefix", "")
+        if len(prefix) != 1 or not prefix.isupper():
+            problems.append("set %s: prefix must be one capital letter, got %r" % (s["id"], prefix))
+        for item in s["items"]:
+            expected = "%s%02d" % (prefix, item["no"])
+            code = item.get("code")
+            if code != expected:
+                problems.append("%s item %s: code %r, expected %r" % (s["id"], item["no"], code, expected))
+            if code in seen:
+                problems.append("code %s used by both %s and %s:%s" % (code, seen[code], s["id"], item["no"]))
+            seen[code] = "%s:%s" % (s["id"], item["no"])
+    if problems:
+        raise SystemExit("Item codes are inconsistent:\n  " + "\n  ".join(problems))
+    print("%-26s %6d unique" % ("item codes", len(seen)))
+
+
 def main():
     payload = {}
     for key, filename in SOURCES.items():
         path = DATA / filename
         payload[key] = json.loads(path.read_text(encoding="utf-8"))
         print("%-26s %6.1f KB" % (filename, path.stat().st_size / 1024))
+
+    check_codes(payload["sets"])
 
     body = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
     OUT.write_text(

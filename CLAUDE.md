@@ -87,7 +87,7 @@ would know which was right.
 | `website/ledger.js` | Pure derivation. No storage, no network, no DOM. |
 | `website/store.js` | Where the record lives. Two adapters behind one interface. |
 | `website/config.js` | **The switch**: `backend: 'local'` or `'cloudflare'`. |
-| `website/data/*.json` | Instrument sets (78 items, 5 sets) and the 9 centres. |
+| `website/data/*.json` | Instrument sets (78 items, 5 sets) and the 9 centres. Item codes are fixed here: set letter + two-digit item number (`D01`, `S20`); `bundle-data.py` refuses duplicates. |
 | `website/data/bundle.js` | Generated from the JSON so pages need no `fetch()`. |
 
 Read once, derive in memory, write through. Only load and commit await;
