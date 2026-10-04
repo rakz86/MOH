@@ -19,7 +19,7 @@ database. It is not yet a system of record.
 |---|---|
 | `design-system/` | Source of truth. Tokens, components, guidelines, 8 browsable preview cards. |
 | `website/` | The service itself — the pages people use. |
-| `server/` | A Cloudflare Worker + D1 API. **Stale** — see Known gaps. |
+| `server/` | A Cloudflare Worker + D1 API speaking the same model as `store.js`. |
 | `tools/` | `devserver.py` (dev server), `bundle-data.py` (data → script). |
 
 **The dependency runs one way.** The website imports from the design system;
@@ -87,7 +87,7 @@ would know which was right.
 | `website/ledger.js` | Pure derivation. No storage, no network, no DOM. |
 | `website/store.js` | Where the record lives. Two adapters behind one interface. |
 | `website/config.js` | **The switch**: `backend: 'local'` or `'cloudflare'`. |
-| `website/data/*.json` | Instrument sets (78 items, 5 sets) and the 9 centres. |
+| `website/data/*.json` | Instrument sets (78 items, 5 sets) and the 9 centres. Item codes are fixed here: two-letter set prefix + two-digit item number (`DG01`, `SG20`); `bundle-data.py` refuses duplicates. |
 | `website/inventory.js` | Read-only stock position per centre. Table and grid views. |
 | `website/glyphs.js` | Line-art placeholders, one per instrument type. Not photographs. |
 | `website/data/bundle.js` | Generated from the JSON so pages need no `fetch()`. |
@@ -136,7 +136,9 @@ set prefix plus its number on the printed form.
 
 So `EX11` is extraction item 11. Codes are unique across all 78 items,
 version-controlled here rather than typed per centre, and a centre cannot
-change them. A `tools` check is worth adding if the list ever grows.
+change them: the Code column is read-only. `tools/bundle-data.py` refuses to
+bundle a duplicate code, a code that does not carry its item number, or two
+sets sharing a prefix.
 
 ## Images
 
@@ -155,9 +157,13 @@ to grant.
 - **Allocations are empty.** Every centre falls back to the standard set (191
   units). The structure is in `website/data/centres.json`; the real per-centre
   figures have not been supplied yet.
-- **`server/` is stale.** It speaks the old per-clinic shape from before
-  centres and requests existed. `backend: 'cloudflare'` will not work until it
-  is rewritten to this model. Flagged in `store.js` rather than quietly broken.
+- **`server/` has not run on real Cloudflare yet.** It was tested against
+  SQLite standing in for D1, and end to end through the pages, but never
+  deployed. Demo data (`demo-setup.js`) seeds browser storage only, so a
+  Cloudflare-backed demo starts empty.
+- **The local adapter is looser than the server.** The server refuses to
+  accept more than a request asked for; `store.js`'s local adapter and
+  `request-detail.js` do not check this.
 - **Browser storage, not a database.** No sharing between machines, no backup.
 - **Arabic copy is illustrative** and has not been reviewed by a
   native-speaking content designer. Centre names are standard transliterations

@@ -12,7 +12,7 @@
   'use strict';
 
   var L = window.Ledger;
-  var data = null, centres = [], codes = {}, ledger = [], itemIndex = {}, centreName = {};
+  var data = null, centres = [], ledger = [], itemIndex = {}, centreName = {};
 
   function escapeHtml(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -42,7 +42,7 @@
       if (ftype && e.type !== ftype) return false;
       if (fcentre && e.centreId !== fcentre) return false;
       if (q) {
-        var hay = (meta.item.name + ' ' + (codes[e.k] || '') + ' ' + (e.note || '') + ' ' +
+        var hay = (meta.item.name + ' ' + meta.item.code + ' ' + (e.note || '') + ' ' +
                    meta.setName + ' ' + (e.requestId || '') + ' ' + (e.by || '')).toLowerCase();
         if (hay.indexOf(q) === -1) return false;
       }
@@ -85,7 +85,7 @@
                 : 'badge--review';
       html += '<tr>' +
         '<td class="caption" style="white-space:nowrap">' + L.fmtDate(e.t, true) + '</td>' +
-        '<td class="ref mono">' + escapeHtml(codes[e.k] || '—') + '</td>' +
+        '<td class="ref mono">' + escapeHtml(meta.item.code) + '</td>' +
         '<td>' + escapeHtml(meta.item.name) + '</td>' +
         '<td class="caption">' + escapeHtml(meta.setName) + '</td>' +
         '<td><span class="badge ' + badge + '">' + escapeHtml(L.describe(e)) + '</span></td>' +
@@ -124,7 +124,7 @@
                  'Centre', 'Request', 'Confirmed by', 'Note']];
     filtered().forEach(function (e) {
       var meta = itemIndex[e.k];
-      rows.push([e.t, codes[e.k] || '', meta.item.name, meta.setName, e.type,
+      rows.push([e.t, meta.item.code, meta.item.name, meta.setName, e.type,
         e.qty || '', e.from === undefined ? '' : e.from, e.to === undefined ? '' : e.to,
         centreName[e.centreId] || e.centreId || '', e.requestId || '', e.by || '', e.note || '']);
     });
@@ -147,7 +147,6 @@
   function init(sets, centreList, all) {
     data = sets;
     centres = centreList.centres || [];
-    codes = all.codes || {};
     ledger = (all.ledger || []).slice().sort(function (a, b) {
       return String(b.t).localeCompare(String(a.t));
     });
