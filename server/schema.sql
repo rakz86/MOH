@@ -32,7 +32,7 @@
 -- CREATE TABLE IF NOT EXISTS will not reshape it. /api/health reports it.
 -- ===========================================================================
 
--- Item codes (D01, S20…) are not stored here: they are fixed in
+-- Item codes (DG01, SG20…) are not stored here: they are fixed in
 -- website/data/periodontic-sets.json, and item_key ("surgical:11") is what
 -- every table below refers to.
 

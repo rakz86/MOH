@@ -11,6 +11,7 @@ folder and double-click".
 The .json files stay the editable source. Re-run this after changing them.
 """
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -23,23 +24,35 @@ SOURCES = {
 }
 
 def check_codes(sets):
-    """Every item code is its set's letter plus its two-digit item number,
-    and no two items share one. Codes are read out over the phone and typed
-    into requests, so a clash or a typo here would put a movement against
-    the wrong instrument. Refuse to bundle rather than ship that."""
-    problems, seen = [], {}
+    """Every item code is a two-letter set prefix plus its two-digit number on
+    the printed form (EX11 is extraction item 11), each set uses one prefix
+    no other set uses, and no two items share a code. Codes are read out over
+    the phone and confirmed against requests, so a clash or a typo here would
+    put a movement against the wrong instrument. Refuse to bundle rather than
+    ship that."""
+    problems, seen, owner = [], {}, {}
     for s in sets["sets"]:
-        prefix = s.get("prefix", "")
-        if len(prefix) != 1 or not prefix.isupper():
-            problems.append("set %s: prefix must be one capital letter, got %r" % (s["id"], prefix))
+        prefixes = set()
         for item in s["items"]:
-            expected = "%s%02d" % (prefix, item["no"])
-            code = item.get("code")
-            if code != expected:
-                problems.append("%s item %s: code %r, expected %r" % (s["id"], item["no"], code, expected))
+            code = item.get("code") or ""
+            m = re.fullmatch(r"([A-Z]{2})(\d{2})", code)
+            if not m:
+                problems.append("%s item %s: code %r is not two letters + two digits"
+                                % (s["id"], item["no"], code))
+                continue
+            prefixes.add(m.group(1))
+            if int(m.group(2)) != item["no"]:
+                problems.append("%s item %s: code %s does not carry its item number"
+                                % (s["id"], item["no"], code))
             if code in seen:
-                problems.append("code %s used by both %s and %s:%s" % (code, seen[code], s["id"], item["no"]))
+                problems.append("code %s used by both %s and %s:%s"
+                                % (code, seen[code], s["id"], item["no"]))
             seen[code] = "%s:%s" % (s["id"], item["no"])
+        if len(prefixes) > 1:
+            problems.append("set %s mixes prefixes %s" % (s["id"], ", ".join(sorted(prefixes))))
+        for p in prefixes:
+            if owner.setdefault(p, s["id"]) != s["id"]:
+                problems.append("prefix %s used by both %s and %s" % (p, owner[p], s["id"]))
     if problems:
         raise SystemExit("Item codes are inconsistent:\n  " + "\n  ".join(problems))
     print("%-26s %6d unique" % ("item codes", len(seen)))

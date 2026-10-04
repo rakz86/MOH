@@ -59,8 +59,8 @@ counts and deficits from whatever the store hands back. Nothing else touches
 storage.
 
 Setting up the Cloudflare side is `server/README.md` — about five commands.
-**Read the data-residency note at the top of it before real clinic data goes
-in.**
+It has been tested locally but not yet deployed. **Read the data-residency
+note in it before real clinic data goes in.**
 
 ## Change something
 

@@ -1,5 +1,10 @@
 # Server — Cloudflare Worker + D1
 
+> **Not yet run on real Cloudflare.** The Worker and schema match
+> `website/store.js` and were tested against SQLite standing in for D1, and
+> end to end through the pages, but have never been deployed. Expect the
+> first deploy to be the real test.
+
 The database lives in Cloudflare from the start, so there is nothing to
 migrate later. The **website stays on your machine**; only the data is remote.
 
