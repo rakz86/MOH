@@ -90,7 +90,8 @@
       lines += '<div class="req-line" data-k="' + escapeHtml(l.k) + '">' +
         '<div>' +
           '<div class="req-line__name">' + escapeHtml(meta.item.name) + '</div>' +
-          '<div class="req-line__meta">' + escapeHtml(meta.setName) +
+          '<div class="req-line__meta"><span class="mono">' + escapeHtml(meta.item.code) + '</span> · ' +
+            escapeHtml(meta.setName) +
             ' · allocation ' + alloc + ' · held ' + held +
             (l.note ? ' · ' + escapeHtml(l.note) : '') + '</div>' +
         '</div>' +

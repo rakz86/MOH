@@ -26,7 +26,6 @@
     return d.toISOString();
   }
 
-
   // Taima is a smaller centre, so it holds fewer of the high-count items.
   var ALLOCATIONS = {
     taima: {
@@ -119,20 +118,15 @@
     }
     var reqs = n(K.requests, '[]');
     var led = n(K.ledger, '[]');
-    var codes = n(K.codes, '{}');
     var alloc = n(K.allocations, '{}');
     document.getElementById('c-requests').textContent = reqs.length;
     document.getElementById('c-waiting').textContent =
       reqs.filter(function (r) { return r.status === 'submitted'; }).length;
     document.getElementById('c-ledger').textContent = led.length;
-    document.getElementById('c-codes').textContent = Object.keys(codes).length;  // overrides only
     document.getElementById('c-alloc').textContent = Object.keys(alloc).length;
   }
 
   function seed() {
-    // Codes are canonical in periodontic-sets.json, so the seed does not
-    // write any. Seeding them here used a different format and overrode
-    // the real ones on nine items, which is what made the rest look blank.
     var ok = put(K.allocations, ALLOCATIONS) &&
              put(K.ledger, LEDGER) &&
              put(K.requests, REQUESTS);
@@ -143,7 +137,7 @@
   }
 
   function wipe() {
-    if (!confirm('Remove all requests, movements, codes and allocations from this browser?')) return;
+    if (!confirm('Remove all requests, movements and allocations from this browser?')) return;
     try {
       Object.keys(localStorage)
         .filter(function (k) { return k.indexOf('moh.') === 0; })

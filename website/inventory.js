@@ -64,7 +64,7 @@
         var held = L.heldFor(c, all.standards || {}, cl, k, item.std);
         out.push({
           k: k,
-          code: (all.codes || {})[k] || item.code || '',
+          code: item.code,
           name: item.name,
           kind: item.kind || 'instrument',
           image: item.image || '',

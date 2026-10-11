@@ -232,23 +232,38 @@
 .sec-head__title { font-size: var(--text-3xl); font-weight: var(--weight-semibold); line-height: var(--leading-tight); }
 .sec-head__desc  { font-size: var(--text-base); color: var(--color-text-secondary); margin-block-start: var(--space-3); }
 
-/* -- DEV TOOLBAR (not shipped) -------------------------------------------- */
+/* -- DEV TOOLBAR (not shipped) --------------------------------------------
+   A full-width strip with its own reserved space, not a floating pill: a
+   pill in the corner sat on top of the sticky Submit button, so a click on
+   Submit toggled direction instead. The page reserves the strip's height and
+   the sticky action bar parks above it, so the strip never covers a control
+   at any width or scroll position. */
+
+:root { --dev-bar-size: calc(var(--control-height-sm) + 2 * var(--space-2) + var(--border-width)); }
+
+@media screen {
+  body:has(> .dev-bar) { padding-block-end: var(--dev-bar-size); }
+  body:has(> .dev-bar) .action-bar { inset-block-end: var(--dev-bar-size); }
+}
 
 .dev-bar {
   position: fixed;
-  inset-block-end: var(--space-5);
-  inset-inline-end: var(--space-5);
+  inset-block-end: 0;
+  inset-inline: 0;
   z-index: var(--z-toast);
+  box-sizing: border-box;
+  block-size: var(--dev-bar-size);
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
   gap: var(--space-2);
-  padding: var(--space-2);
+  padding: var(--space-2) var(--space-5);
   background: var(--color-surface);
-  border: var(--border-width) solid var(--color-border-control);
-  border-radius: var(--radius-full);
-  box-shadow: var(--shadow-lg);
+  border-block-start: var(--border-width) solid var(--color-border-control);
 }
 .dev-bar button {
-  padding: var(--space-2) var(--space-4);
+  block-size: var(--control-height-sm);
+  padding: 0 var(--space-4);
   border: 0;
   border-radius: var(--radius-full);
   background: transparent;
