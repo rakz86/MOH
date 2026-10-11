@@ -5,7 +5,7 @@
     "authority": "Ministry of Health · Dental Administration · Kuwait",
     "office": "مكتب متابعة أجهزة و أدوات و مواد و مستهلكات طب الأسنان",
     "version": "May 2026",
-    "note": "Item descriptions are transcribed from the printed form. They are not translated: the ministry form lists them in English, and inventing Arabic instrument names would risk a mismatch against the supplier catalogue. One correction has been applied against the printed source — extraction items 4 to 8 read \"Evelator\" on the form and are recorded here as \"Elevator\", confirmed as a typographical error in the original.",
+    "note": "Item descriptions are transcribed from the printed form. They are not translated: the ministry form lists them in English, and inventing Arabic instrument names would risk a mismatch against the supplier catalogue. One correction has been applied against the printed source — extraction items 4 to 8 read \"Evelator\" on the form and are recorded here as \"Elevator\", confirmed as a typographical error in the original. Diagnostic item 2 previously read \"Nabers Probe\", which duplicated non-surgical item 3; the updated form gives it as \"Plastic Filling - No.11\" and that is what is recorded here.",
     "codeScheme": "Two-letter set prefix plus the item number on the printed form: DG diagnostic, NS non-surgical, SG surgical, EX extraction, MS microsurgery, OI other items, KT kits. Codes are canonical and version-controlled here; a centre cannot change them.",
     "imageNote": "Each item carries a `kind`, used to pick a line-art glyph in the grid view. These are placeholders, not photographs of the actual instruments: real product images should come from the supplier catalogue, where the picture is guaranteed to match what ships. To use a real photo, add an `image` field to an item and the grid will prefer it over the glyph."
   },
@@ -24,10 +24,10 @@
         },
         {
           "no": 2,
-          "name": "Nabers Probe",
+          "name": "Plastic Filling - No.11",
           "std": 5,
           "code": "DG02",
-          "kind": "probe"
+          "kind": "curette"
         },
         {
           "no": 3,
