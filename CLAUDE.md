@@ -20,7 +20,8 @@ database. It is not yet a system of record.
 | `design-system/` | Source of truth. Tokens, components, guidelines, 8 browsable preview cards. |
 | `website/` | The service itself — the pages people use. |
 | `server/` | A Cloudflare Worker + D1 API speaking the same model as `store.js`. |
-| `tools/` | `devserver.py` (dev server), `bundle-data.py` (data → script). |
+| `tools/` | `devserver.py` (dev server), `bundle-data.py` (data → script), `extract-form-spec.py` (measure the printed form). |
+| `forms/` | The printed counterpart to the website. See `forms/PRINT-FORM-SPEC.md`. |
 
 **The dependency runs one way.** The website imports from the design system;
 the design system knows nothing about the website. Anything in
